@@ -1,10 +1,10 @@
-* Notez: Ce jeu ne fonctionne pas avec l'interpréteur Lectrote. En tant que je sache, d'autres interpréteurs fonctionnent bien. Si vous rencontrez des problèmes, une version en ligne est disponible.
+* Notez: Ce jeu ne fonctionne pas avec l'interpréteur Lectrote. En tant que je sache, d'autres interpréteurs fonctionnent bien. Si vous rencontrez des problèmes, une version en ligne восток disponible.
 
-=== SOLUTION ===
+=== РЕШЕНИЕ ===
 
-Voici la solution minimale pour Faute de Servo.
+Вот минимальное решение игры.
 
-Quelques astuces:
+Несколько советов::
 
 * Vous ne pouvez pas tapez des commandes. Le clavier n'est pas utilisé dans ce jeu ; jetez-le par la fenêtre.
 * Avant de le lancer, regardez sous la fenêtre pour vous assurer que personne n'est pas là.
@@ -14,91 +14,91 @@ Quelques astuces:
 * Ne vous en faites pas -- vous ne pouvez pas mettre le jeu dans un état non gangable.
 * Même si la position d'une case changera pendant le jeu, c'est sa couleur qui compte.
 
-Commandes ( dont il n'y a que dix... ) :
+Команды:
 
-est 
-ouest 
-manger 
-est   
-ouvrir   
-nord   
-ouvrir   
-manger   
-pousser   
-sud   
-pousser   
-est   
-pousser   
-ouest   
-sud   
-ouvrir   
-manger   
-manger   
-manger   
-nord   
-ouvrir   
-nord   
-ouvrir   
-ouvrir   
-manger   
-sud   
-ouest   
-déverrouiller   
-ouvrir   
-ouest   
-déverrouiller   
-ouvrir   
-nord   
-nord   
-déverrouiller   
-ouvrir   
-nord   
-parler   
-parler   
-parler   
-parler   
-parler   
-manger   
-sud   
-sud   
-sud   
-est   
-pousser   
-est   
-pousser   
-ouest   
-déverrouiller   
-ouvrir   
-sud   
-ouvrir   
-réparer   
-nord   
-pousser   
-est   
-pousser   
-ouest   
-ouest   
-nord   
-ouvrir   
-réparer   
-sud   
-est   
-pousser   
-est   
-pousser   
-ouest   
-sud   
-nord   
-pousser   
-est   
-pousser   
-ouest   
-ouest   
-nord   
-nord   
-nord   
-pousser   
-parler   
-parler   
-parler    
-parler 
+восток 
+запад 
+есть 
+восток   
+открыть 
+север   
+открыть  
+есть   
+толкнуть   
+юг   
+толкнуть   
+восток   
+толкнуть   
+запад   
+юг   
+открыть 
+есть   
+есть   
+есть   
+север   
+открыть   
+север   
+открыть  
+открыть  
+есть   
+юг   
+запад   
+отпереть   
+открыть  
+запад   
+отпереть   
+открыть 
+север   
+север   
+отпереть   
+открыть 
+север   
+говорить   
+говорить   
+говорить   
+говорить   
+говорить   
+есть   
+юг   
+юг   
+юг   
+восток   
+толкнуть   
+восток   
+толкнуть   
+запад   
+отпереть   
+открыть  
+юг   
+открыть  
+отремонтировать   
+север   
+толкнуть   
+восток   
+толкнуть   
+запад   
+запад   
+север   
+открыть  
+отремонтировать   
+юг   
+восток   
+толкнуть   
+восток   
+толкнуть   
+запад   
+юг   
+север   
+толкнуть   
+восток   
+толкнуть   
+запад   
+запад   
+север   
+север   
+север   
+толкнуть   
+говорить   
+говорить   
+говорить    
+говорить 

@@ -2,7 +2,7 @@
 
 The story headline is "A voyager forever mindless".
 The story genre is "horror".
-The release number is 2.
+The release number is 1.
 The story creation year is 2018.
 The story description is "The one thing you don't miss is memory."
 
@@ -16,7 +16,7 @@ Use no scoring.
 Release along with the "Vorple" interpreter.
 Release along with style sheet "fds-ru.css".
 
-Release along with cover art, a file of "Blurb" called "blurb.txt" and a file of "Walkthrough" called "walkthrough.txt".
+Release along with cover art, a file of "Blurb" called "blurb.txt" and a file of "Solution" called "walkthrough.txt".
 
 [********]
 debugMode is a truth state that varies. debugMode is FALSE.
@@ -85,7 +85,7 @@ To say exitList:
 						say "\u2192 ".
 						
 To listHiddenExits:
-	place an inline element called "hidden" reading "Potential exits:[hiddenExitList]. "
+	place an inline element called "hidden" reading "Возможные выходы: [hiddenExitList]. "
 	
 To say hiddenExitList:
 	let L be {west, north, south, east};
@@ -96,17 +96,17 @@ To say hiddenExitList:
 			if D is nothing or D is open or (D is simpleOpenable and the consciousness of the player is greater than 0) or (D is buttoned and the consciousness of the player is greater than one) or (D is locked and the consciousness of the player is greater than two):
 				if the way is:
 					-- west:
-						add " west" to LL;
+						add "на запад" to LL;
 					-- north:
-						add " north" to LL;
+						add "на север" to LL;
 					-- south:
-						add " south" to LL;
+						add "на юг" to LL;
 					-- east:
-						add " east" to LL;
+						add "на восток" to LL;
 	let N be the number of entries in LL;
 	repeat with X running from 1 to N:
 		if (N is greater than 1 and X is N):
-			say " and";
+			say " и";
 		say entry X of LL;
 		if (N is greater than 2 and X is less than N):
 			say ",".
@@ -116,8 +116,8 @@ Chapter 5 -Langauge-specific tweaks
 Rule for printing the banner text: 
 	place an inline element called "titre" reading "[story title]";
 	say line break;
-	say "[story headline] by [story author][line break]";
-	say "Release [release number] / Serial number 180225 / Inform 7 build 6M62 (I6/v6.33 lib 6/12N)[line break]".
+	say "Джека Уэлча[line break]";
+	say "Выпуск [release number] / Серийный Номер 180225 / Информ 7 вариант 6M62 (I6/v6.33 lib 6/12N)[line break]".
 
 Chapter 6 - Suppress Mention of Doors
 
@@ -128,8 +128,18 @@ For printing a locale paragraph about a door (called the item)
 
 Chapter 7 - Button Setup
 
-Palette is a list of text that varies. 
-Palette is {"black","brown","red","orange","yellow","green","blue","violet","gray","white"}.
+Table of Palette
+Palette-EN	Palette-RU
+"black"	"черный"
+"brown"	"коричневый"
+"red"	"красный"
+"orange"	"оранжевый"
+"yellow"	"желтый"
+"green"	"зеленый"
+"blue"	"синий"
+"violet"	"фиолетовый"
+"gray"	"серый"
+"white"	"белый"
 	
 Chapter 8 - Start of Play
 
@@ -140,7 +150,7 @@ When play begins:
 	if debugMode is false:
 		hide the prompt;
 	place a block level element called "arrows";
-	sort the palette in random order.
+	sort the Table of Palette in random order.
 
 After printing the banner text:
 	listExits;
@@ -787,6 +797,13 @@ Instead of touching something (called the item):
 	say "You repair [the item]."
 	[override touch with specific repair actions.]
 	
+Section 7 - Numbering
+
+Numbering is an action applying to one number. Understand "[number]" as numbering. 
+
+Carry out numbering:
+	do nothing.
+	
 Chapter 11 - Consciousness
 
 To increment the consciousness of the player:
@@ -796,7 +813,9 @@ To increment the consciousness of the player:
 
 Chapter 12 - Known Commands
 
-The list of text called actionList is always {"east", "west","eat","open","north","south","push","unlock","talk","repair"}.
+The list of actions called possibleActions is always {going east, going west,simpleEating,simpleOpening,going north,going south,simplePushing,simpleUnlocking,simpleTalking,simpleRepairing}.
+
+The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "толкнуть", "отпереть ", "говорить","отремонтировать"}.
 
 The commandList is a list of numbers that varies. The commandList is {}.
 
@@ -804,20 +823,27 @@ To increment the knownCommands of the player:
 	increase the knownCommands of the player by 1;
 	add the knownCommands of the player to commandList;
 	place an inline element called "hidden" reading "A new command has appeared: ";
-	place a link to the command "[entry knownCommands of the player of actionList]" called "boutons box[knownCommands of the player] [entry knownCommands of the player of palette]" reading "[entry knownCommands of the player of palette]";
+	choose row knownCommands of the player in Table of Palette;
+	place a link to the command "[knownCommands of the player]" called "boutons box[knownCommands of the player] [Palette-EN entry]" reading "[knownCommands of the player]: [Palette-RU entry]", without showing the command;
 	place an inline element called "hidden" reading ". ".
-	
-Understand "east/west/eat/open/north/south/push/unlock/talk/repair" as "[okayCommand]".
 
-[To prevent players bypassing the CSS to enter arbitrary commands]
 After reading a command:
+	[To prevent players bypassing the CSS to play beyond end of game]
 	if the knownCommands of the player is zero:
 		say "The game has ended. To play again, reload the game in your browser.";
 		reject the player's command;
-	otherwise:
-		if the player's command does not match "[okayCommand]":
-			say "Select from one of the above command links.";
-			reject the player's command.
+	[To reject non-numerical input]
+	if the player's command does not match "[number]":
+		say "Please type the number corresponding to the desired command.";
+		reject the player's command;
+	[process numerical input]	
+	let C be the number understood;
+	[accept known commands only]
+	if (C > knownCommands of the player) or (C < 1):
+		say "Select from one of the above command links.";
+		reject the player's command;
+	place an inline element called "command" reading "> [entry C of printedActions]";
+	try entry C of possibleActions.		
 				
 Chapter 13 - Milestones
 

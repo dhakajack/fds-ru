@@ -4,7 +4,7 @@
 
 Вот минимальное решение игры.
 
-Несколько советов::
+Несколько советов:
 
 * Vous ne pouvez pas tapez des commandes. Le clavier n'est pas utilisé dans ce jeu ; jetez-le par la fenêtre.
 * Avant de le lancer, regardez sous la fenêtre pour vous assurer que personne n'est pas là.

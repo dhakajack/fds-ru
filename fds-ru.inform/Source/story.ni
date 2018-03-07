@@ -1,6 +1,6 @@
 "FDS-RU" by Jack Welch
 
-The story headline is "A voyager forever mindless".
+The story headline is "Рыцарь без мозга и упрека".
 The story genre is "horror".
 The release number is 1.
 The story creation year is 2018.
@@ -114,9 +114,10 @@ To say hiddenExitList:
 Chapter 5 -Langauge-specific tweaks
 
 Rule for printing the banner text: 
-	place an inline element called "titre" reading "[story title]";
+	place an inline element called "titre" reading "На Страже";
 	say line break;
-	say "Джека Уэлча[line break]";
+	say "Рассказ: Джек Уэлч[line break]";
+	say "Перевод: Валентин Коптелцев[line break]";
 	say "Выпуск [release number] / Серийный Номер 180225 / Информ 7 вариант 6M62 (I6/v6.33 lib 6/12N)[line break]".
 
 Chapter 6 - Suppress Mention of Doors

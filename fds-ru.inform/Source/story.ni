@@ -119,6 +119,32 @@ Rule for printing the banner text:
 	say "Рассказ: Джек Уэлч[line break]";
 	say "Перевод: Валентин Коптелцев[line break]";
 	say "Выпуск [release number] / Серийный Номер 180225 / Информ 7 вариант 6M62 (I6/v6.33 lib 6/12N)[line break]".
+	
+
+Rule for listing nondescript items:
+	let L be a list of things;
+	say "Ты видишь здесь ";
+	repeat with item running through things in the location:
+		if the item is a person or the item is a door:
+			next;
+		add item to L;
+	repeat with N running from 1 to the number of entries in L:
+		if N is greater than 1 and N is the number of entries in L:
+			say " et ";
+		let E be entry N of L;
+		say "[an E]";
+		if E is open and E contains exactly one thing:
+			say " (contenant [a random thing in E])";
+		if the number of entries in L is greater than 2 and N is less than (the number of entries in L minus 1):
+			say ", ";
+	say "."
+	
+Rule for implicitly taking something (called the target):
+	try silently taking the target;
+	say "(сначала ты берешь [target])[command clarification break]".
+
+The can't go that way rule response (A) is "Vous ne pouvez pas aller par là."
+
 
 Chapter 6 - Suppress Mention of Doors
 
@@ -156,9 +182,18 @@ When play begins:
 After printing the banner text:
 	listExits;
 	listHiddenExits;
-	say "[line break][italic type]Where am I? For that matter, who am I?[roman type][paragraph break]You wake up alone in a plain room with a bluish hue.[paragraph break][italic type]Why can't I remember anything?[paragraph break]I've got to concentrate! What happened? Come on. Think! Think![paragraph break]In any case, the solution isn't here -- I'll have to look around.";
-	say roman type;
+	tell bannerText;
 	increment the knownCommands of the player.
+	
+The list of text called bannerText is always {
+"[line break][italic type]Где я? И вообще, кто я?[roman type][paragraph break]Ты просыпаешься в одиночестве в пустой синеватой комнате.[paragraph break]","[italic type]Почему я не могу ничего вспомнить?[paragraph break]Мне надо сконцентрироваться! Что случилось? Давай, думай! Думай же![paragraph break]Как бы то ни было, здесь я ответов не найду -- мне придется осмотреть окрестности.[roman type]"
+}
+	
+[max 217 unicode characters between quotes due to expansion of intermediates during compliation как жал]
+
+To tell ( blahblah - a list of text):
+	repeat with phrase running through blahblah:
+		say "[phrase]".
 
 Chapter 9 - Geography
 
@@ -198,7 +233,7 @@ Bloc Opératoire is a room. The description of Bloc Opératoire is "[descBlocOpe
 To say descBlocOperatoire:
 	if the consciousness of the player is:
 		-- 0:
-			say "A dark room[one of]. Nothing interesting here[or][stopping]";
+			say "Темное помещение[one of]. Здесь нет ничего интересного[or][stopping]";
 		-- 1:
 			say "There's a bit of blood here -- a huge, blue room with metallic walls";
 		-- 2:
@@ -211,7 +246,7 @@ To say descBlocOperatoire:
 To say pnBlocOpératoire:
 	if the consciousness of the player is:
 		-- 0:
-			say "The blue place";
+			say "Голубая комната";
 		-- 1:
 			say "The scary place";
 		-- 2:
@@ -228,7 +263,7 @@ Couloir 2 is a room. The description of Couloir 2 is "[descCouloir2]." The labZo
 To say descCouloir2:
 	if the consciousness of the player is:
 		-- 0:
-			say "A white, unfurnished hallway";
+			say "Белый коридор безо всякой мебели";
 		-- 1:
 			say "A great white corridor that connects the scary place to the west with the den of the fierce wolf to the north";
 		-- 2:
@@ -248,7 +283,7 @@ To say liftDoorDogStatus:
 To say pnCouloir2:
 	if the consciousness of the player is:
 		-- 0:
-			say "Corridor";
+			say "Коридор";
 		-- 1:
 			say "Great Hall";
 		-- 2:
@@ -823,7 +858,7 @@ The commandList is a list of numbers that varies. The commandList is {}.
 To increment the knownCommands of the player:
 	increase the knownCommands of the player by 1;
 	add the knownCommands of the player to commandList;
-	place an inline element called "hidden" reading "A new command has appeared: ";
+	place an inline element called "hidden" reading "Появилась новая команда: ";
 	choose row knownCommands of the player in Table of Palette;
 	place a link to the command "[knownCommands of the player]" called "boutons box[knownCommands of the player] [Palette-EN entry]" reading "[knownCommands of the player]: [Palette-RU entry]", without showing the command;
 	place an inline element called "hidden" reading ". ".
@@ -850,18 +885,22 @@ Chapter 13 - Milestones
 
 After going east for the first time:
 	try looking;
-	say "A tiny creature zips out of nowhere, weaves between your feet, and flees to the west.";
+	say "Какое-то мелкое существо выскакивает из ниоткуда, прошмыгивает между твоих ног и исчезает на западе.";
 	increment the knownCommands of the player.
 	
 After going west from Couloir 2 for the first time:
 	move the small gray creature to the Bloc Opératoire;
 	try looking;
-	say "It hides in the shadows, trembling.";
+	say "Оно, дрожа всем телом, прячется в тени.";
 	increment the knownCommands of the player.
 	
 After eating the small gray creature:
-	say "[line break]You blindly sweep the base of the wall with your hand. Despite your lack of speed and dexterity, by some miracle you manage to trap the tiny rodent against the wall. You seize it firmly and feel something warm, furry -- and now moist -- melt in your hand. Without another thought, you pop it into your mouth and swallow.[paragraph break]A moment later, you are overcome as new thoughts flood your mind.[paragraph break][italic type]Help! A giant monster is after me! It's going to eat me! I have to hide.[paragraph break]I…um.  Am I dead or what? I don't get it. What's going on?[roman type][paragraph break]";
+	tell mouseEatingText;
 	increment the consciousness of the player.
+	
+The list of text called mouseEatingText is always {
+"[line break]Ты наугад проводишь рукой вдоль низа стены. Хотя тебя нельзя назвать быстрым и ловким, каким-то чудом тебе удается прижать крошечного зверька к стене. Ты крепко хватаешь его и чувствуешь в своей ладони что-то теплое, мохнатое, а теперь еще и влажное. ","Не задумываясь, ты засовываешь это в свой рот и сглатываешь.[paragraph break]Спустя мгновение тебя одолевает захлестнувший твое сознание поток новых мыслей.[paragraph break][italic type]Спасите! За мной гонится гигантское чудовище! Оно хочет меня ","съесть! Мне надо спрятаться.[paragraph break]Я…ох.  Я уже умер или что? Не понимаю. Что происходит?[roman type][paragraph break]"
+}
 	
 After going east when the consciousness of the player is 1 for the first time:
 	try looking;
@@ -1061,7 +1100,7 @@ Chapter 15 - The Void
 
 The void is a room.
 
-The small gray creature is an edible thing. It is in the void. 
+The small gray creature is an edible thing. It is in the void. The printed name of the small gray creature is "маленькое серое существо".
 
 The bloody corpse of Docteur Rambaud is a thing in the void. The indefinite article of bloody corpse of Doctor Rambaud is "the".
 

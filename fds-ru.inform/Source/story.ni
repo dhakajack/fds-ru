@@ -143,7 +143,7 @@ Rule for implicitly taking something (called the target):
 	try silently taking the target;
 	say "(сначала ты берешь [target])[command clarification break]".
 
-The can't go that way rule response (A) is "Vous ne pouvez pas aller par là."
+The can't go that way rule response (A) is "Этим путем не пройти."
 
 
 Chapter 6 - Suppress Mention of Doors
@@ -224,7 +224,7 @@ Instead of going through a closed door (called la porte):
 				say "The door is closed."
 			
 To say bougePas:
-	say "The wall does not budge".
+	say "Стена не поддается".
 			
 Section Bloc Opératoire
 
@@ -320,7 +320,7 @@ To say pnLabZoo:
 		-- 1:
 			say "Логово волка";
 		-- 2:
-			say "My home";
+			say "Дом, милый дом";
 		-- 3:
 			say "The kennel";
 		-- 4:
@@ -330,13 +330,13 @@ To say openNord:
 		say "Стена к северу отъезжает в сторону, открывая проход в соседнее помещение".
 
 	
-The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "[if the cage is open]open [end if]cage".
+The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "клетку[if the cage is closed]  (она закрыта)[end if]".
 
 The chien is an edible thing. It is in the cage. The printed name of the chien is "[if the consciousness of the player is 1]wolf[otherwise]dog[end if]". The chien can be dead. The chien is not dead. 
 
 The animal body is a thing. It is in the void.
 
-The food dispenser is in the Laboratoire Zoologique. It is buttoned. The printed name of the food dispenser is "[if the consciousness of the player is greater than 2]dog [end if]food dispenser".
+The food dispenser is in the Laboratoire Zoologique. It is buttoned. The printed name of the food dispenser is "автоматическую кормушку".
 
 Instead of pushing the food dispenser:
 	say "You press the red button. ";
@@ -353,10 +353,15 @@ Instead of pushing the food dispenser:
 The pile of dog food is in the void.
 
 Every turn when the chien is in the cage and the player is in the Laboratoire Zoologique:
-	if a random chance of 3 in 8 succeeds:
-		say "The wolf [one of]barks loudly[or]chews the bars of his cage[or]scratches his ears[or]paces back and forth in his metal cage[or]howls with all his might[or]sniffs the air[or]sniffs his cage[or]sniffs himself[or]licks his paws[or]shows you his teeth[or]growls menacingly[or]ignores you[or]runs the length of his cage, eying you[in random order]."		
-	
-		 
+	if a random chance of 1 in 8 succeeds:
+		say "Волк [one of]громко гавкает[or]грызет прутья своей клетки[or]чешет ухо[or]вышагивает взад-вперед по своей металлической клетке[in random order].";
+	otherwise:
+		if a random chance of 1 in 8 succeeds:
+			say "[one of]воет во всю силу своих легких[or]принюхивается к чему-то в воздухе[or]обнюхивает клетку[or]обнюхивает самого себя[in random order].";
+		otherwise:
+			if a random chance of 1 in 8 succeeds:
+				say "[one of]лижет свои лапы[or]скалится на тебя[or]угрожающе рычит[or]не обращает на тебя внимания[or]бегает вдоль клетки, не спуская с тебя глаз[in random order]."	
+				
 Section Ascenseur 2
 
 An elevator is a kind of room. The description of an elevator is "[descAscenseur1]." The printed name of an elevator is "[pnAsc]".
@@ -754,7 +759,7 @@ Carry out simpleEating:
 	repeat with the item running through visible edible things:
 		try eating the item;
 		stop the action;
-	say "You don't see anything to eat";
+	say "Здесь нечего есть";
 	if the pile of dog food is in the location:
 		say " (at least, nothing that looks appetizing)";
 	say "."
@@ -915,20 +920,26 @@ After opening the labZooDoor:
 After going north from Couloir 2 for the first time:
 	say "Ты проскальзываешь в волчье логово – это место неплохо тебе знакомо, но всё равно вызывает ужас.";
 	try looking;
-	say "As usual, the wolf is imprisoned in an iron cage and you are free to explore, beyond the reach of his slaving fangs.";
+	say "Волк, как обычно, заперт в железной клетке, так что ничто не мешает тебе исследовать помещение, держась подальше от его хищных клыков.";
 	increment the knownCommands of the Player.
 	
 After opening the cage:
-	say "You open the cage, but the wolf remains prudently inside, watching you."
+	say "Ты открываешь клетку, но волк благоразумно остается внутри, продолжая наблюдать за тобой."
 	
 After eating the chien:
 	now the chien is dead;
 	now the animal body is in the cage;
-	say "[line break]Out of instinct, you eat its brain and throw the body back into the cage. Once again, new thoughts invade your mind.[paragraph break][italic type]I'm warning you: if you get near my cage, I'll eat you. Stop! I'm not kidding…[paragraph break]Huh? What's going on? What's that dead dog doing in my cage… bleeding on my favorite pillow?[paragraph break]And what am I doing standing on my hind legs like a human? It seems to be easier than I would have thought.";
+	tell ateDog;
 	increment the consciousness of the player;
 	now the BlockChatterFlag is true;
 	say "[italic type][quotation mark]Sorry[quotation mark][line break][quotation mark]Sorry about what?[quotation mark][line break][quotation mark]I guess, I'm sorry that I ate you.[quotation mark][line break][quotation mark]Ate me? Who are you, anyhow?[quotation mark][line break][quotation mark]The mouse.[quotation mark][roman type][line break]";
 	increment the knownCommands of the player.
+	
+The list of text called ateDog is always {
+"[line break]Повинуясь инстинкту, ты выедаешь ему мозг и швыряешь тело обратно в клетку. И вновь в твой разум вторгаются новые мысли.[paragraph break][italic type]",
+"Предупреждаю: если подойдешь к клетке, я тебя съем! Стой, я не шучу… [paragraph break]Что? Что происходит? Что эта дохлая собака делает в моей клетке… заливая кровью мою любимую подушку?",
+"[paragraph break]И почему я стою на задних лапах, как человек? Кажется, это проще, чем я мог себе представить."
+}
 	
 After eating the slice of brain:
 	say "[line break]While eating the slice of brain you notice that the flavor is a little bit off.[paragraph break]Nothing happens for a few minutes and you begin to wonder if you can now eat just anything you find without having to worry about it.[paragraph break]Suddenly, the world explodes from muddy grays into full, vibrant color. A wave of electricity courses through your mind and you collapse, disoriented. As you stand back up, new ideas blend into your thoughts and you see everything in a new light.";
@@ -1010,13 +1021,13 @@ mouseDialogue is a list of text that varies.
 mouseDialogue is {
 "Как бы там ни было, я, кажется, прилично подрос. Хм, что бы это значило.",
 "Мне явно чего-то хочется, но вот чего – никак не пойму.",
-"Let's see, what do I usually want?",
-"Sleep? Nope. Drink? Nope. Sex? Nope.[paragraph break]My gods! No? Am I sick?",
-"Ah, that's it. I'm hungry.",
-"But hungry for what? That escapes me for the moment.",
-"For some cheese? No, not really.",
-"I'm looking for something soft, juicy...",
-"I guess I'll know it when I see it."
+"Ну-ка, чего мне обычно хочется?",
+"Спать? Не-а. Пить? Не-а. Секса? Не-а.[paragraph break]Елки зеленые! Неужто я заболел?",
+"Ах, вот оно что. Я голоден.",
+"Но чего именно мне хочется? Никак не могу сообразить.",
+"Может, сыра? Нет, вряд ли.",
+"Мне нужно что-то мягкое, сочное...",
+"Наверно, я пойму, чего хочу, когда увижу это."
 }.
 
 Section MouseDog Dialogue	

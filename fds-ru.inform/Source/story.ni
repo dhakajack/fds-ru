@@ -235,7 +235,7 @@ To say descBlocOperatoire:
 		-- 0:
 			say "Темное помещение[one of]. Здесь нет ничего интересного[or][stopping]";
 		-- 1:
-			say "There's a bit of blood here -- a huge, blue room with metallic walls";
+			say "Опа, здесь кровь -- в этой огромной синей комнате с металлическими стенами.";
 		-- 2:
 			say "The blue room in which humans cut up animals and remove their guts";
 		-- 3:
@@ -248,7 +248,7 @@ To say pnBlocOpératoire:
 		-- 0:
 			say "Голубая комната";
 		-- 1:
-			say "The scary place";
+			say "Жуткое место";
 		-- 2:
 			say "The torture chamber";
 		-- 3:
@@ -265,7 +265,7 @@ To say descCouloir2:
 		-- 0:
 			say "Белый коридор безо всякой мебели";
 		-- 1:
-			say "A great white corridor that connects the scary place to the west with the den of the fierce wolf to the north";
+			say "Огромный белый коридор, соединяющий жуткое место на западе с логовом злого волка на севере";
 		-- 2:
 			say "The hall that leads from my comfy nook to the north to the chamber of horrors to the west";
 			say "[liftDoorDogStatus]";
@@ -285,7 +285,7 @@ To say pnCouloir2:
 		-- 0:
 			say "Коридор";
 		-- 1:
-			say "Great Hall";
+			say "Огромный холл";
 		-- 2:
 			say "Dangerous Passage";
 		-- 3:
@@ -307,7 +307,7 @@ Laboratoire Zoologique is a room. The description of Laboratoire Zoologique is "
 To say descLabZoo:
 	if the consciousness of the player is:
 		-- 1:
-			say "From his cage, the vicious wolf stares at you";
+			say "Волк смотрит на тебя недобрым взглядом из своей клетки";
 		-- 2:
 			say "The room in which you were taught to press a button to get treats out of the reward machine";
 		-- 3:
@@ -318,7 +318,7 @@ To say descLabZoo:
 To say pnLabZoo:
 	if the consciousness of the player is:
 		-- 1:
-			say "The wolf's den";
+			say "Логово волка";
 		-- 2:
 			say "My home";
 		-- 3:
@@ -327,7 +327,7 @@ To say pnLabZoo:
 			say "Zoological laboratory".
 	
 To say openNord:
-		say "The wall to the north slides aside, revealing the room next door".
+		say "Стена к северу отъезжает в сторону, открывая проход в соседнее помещение".
 
 	
 The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "[if the cage is open]open [end if]cage".
@@ -736,7 +736,7 @@ Carry out simpleOpening:
 		if the item is closed:
 			try opening the item;
 			stop the action;
-	say "There's nothing obvious to open here." 
+	say "Здесь, похоже, нечего открывать." 
 	
 [this works here because things only contain a single item
 After opening something (called the item):
@@ -905,7 +905,7 @@ The list of text called mouseEatingText is always {
 After going east when the consciousness of the player is 1 for the first time:
 	try looking;
 	now the BlockChatterFlag is true;
-	say "[italic type]Ah, the great white hallway.[paragraph break]How many times I have seen the giants walk right through the smooth walls into secret rooms? How do they do it?[roman type][line break]";
+	say "[italic type]Ах, этот огромный белый коридор. [paragraph break]Сколько раз я видел, как эти гиганты проходили прямо сквозь сплошные стены, проникая в секретные комнаты? Как они это делают?[roman type][line break]";
 	increment the knownCommands of the player.
 	
 After opening the labZooDoor:
@@ -913,7 +913,7 @@ After opening the labZooDoor:
 	increment the knownCommands of the player.
 	
 After going north from Couloir 2 for the first time:
-	say "You sneak into the wolf's den, a place that is well known to you, but still terrifying.";
+	say "Ты проскальзываешь в волчье логово – это место неплохо тебе знакомо, но всё равно вызывает ужас.";
 	try looking;
 	say "As usual, the wolf is imprisoned in an iron cage and you are free to explore, beyond the reach of his slaving fangs.";
 	increment the knownCommands of the Player.
@@ -1008,8 +1008,8 @@ Section Mouse Dialogue
 mouseDialogue is a list of text that varies. 
 	
 mouseDialogue is {
-"In any case, I seem to have grown quite a bit. Hmph, how about that.",
-"I've got a real hankering for something, I just can't quite put my paw on it.",
+"Как бы там ни было, я, кажется, прилично подрос. Хм, что бы это значило.",
+"Мне явно чего-то хочется, но вот чего – никак не пойму.",
 "Let's see, what do I usually want?",
 "Sleep? Nope. Drink? Nope. Sex? Nope.[paragraph break]My gods! No? Am I sick?",
 "Ah, that's it. I'm hungry.",

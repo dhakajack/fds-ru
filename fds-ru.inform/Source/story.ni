@@ -339,10 +339,10 @@ The animal body is a thing. It is in the void.
 The food dispenser is in the Laboratoire Zoologique. It is buttoned. The printed name of the food dispenser is "автоматическую кормушку".
 
 Instead of pushing the food dispenser:
-	say "You press the red button. ";
+	say "Ты нажимаешь красную кнопку. ";
 	if the consciousness of the player is:
 		-- 2:
-			say "In reward, a few nuggets fall to the ground. You eat them, but they do not satisfy your hunger.";
+			say "В награду на пол высыпается несколько кусочков корма. Ты съедаешь их, но они не могут утолить твой голод.";
 		-- 3:
 			say "You don't find the reward nuggets that fall at your feet the least bit appetizing.";
 			move the pile of dog food to the Laboratoire Zoologique;
@@ -932,7 +932,7 @@ After eating the chien:
 	tell ateDog;
 	increment the consciousness of the player;
 	now the BlockChatterFlag is true;
-	say "[italic type][quotation mark]Sorry[quotation mark][line break][quotation mark]Sorry about what?[quotation mark][line break][quotation mark]I guess, I'm sorry that I ate you.[quotation mark][line break][quotation mark]Ate me? Who are you, anyhow?[quotation mark][line break][quotation mark]The mouse.[quotation mark][roman type][line break]";
+	say "[italic type]«Извини».[line break]«Извинить за что?»[line break]«Ну, типа я сожалею, что съел тебя».[line break]«Съел меня? И кто ты вообще?»[line break]«Мышь».[roman type][line break]";
 	increment the knownCommands of the player.
 	
 The list of text called ateDog is always {

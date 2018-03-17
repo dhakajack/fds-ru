@@ -237,7 +237,7 @@ To say descBlocOperatoire:
 		-- 1:
 			say "Опа, здесь кровь -- в этой огромной синей комнате с металлическими стенами.";
 		-- 2:
-			say "The blue room in which humans cut up animals and remove their guts";
+			say "Голубая комната, в которой люди режут и потрошат животных";
 		-- 3:
 			say "The operating table stands in the middle of the blue room, surrounded by surgical equipment. The exit leads to the corridor";
 		-- 4:
@@ -267,7 +267,7 @@ To say descCouloir2:
 		-- 1:
 			say "Огромный белый коридор, соединяющий жуткое место на западе с логовом злого волка на севере";
 		-- 2:
-			say "The hall that leads from my comfy nook to the north to the chamber of horrors to the west";
+			say "Коридор, ведущий из моего уютного убежища на севере к комнате ужасов на западе. На восточной стене сияет красная кнопка";
 			say "[liftDoorDogStatus]";
 		-- 3:
 			say "The central corridor for level two. The operating room is to the west, the kennel to the north, the lab to the south, and the elevator to the east";
@@ -278,7 +278,7 @@ To say liftDoorDogStatus:
 	if the door east from the location is closed:
 		say ". A red button shines on the wall to the east";
 	otherwise:
-		say ". The opening to the east has disappeared".
+		say ". Проход к востоку исчез".
 			
 To say pnCouloir2:
 	if the consciousness of the player is:
@@ -287,7 +287,7 @@ To say pnCouloir2:
 		-- 1:
 			say "Огромный холл";
 		-- 2:
-			say "Dangerous Passage";
+			say "Опасный проход";
 		-- 3:
 			say "Corridor, Level 2";
 		-- 4:
@@ -297,8 +297,12 @@ To say pnCouloir2:
 After going east from Couloir 2 when the ascenseur2door is open for the first time:
 	now the BlockChatterFlag is true;
 	try looking;
-	say "[italic type][quotation mark]Lucky, how did you know how to open the magic box?[quotation mark][line break][quotation mark]I saw a button. I pushed it. That's what I do. So, what's all this about a [apostrophe]magic box[apostrophe]?[quotation mark][line break][quotation mark]The giants… [quotation mark][line break][quotation mark]You mean the humans?[quotation mark][line break][quotation mark]Sure, probably. Anyhow, the humans go into the box and they disappear. Later, other humans appear in the same box. It's got to be magic.[quotation mark][line break][quotation mark]Hmm. We'll see about that.[quotation mark][roman type][paragraph break]".
-			
+	tell openLift.
+	
+
+The list of text called openLift is always {
+"[italic type][quotation mark]Лаки, откуда ты знаешь, как открывать волшебный ящик?[quotation mark][line break][quotation mark]Я увидел кнопку. Я нажал ее. Вот и всё. И к чему весь этот эпатаж с волшебным ящиком?[quotation mark][line break]","[quotation mark]Гиганты…  [quotation mark][line break][quotation mark]Ты людей имеешь в виду?[quotation mark][line break][quotation mark]Наверно, да. Как бы там ни было, люди заходят в этот ящик и исчезают. А потом в том же самом ящике оказываются другие люди. Это явно магия.[quotation mark][line break]","[quotation mark]Хмм. Что ж, посмотрим.[quotation mark][roman type][paragraph break]"
+}			
 
 Section Laboratoire Zoologique
 
@@ -370,20 +374,20 @@ An elevatorDoor is a kind of door. ElevatorDoors are buttoned.
 
 To say pnAsc:
 	if the consciousness of the player is 2:
-		say "The little room";
+		say "Маленькая комнатка";
 		if Ascenseur 2 is visited:
-			say " that vibrates";
+			say ", которая вибрирует";
 	otherwise:
 		say "The elevator".
 
 Ascenseur 2 is an elevator. The Ascenseur2door is an elevatorDoor. It is east of Couloir 2 and west of Ascenseur 2. 
 
 Instead of pushing an elevatorDoor:
-	say "You push the button";
+	say "Ты нажимаешь кнопку";
 	if the player is in an elevator:
 		if the consciousness of the player is:
 			-- 2:
-				say " with your snout[one of] (which seems shorter than you remember)[or][stopping] and notice a slight vibration. A moment later, the wall opens upon a corridor to the west.";
+				say " своей мордой[one of] (которая, насколько ты помнишь, раньше была длиннее)[or][stopping] и замечаешь легкую вибрацию. Секунду спустя стена на западе отъезжает, и за ней оказывается коридор.";
 			-- otherwise:
 				say ", the elevator [if the location is Ascenseur 2]descends to the first level[otherwise]goes up to the second level[end if] and the doors open to the west."; 
 		if the player is in Ascenseur 2:
@@ -395,7 +399,7 @@ Instead of pushing an elevatorDoor:
 	otherwise:
 		if the consciousness of the player is:
 			-- 2:
-				say " and the wall slides open, allowing you to proceed to the east.";
+				say ", и стена отъезжает в сторону, открывая проход на восток.";
 			-- otherwise:
 				say " and the elevator door opens to the east.";
 		if the player is in Couloir 2:
@@ -409,17 +413,17 @@ After going east from Couloir 2:
 		now the Ascenseur2door is closed.
 		
 To say portesReferment:
-	say "You ";
+	say "Ты ";
 	if the player is in an elevator:
 		say "enter";
 	otherwise:
-		say "leave";
-	say " and ";
+		say "выходишь";
+	say ", и ";
 	if the consciousness of the player is less than 3:
-		say "the wall slides shut again";
+		say "стена за твоей спиной бесшумно возвращается на место";
 	otherwise:
-		say "the doors close";
-	say " silently behind you".
+		say "doors close silently behind you";
+	say " .".
 	
 After going west from an Ascenseur 2:
 	say "[portesReferment].";
@@ -461,7 +465,7 @@ Couloir 1 is a room. The description of Couloir 1  is "[descCouloir1]." The prin
 To say descCouloir1:
 	if the consciousness of the player is:
 		-- 2:
-			say "A corridor that looks like the [quotation mark]dangerous hallway[quotation mark] near your cage. You see [if labPathDoor is closed]an exit to the south and a sliding door to the north[otherwise]exits to the north and south[end if]";
+			say "Еще один коридор, выглядящий точно так же, как опасный проход рядом с твоей клеткой. Виден выход[if labPathDoor is closed] к югу и сдвижная дверь к северу[otherwise]ы к северу и югу[end if]";
 			say "[liftDoorDogStatus]";
 		-- 3:
 			say "The level one central corridor lies between the restrooms to the south, showers to the west, a lab to the north, and the elevator to the east";
@@ -471,7 +475,7 @@ To say descCouloir1:
 To say pnCouloir1:
 	if the consciousness of the player is:
 		-- 2:
-			say "New corridor";
+			say "Новый коридор";
 		-- 3:
 			say "Corridor, level one";
 		-- 4:
@@ -487,7 +491,7 @@ Section Ascenseur 1
 Ascenseur 1 is an elevator. The Ascenseur1door is an elevatorDoor. It is east of Couloir 1 and west of Ascenseur 1. 
 
 To say descAscenseur1:
-	say "A button green shines on a panel".
+	say "На панели горит зеленая кнопка".
 	
 After going west from an Ascenseur 1:
 	say "[portesReferment].";
@@ -501,7 +505,7 @@ Laboratoire de Pathologie is a room. The description of Laboratoire de Pathologi
 To say pnLabPath:
 	if the consciousness of the player is:
 		-- 2:
-			say "The kitchen";
+			say "Кухня";
 		-- 3: 
 			say "The prep lab";
 		-- 4:
@@ -510,18 +514,25 @@ To say pnLabPath:
 To say descLabPath:
 	If the consciousness of the player is:
 		-- 2:
-			say "[one of]This room reminds you of better times that you spent with your family -- from before you were abducted. Considering the counters, shelves full of food, sinks, and large appliances, there's no doubt in your mind that this is the most important room in the entire house: the kitchen[or]A typical kitchen, with black decor[stopping]";
+			if Laboratoire de Pathologie is visited:
+				tell kitchenDogDesc;
+			otherwise:
+				say "Обычная кухня с темной отделкой.";
 		-- 3:
 			say "This is where the researchers prepare microscope slides.[paragraph break]You recognize a meat slicer and a microwave oven, but most of the equipment on the counter doesn't look familiar";
 		-- 4:
 			say "An ultramodern laboratory dedicated to preparation and analysis of tissue samples".
+			
+The list of text called kitchenDogDesc is always { 
+"Это помещение напоминает тебе о лучших временах в кругу твоей семьи -- до того, как тебя похитили. Судя по столам, уставленным"," едой полкам, раковинам и странным большим приборам, ты можешь без всякого сомнения утверждать, что это самая важная комната во всем доме: кухня"
+}
 	
 The frigo is a closed openable container in the Laboratoire de Pathologie. The frigo is closed. The printed name of the frigo is "[pnFrigo]". 
 
 To say pnFrigo:
 	if the consciousness of the player is:
 		-- 2:
-			say "fridge";
+			say "холодильник";
 		-- 3:
 			say "freezer";
 		-- 4:
@@ -529,19 +540,23 @@ To say pnFrigo:
 			
 After opening the frigo:
 	move the tupperware container to the location;
-	say "You open the fridge and a plastic box falls to the floor."
+	say "Ты открываешь холодильник, и из него выпадает на пол пластиковая коробка."
 	
-The tupperware container is a closed openable container in the frigo. 
+The tupperware container is a closed openable container in the frigo.  The printed name of the tupperware container is "пластиковый контейнер".
 
-The slice of brain is a  edible thing in the tupperware container.
+The slice of brain is a edible thing in the tupperware container. The printed name of the slice of brain is "плоско срезанный кусок мозга".
 
 After opening the labPathDoor:
 	say "[openNord]."
 	
 After going north from Couloir 1 when the labPathDoor is open for the first time:
 	now the BlockChatterFlag is true;
-	say "[italic type][quotation mark]Mmmmm![quotation mark] says Lucky, licking his chops.[line break][quotation mark]What are you so happy about?[quotation mark][line break][quotation mark]You see that box, there? That's the real magic box: the fridge![quotation mark][line break][quotation mark]Do we get in the fridge to go places?[quotation mark][line break][quotation mark]No, we eat what's inside it![quotation mark][roman type][paragraph break]";
+	tell chopLicking;
 	try looking.
+	
+The list of text called chopLicking is always {
+"[italic type][quotation mark]Ммммм![quotation mark] говорит Лаки и облизывается.[line break][quotation mark]Чему это ты так обрадовался?[quotation mark][line break]","[quotation mark]Видишь вон тот здоровенный ящик? Вот он действительно волшебный: это холодильник![quotation mark][line break][quotation mark]Мы забираемся в холодильник, чтобы попасть в другое место?[quotation mark][line break]","[quotation mark]Нет, мы едим то, что внутри![quotation mark][roman type][paragraph break]"
+}
 
 
 Section Les Toilettes
@@ -743,13 +758,12 @@ Carry out simpleOpening:
 			stop the action;
 	say "Здесь, похоже, нечего открывать." 
 	
-[this works here because things only contain a single item
+[this works here because things only contain a single item]
 After opening something (called the item):
-	say "Vous ouvrez [the item]";
+	say "Ты открываешь  [the item]";
 	if the item contains exactly one thing:
-		say ", révélant [a random thing in item]";
+		say " и обнаруживаешь [a random thing in item]";
 	say "."
-]
 
 Section 3 - simpleEating
 
@@ -981,7 +995,9 @@ Every turn:
 					remove entry 1 from mouseDialogue;
 			-- 2:
 				if the number of entries in mouseDogDialogue is greater than zero:
-					say "[italic type][quotation mark][entry 1 of mouseDogDialogue][quotation mark][roman type][paragraph break]";
+					say "[italic type][quotation mark]";
+					tell entry 1 of mouseDogDialogue;
+					say "[quotation mark][roman type][paragraph break]";
 					remove entry 1 from mouseDogDialogue;
 			-- 3:
 				if the number of entries in mouseDogGuardDialogue is greater than zero:
@@ -1032,18 +1048,18 @@ mouseDialogue is {
 
 Section MouseDog Dialogue	
 		
-mouseDogDialogue is a list of text that varies. 
+mouseDogDialogue is a list of lists of text that varies. 
 
-mouseDogDialogue is {
-"The mouse? What mouse?[quotation mark][line break][quotation mark]The mouse who lives here.[quotation mark][line break][quotation mark]That damned mouse who is always swiping crumbs from around my food dispenser?[quotation mark][line break][quotation mark]Yes, one and the same. Once again, just wanted to say that I'm sorry if I upset you.",
-"Don't sweat it. I would have done the same.[quotation mark][line break][quotation mark]Thanks.[quotation mark][line break][quotation mark]Say, mouse, do you have a name?[quotation mark][line break][quotation mark]No, we mice don't have names. You can just call me [apostrophe]Mouse[apostrophe]. How about you? What's yours?[quotation mark][line break][quotation mark][apostrophe]Lucky[apostrophe]. Or, at least that's what my family called me before I got here. The torturers refer to me as [apostrophe]Subject 205-Alpha[apostrophe], but I prefer [apostrophe]Lucky[apostrophe].[quotation mark][line break][quotation mark]Okay, Lucky.",
-"Mouse, can you explain something to me? I'm still a bit confused. How can it be that you, a tiny little mouse, could manage to eat a big strong dog like me, when I'm several times your size?[quotation mark][line break][quotation mark]You know, I've asked myself the same question. Hang on -- you're a dog? I thought you were a wolf![quotation mark][line break][quotation mark]Nope, a dog.[quotation mark][line break][quotation mark]Really?[quotation mark][line break][quotation mark]Yes, I'm pretty sure.",
-"I can't figure out how I managed to eat you.[quotation mark][line break][quotation mark]What do you remember about it?[quotation mark][line break][quotation mark]I was seized by a sudden urge to eat brains.[quotation mark][line break][quotation mark]Brains? Which ones?[quotation mark][line break][quotation mark]In this case -- yours.[quotation mark][line break][quotation mark]Ah, I see… no, not really.",
-"Have you always lived here, Mouse?[quotation mark][line break][quotation mark]My family has lived here for generations, it is our hereditary territory. We defend it against all invaders. Field mice are nothing but thugs and thieves.[quotation mark][line break][quotation mark]Have you ever seen the outside world?[quotation mark][line break][quotation mark]I don't have the slightest desire to do so. I've heard stories, of course: the sky, clouds, fields, and so on, but none that interests me.",
-"What about you, Lucky? You mentioned a family? Do you have a wife? We mice don't believe in marriage, but I've heard you dogs are more traditional.[quotation mark][line break][quotation mark]A family, yes, but not a wife (although there was that poodle next door… but, um, that's another story). No, when I speak of family, I'm talking about a human family.",
-"You were their slave?[quotation mark] asks the mouse.[line break][quotation mark]No, it wasn't like that. I played with the kids, they fed me, they pet me all day, and I even had my own bed.[quotation mark][line break][quotation mark]You're dreaming. I've never seen anything like that. Humans don't like animals -- they're always trying to crush us under their heels.",
-"Meh, you don't know anything about humans,[quotation mark] refutes Lucky.[line break][quotation mark]I don't want to know them from any closer, thank you very much.[quotation mark][line break][quotation mark]You would have liked my family.[quotation mark][line break][quotation mark]If that's the case, why did you leave such an amazing family, if I may ask?[quotation mark][line break][quotation mark]Not by choice. We were in a forest, I saw a squirrel, and you can figure out the rest. I never saw them again.[quotation mark][line break][quotation mark]Don't talk to me about squirrels. They're worse than wild mice.",
-"Lucky, do you think that some day you'll find your family?[quotation mark][line break][quotation mark]Hope so.[quotation mark][line break][quotation mark]Me too. I'd like to chase squirrels with you.[quotation mark][line break][quotation mark]Yeah, that would be great."
+mouseDogDialogue is {	
+{"Мышь? Что еще за мышь?[quotation mark][line break][quotation mark]Мышь, которая здесь живет.[quotation mark][line break][quotation mark]Та самая проклятая мышь, которая постоянно тырит крошки вокруг моей кормушки?[quotation mark][line break][quotation mark]Да, именно так. Еще раз – я просто хотел извиниться, если расстроил тебя."},
+{"Не переживай из-за этого. На твоем месте я поступил бы так же.[quotation mark][line break][quotation mark]Спасибо.[quotation mark][line break][quotation mark]Скажи, мышь, у тебя есть имя?[quotation mark][line break]","[quotation mark]Нет, мы, мыши, обходимся без имен. Так что можешь звать меня просто Мышью, точнее – „Мышом[quotation mark]. Ну, а тебя как звать?[quotation mark][line break]","[quotation mark]„Lucky[quotation mark]. Ну, по крайней мере так называли меня в моей семье, пока я не попал сюда. Местные живодеры называют меня „Объект 205-Альфа[quotation mark], но „Лаки[quotation mark] мне как-то больше нравится.[quotation mark][line break][quotation mark]Хорошо, Лаки."},
+{"Мыш, ты можешь мне кое-что объяснить? Как так получилось, что ты, крошечная мышка, проглотил меня – крупного, сильного пса, в десятки раз превосходящего тебя в размерах?[quotation mark][line break]","[quotation mark]Ты знаешь, я задавался тем же вопросом. Постой-ка -- ты сказал «пес»? Я думал, ты волк![quotation mark][line break][quotation mark]Нет, я собака.[quotation mark][line break][quotation mark]Ты уверен?[quotation mark][line break][quotation mark]Да, вполне."},
+{"Никак не могу догадаться, как же я тебя съел.[quotation mark][line break][quotation mark]Ты что-нибудь об этом помнишь?[quotation mark][line break][quotation mark]Я неожиданно почувствовал непреодолимое желание съесть мозги.[quotation mark][line break][quotation mark]Мозги? Что за мозги?[quotation mark][line break][quotation mark]В данном случае твои.[quotation mark][line break][quotation mark]А, понятно… Точнее, ничего не понятно."},
+{"Мыш, ты всегда здесь жил?[quotation mark][line break][quotation mark]Мы обитаем здесь много поколений, это наше родовое гнездо. Мы охраняем его от посягательств всяких захватчиков. Мыши-полевки – это сплошь бандиты, гопники и воры.[quotation mark][line break]","[quotation mark]Ты когда-нибудь видел мир снаружи?[quotation mark][line break][quotation mark]У меня нет ни малейшего желания. Конечно, мне рассказывали там про небо, облака всякие, поля и тому подобное, но меня это не интересует."},
+{"А у тебя как, Лаки? Ты вроде говорил про семью. У тебя есть жена? Мы, мыши, не особо верим в брак, но я слыхал, что собаки в этом отношении более консервативны.[quotation mark][line break]","[quotation mark]Семья, да, но не жена (хотя соседская пуделиха… ну ладно, это другая история). Нет, когда я говорю про семью, то имею в виду семью людей."},
+{"Ты был у них в рабстве?[quotation mark] [unicode 8212] спрашивает Мыш.[line break]","[quotation mark]Да нет, ну что ты. Я играл с детьми, они меня кормили, дни напролет ласкали и гладили меня, у меня даже кровать своя была.[quotation mark]","[line break][quotation mark]Ты выдумываешь. Никогда ничего подобного не видел. Люди не выносят животных [unicode 8212] они так и норовят раздавить нас ногой."},
+{"Да ты просто вообще ничего не знаешь о людях[quotation mark], [unicode 8212] заключает Лаки.[line break]","[quotation mark]Что характерно [unicode 8212] и знать не хочу, благодарю покорно.[quotation mark][line break]","[quotation mark]Тебе бы понравилась моя семья[quotation mark].[line break][quotation mark]В таком случае, разреши поинтересоваться, что же заставило тебя покинуть такую замечательную семью?[quotation mark][line break]","[quotation mark]NНе то чтобы я ушел от них специально. Мы гуляли в лесу, я увидел белку, а дальше ты сам можешь всё себе представить. С тех пор я их не видел[quotation mark].[line break]","[quotation mark]Только не говори мне про белок. Они еще хуже полевок."},
+{"Лаки, как ты думаешь, ты найдешь свою семью?[quotation mark][line break][quotation mark]Очень на это надеюсь.[quotation mark][line break]","[quotation mark]Я тоже. Мы бы с тобой показали этим белкам[quotation mark][line break][quotation mark]Ага, это было бы круто."}
 }
 
 

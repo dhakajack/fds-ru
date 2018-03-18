@@ -468,7 +468,7 @@ To say descCouloir1:
 			say "Еще один коридор, выглядящий точно так же, как опасный проход рядом с твоей клеткой. Виден выход[if labPathDoor is closed] к югу и сдвижная дверь к северу[otherwise]ы к северу и югу[end if]";
 			say "[liftDoorDogStatus]";
 		-- 3:
-			say "The level one central corridor lies between the restrooms to the south, showers to the west, a lab to the north, and the elevator to the east";
+			say "Центральный коридор уровня 1 соединяет туалеты на юге, душевые на западе, лабораторию на севере и лифт на востоке";
 		-- 4:
 			say "The central corridor on level one leads south to the restroom, west to the decontamination suite, north to the histopathology laboratory, and east to the elevator".
 		
@@ -477,7 +477,7 @@ To say pnCouloir1:
 		-- 2:
 			say "Новый коридор";
 		-- 3:
-			say "Corridor, level one";
+			say "Коридор, уровень 1";
 		-- 4:
 			say "Level 1: Biocontainment".
 			
@@ -507,9 +507,9 @@ To say pnLabPath:
 		-- 2:
 			say "Кухня";
 		-- 3: 
-			say "The prep lab";
+			say "Лаборатория подготовки препаратов";
 		-- 4:
-			say "The histopathology laboratory".
+			say "Лаборатория патологической гистологии".
 
 To say descLabPath:
 	If the consciousness of the player is:
@@ -519,9 +519,9 @@ To say descLabPath:
 			otherwise:
 				say "Обычная кухня с темной отделкой.";
 		-- 3:
-			say "This is where the researchers prepare microscope slides.[paragraph break]You recognize a meat slicer and a microwave oven, but most of the equipment on the counter doesn't look familiar";
+			say "Здесь исследователи готовят препараты для рассматривания под микроскопом.[paragraph break]Ты узнаешь микротом и печь СВЧ, но назначение всего остального расставленного на столах оборудования остается непонятным.";
 		-- 4:
-			say "An ultramodern laboratory dedicated to preparation and analysis of tissue samples".
+			say "Ультрасовременная лаборатория для подготовки препаратов и исследования образцов тканей".
 			
 The list of text called kitchenDogDesc is always { 
 "Это помещение напоминает тебе о лучших временах в кругу твоей семьи -- до того, как тебя похитили. Судя по столам, уставленным"," едой полкам, раковинам и странным большим приборам, ты можешь без всякого сомнения утверждать, что это самая важная комната во всем доме: кухня"
@@ -536,7 +536,7 @@ To say pnFrigo:
 		-- 3:
 			say "freezer";
 		-- 4:
-			say "-80[unicode 176]C freezer for storing pathology specimens".
+			say "Низкотемпературная камера для хранения патанатомических препаратов".
 			
 After opening the frigo:
 	move the tupperware container to the location;
@@ -544,7 +544,7 @@ After opening the frigo:
 	
 The tupperware container is a closed openable container in the frigo.  The printed name of the tupperware container is "пластиковый контейнер".
 
-The slice of brain is a edible thing in the tupperware container. The printed name of the slice of brain is "плоско срезанный кусок мозга".
+The slice of brain is a edible thing in the tupperware container. The printed name of the slice of brain is "[one of]плоско срезанный [or][stopping]кусок мозга".
 
 After opening the labPathDoor:
 	say "[openNord]."
@@ -956,11 +956,20 @@ The list of text called ateDog is always {
 }
 	
 After eating the slice of brain:
-	say "[line break]While eating the slice of brain you notice that the flavor is a little bit off.[paragraph break]Nothing happens for a few minutes and you begin to wonder if you can now eat just anything you find without having to worry about it.[paragraph break]Suddenly, the world explodes from muddy grays into full, vibrant color. A wave of electricity courses through your mind and you collapse, disoriented. As you stand back up, new ideas blend into your thoughts and you see everything in a new light.";
+	tell flavorText;
 	increment the consciousness of the player;
 	now the BlockChatterFlag is true;
-	say "[italic type][quotation mark]We have to patrol![quotation mark] commands a new voice.[line break][quotation mark]Patrol? What's that mean?[quotation mark] asks the mouse.[line break][quotation mark]Well, it means to walk everywhere and secure the installation,[quotation mark] replies the voice.[line break][quotation mark]I love to go on walks![quotation mark] says Lucky excitedly.[roman type][line break]";
+	tell patrolText;
 	increment the knownCommands of the player.
+	
+The list of text called flavorText is always {
+"[line break]Заглотив кусок мозга, ты машинально отмечаешь, что вкус у него был какой-то странноватый.[paragraph break]Несколько минут ничего не происходит, и ты начинаешь думать,"," что теперь можешь есть что угодно, не опасаясь последствий.[paragraph break]Внезапно мир взрывается фейерверком, наполняясь вместо мутных полутонов яркими сияющими цветами. ","Тебя словно пронзает электрический разряд, и ты, потеряв ориентацию, падаешь на пол. ","Когда спустя некоторое время ты встаешь, в ход твоих мыслей вклиниваются совершенно новые представления, и ты видишь всё в ином свете."
+}
+
+The list of text called patrolText is always {
+"[italic type][quotation mark]Нам пора отправляться патрулировать[quotation mark] [unicode 8212] командует новый голос.[line break]","[quotation mark]Патрулировать? Что это значит?[quotation mark] [unicode 8212] -- спрашивает мышь.[line break]","[quotation mark]Ну, это значит обойти каждый уголок и обеспечить безопасность здания[quotation mark], [unicode 8212] отвечает голос.[line break]","[quotation mark]Люблю прогулки![quotation mark] [unicode 8212] с энтузиазмом заявляет Лаки.[roman type][line break]"
+}
+
 	
 After going north from Escalier 2 when the sasDoor is not closed for the first time:
 	now the BlockChatterFlag is true;

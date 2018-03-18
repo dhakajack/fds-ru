@@ -37,7 +37,7 @@ BlockChatterFlag is a truth state that varies. BlockChatterFlag is false.
 
 Chapter 3 - Player
 
-The player has a number called consciousness. The consciousness of the player is 0. The curedFlag of the player is a truth state that varies. The curedFlag of the player is false. The player has a number called conversations. The conversations of the player is 0.
+The player has a number called consciousness. The consciousness of the player is 0. The curedFlag of the player is a truth state that varies. The curedFlag of the player is false. The player has a number called conversations. The conversations of the player is 0. The player has a number called timesLapped. The timesLapped of the player is 0.
 
 [Level					after eating….
 0					nothing
@@ -564,27 +564,27 @@ Section Les Toilettes
 Les Toilettes is a room. The description of Les Toilettes is "[descToilettes]." Les Toilettes are south of Couloir 1. The printed name of Les Toilettes is "[pnToilettes]". 
 To say descToilettes:
 	if the consciousness of the player is less than 3:
-		say "The scent of urine is strong here[one of]. Many have marked their territory. This must be an extremely desirable location[or][stopping]";
+		say "Здесь сильно пахнет мочой[one of]. Многие пометили эту территорию – судя по всему, она пользуется немалым спросом[or][stopping]";
 	otherwise:
-		say "A black and white tiled floor, cabinets, urinals and sinks"
+		say "Пол, выложенный черной и белой плиткой, настенные шкафы, унитазы и раковины"
 	
 To say pnToilettes:
 	if the consciousness of the player is less than 3:
-		say "The tiled room";
+		say "Комната со стенами из кафеля";
 	otherwise:
-		say "The bathroom".
+		say "Санузел".
 		
 Instead of simplePushing when the player is in les Toilettes:
 	if the consciousness of the player is less than 3:
-		say "You press a metal button and immediately hear a loud sound.";
+		say "Ты нажимаешь металлическую кнопку и немедленно слышишь какой-то громкий звук.";
 	otherwise:
-		say "You flush the toilet."
+		say "Ты спускаешь воду в унитазе."
 		
 Instead of simpleOpening when the player is in Les Toilettes:
 	if the consciousness of the player is less than 3:
-		say "[if the potty is in Les Toilettes]The water bowl is already open[otherwise]You lift a cover to reveal a bowl full of water[end if].";
+		say "[if the potty is in Les Toilettes]Резервуар с водой уже открыт[otherwise]Ты поднимаешь крышку, под которой оказывается резервуар с водой[end if].";
 	otherwise:
-		say "[if the potty is in Les Toilettes]You have already lifted[otherwise]You lift[end if] the toilet seat cover.";
+		say "[if the potty is in Les Toilettes]Крышка унитаза уже поднята.[otherwise]Ты поднимаешь крышку унитаза[end if].";
 	now the potty is in Les Toilettes.
 	
 The potty is a thing in the void. The printed name of the potty is "[pnPotty]".
@@ -601,21 +601,36 @@ Instead of simpleEating when the player is in Les Toilettes:
 	otherwise:
 		if the consciousness of the player is:
 			-- 2:
-				say "You [one of]lap up the water in the bowl. It's refreshing[or]aren't really thirsty, but you drink some water[or]are no longer thirsty having already guzzled down a few liters of water[stopping].";
+				if the timesLapped of the player is:
+					-- 0:
+						say "Ты лакаешь воду из резервуара. Освежает!";
+					-- 1:
+						say "Не то, чтобы ты испытывал жажду, но ты делаешь несколько глотков из резервуара.";
+					-- otherwise:
+						say "Тебе совсем не хочется пить – как-никак, ты вылакал не один литр из резервуара.";
+				increase the timesLapped of the player by one;
 			-- 3:
-				say "No, that would be disgusting[one of] (even for someone who eats brains)[or][stopping]."; 
+				say "Нет, это было бы слишком отвратительно[one of] (даже для поедателя мозгов)[or][stopping]."; 
 			-- 4:
 				say "Do you have any idea how many species of pathogenic bacteria live in the water? No way."
 				
 After going south from Couloir 1 when the consciousness of the player is 3 for the first time:
 		now the BlockChatterFlag is true;
-		say "As you enter the bathroom, you catch some movement out of the corner of your eye.[paragraph break][italic type]Is somebody else here?[roman type][paragraph break]A burly man dressed in a tattered uniform stares at you with unblinking eyes. His pale skin, rheumy eyes and sunken cheeks call to mind a cadaver.[paragraph break]This awkward encounter goes on for several minutes before you realize that you are staring at your own reflection in a mirror.";
+		tell bathroomGuardText;
 		try looking.
+		
+The list of text called bathroomGuardText is always {
+"Войдя в санузел, ты замечаешь краем глаза какое-то движение.[paragraph break][italic type]Кто здесь?[roman type][paragraph break]","Коренастый мужчина в рваной униформе смотрит на тебя немигающим взглядом. Его бледная кожа, слезящиеся глаза и ввалившиеся щеки навевают мысли об ожившем мертвеце.[paragraph break]","Несколько минут вы играете в гляделки, пока до тебя, наконец, доходит, что ты смотришь на собственное отражение в зеркале."
+}.
 	
 After going south from Couloir 1 when the consciousness of the player is 4 for the first time:
 	now the BlockChatterFlag is true;
-	say "As you enter the bathroom, you catch some movement out of the corner of your eye.[paragraph break][italic type]Is somebody else here?[roman type][paragraph break]A burly man dressed in a tattered uniform stares at you with unblinking eyes. His pale skin, rheumy eyes and sunken cheeks call to mind a cadaver.[paragraph break]This awkward encounter goes on for several minutes before you realize that you are staring at your own reflection in a mirror.";
+	tell bathroomScientistText;
 	try looking.
+	
+The list of text called bathroomScientistText is always {
+"As you enter the bathroom, you catch some movement out of the corner of your eye.[paragraph break][italic type]Is somebody else here?[roman type][paragraph break]A burly man dressed in a tattered uniform stares at you with unblinking eyes. His pale skin, rheumy eyes and sunken cheeks call to mind a cadaver.[paragraph break]This awkward encounter goes on for several minutes before you realize that you are staring at your own reflection in a mirror."
+}
 
 Section Salle de Décontamination
 
@@ -1010,7 +1025,9 @@ Every turn:
 					remove entry 1 from mouseDogDialogue;
 			-- 3:
 				if the number of entries in mouseDogGuardDialogue is greater than zero:
-					say "[italic type][entry 1 of mouseDogGuardDialogue][roman type][paragraph break]";
+					say italic type;
+					tell entry 1 of mouseDogGuardDialogue;
+					say "[roman type][paragraph break]";
 					remove entry 1 from mouseDogGuardDialogue;
 			-- 4:
 				if the curedFlag of the player is true:
@@ -1074,24 +1091,24 @@ mouseDogDialogue is {
 
 Section MouseDogGuard Dialogue
 
-mouseDogGuardDialogue is a list of text that varies. 
+mouseDogGuardDialogue is a list of lists of text that varies. 
 
 mouseDogGuardDialogue is { 
-"[quotation mark]If I might ask a question,[quotation mark] begins the mouse, [quotation mark]who are you?[quotation mark][line break][quotation mark]My name is… hmm… let's see… give me a sec… yeah, good question. I don't quite seem to remember it for the moment. Why don't you pick one for me?[quotation mark][line break][quotation mark]Let's call him [apostrophe]the little slice of brain that we found in the fridge that had kind of a weird taste[apostrophe][quotation mark], suggests Lucky.[line break][quotation mark]No, that's entirely too long. Let's just go with [apostrophe]the slice of brain[apostrophe]. How's that?[quotation mark][line break][quotation mark]Sure,[quotation mark] says the slice of brain. [quotation mark]All things considered, I prefer short names.[quotation mark]", 
-"[quotation mark]Do you guys also have names?[quotation mark] asks the slice of brain.[line break][quotation mark]Yes,[quotation mark] replies the dog. [quotation mark]Excuse our lack of etiquette. I'm called [apostrophe]Lucky[apostrophe] and my friend the mouse is simply named [apostrophe]Mouse[apostrophe].[quotation mark][line break][quotation mark]Right,[quotation mark] confirms the mouse.[line break][quotation mark]A pleasure to make your acquaintances, my new friends.[quotation mark]", 
-"[quotation mark]So, slice of brain, I wonder what kind of animal you were before you got here. I was a dog and the mouse had always been a mouse.[quotation mark][line break][quotation mark]I was something other than a slice of brain?[quotation mark][line break][quotation mark]It seems to me that you must have been a fridge,[quotation mark] suggests the mouse. [quotation mark]I ate the brain of a dog and Lucky appeared. After that, we opened and ate a fridge, and you appeared.[quotation mark][line break][quotation mark]I don't think it works like that,[quotation mark] murmurs Lucky.", 
-"[quotation mark]When you got here, you said that we had to [apostrophe]secure the installation[apostrophe]. What did you mean by that?[quotation mark] asks Lucky.[line break][quotation mark]I meant that we have to look all around the installation to protect it against all threats.[quotation mark][line break][quotation mark]Okay,[quotation mark] says the mouse, trying to follow the thread of the conversation, [quotation mark]but what's an installation?[quotation mark][line break][quotation mark]Oh, an installation? It's the complex of… um… rather, it's a place, where everyone works to… hmm.  Yeah. It's where we are,[quotation mark] concludes the slice of brain.", 
-"[quotation mark]What threat are you talking about?[quotation mark] asks the mouse.[line break][quotation mark]To be honest, I'm not sure,[quotation mark] replies the slice of brain. [quotation mark]This is so frustrating! I just can't remember, but I'm sure that there's a lot of them and that they are very bad.[quotation mark][line break][quotation mark]You know, you're sounding a bit paranoid,[quotation mark] observes the dog.[line break][quotation mark]Maybe, but if I just had my memories, I could… no, I'm afraid they're lost.[quotation mark]", 
-"[quotation mark]Do you think there's anything we could do to get your memories back?[quotation mark] asks Lucky.[line break][quotation mark]How? I've tried remembering all sorts of things and nothing comes to mind.[quotation mark][line break][quotation mark]Probably because you're just a little slice of brain,[quotation mark] remarks the mouse. [quotation mark]If we could find the rest of your brain, which I guess must be around here some place, we could eat it and get back all your missing memories, right?[quotation mark][line break][quotation mark]Really? Do you think so?[quotation mark] wonders the slice of brain.[line break][quotation mark]Oh yes, certainly,[quotation mark] reassures the dog.", 
-"[quotation mark]But what if the rest of the brain finds us before we find it?[quotation mark] asks the mouse.[line break][quotation mark]Yeah, so?[quotation mark] says Lucky.[line break][quotation mark]The rest of the brain could eat us before we eat it,[quotation mark] replies the mouse anxiously.[line break][quotation mark]And what exactly would that change?[quotation mark] asks the slice of brain. [quotation mark]Either way, we'd all still be together in one spot, wouldn't we?[quotation mark] asks the slice of brain.[line break][quotation mark]Yes, but usually I prefer to eat others before they eat me.[quotation mark]", 
-"[quotation mark]You know what we need?[quotation mark] asks Lucky. [quotation mark]A plan. We need a plan.[quotation mark][line break][quotation mark]Yes, I agree,[quotation mark] says the mouse. [quotation mark]What do you propose?[quotation mark][line break][quotation mark]Number one[quotation mark], explains the dog, [quotation mark]we need to explore a bit to, as the slice of brain says, secure the installation. Number two: to search for the missing brain. And number… um, the number that comes after two: we need to escape.[quotation mark][line break][quotation mark]Amazing! You're a genius, Lucky,[quotation mark] says the slice of brain.",
-"[quotation mark]Escape? You mean out of here? Outside?[quotation mark] asks the mouse. [quotation mark]What does the outside world offer? Nothing but headaches, I'd say. Here, I have inherited lands and even a title -- did you know that I am a duke? It's true, I'm not kidding. I am the eighteenth duke of my line. You want me to throw all that away?[quotation mark][line break][quotation mark]But, there's a whole world out there![quotation mark] howls the dog.[line break][quotation mark]I've lived out there,[quotation mark] adds the slice of brain. [quotation mark]I think I lived not too far from the installation with my girlfriend… what was her name?[quotation mark]", 
-"[quotation mark]Eww, a girlfriend, huh?[quotation mark] asks Lucky, suddenly interested.[line break][quotation mark]Details, please,[quotation mark] encourages the mouse.[line break][quotation mark]Well, to tell you the truth, I don't remember much about her, not even her name. That said, I do recall that was blindingly clever… she had a great sense of humor and a loud, rowdy laugh… and almond-shaped eyes of the deepest violet… and she had huge… hmm…  Sorry, I don't recall the word.[quotation mark]",
-"[quotation mark]If we manage to get out of the installation, do you think you could find your house?[quotation mark] asks Lucky.[line break][quotation mark]Sure, no doubt. There are only a handful of rooms to get through and we'll be out. The house is not far at all, we just have to follow the street… I don't remember which one, but I'd recognize it.[quotation mark][line break][quotation mark]Your amnesia does not fill me with confidence,[quotation mark] complains the mouse.[line break][quotation mark]If we can find the rest of the brain on our way out, everything will fall into place,[quotation mark] suggests Lucky.", 
-"[quotation mark]If we do manage to find a way out of the installation, do you think you can help Lucky find his family?[quotation mark] asks the mouse.[line break][quotation mark]Maybe. Probably. Lucky, is your house also nearby?[quotation mark] inquires the slice of brain.[line break][quotation mark]I think so,[quotation mark] replies the dog. [quotation mark]My family lives in a large, white house surrounded by tall trees. There can't be many houses like that.[quotation mark][line break][quotation mark]Are there any cats?[quotation mark] interrupts the mouse.[line break][quotation mark]Not one,[quotation mark] says the dog proudly.",
-"[quotation mark]I had a troubling thought,[quotation mark] says the mouse.[line break][quotation mark]What?[quotation mark] asks the slice of brain.[line break][quotation mark]What are we going to do if we run into a cat?[quotation mark][line break][quotation mark]We'd eat its brains, wouldn't we?[quotation mark] answers the slice of brain. [quotation mark]I don't see a problem there.[quotation mark][line break][quotation mark]Oh, but I do,[quotation mark] says the dog. [quotation mark]We'd hear cat thoughts all the time. That would be intolerable.[quotation mark][line break][quotation mark]Absolutely![quotation mark] agrees the mouse. [quotation mark]Eating a cat? Sure. No problem. Count me in. But no way am I willing to listen to its thoughts. That would be too much.[quotation mark]", 
-"[quotation mark]When we're outside, what do we need to do to find Lucky's house?[quotation mark] asks the mouse.[line break][quotation mark]First, let's head to my house,[quotation mark] replies the slice of brain. [quotation mark]I have a car, and that will speed up the search.[quotation mark][line break][quotation mark]Let me get this straight,[quotation mark] says the mouse, [quotation mark]you don't remember your own name, but you know how to drive?[quotation mark][line break][quotation mark]If not, I can,[quotation mark] says Lucky. [quotation mark]I've watched humans do it many times. Driving doesn't seem all that complicated.[quotation mark]",
-"[quotation mark]Listen, guys,[quotation mark] says the slice of brain, [quotation mark]It's getting harder and harder for me to focus; could I suggest that we hold off on the conversation for a bit so I can catch my figurative breath?[quotation mark][line break][quotation mark]Yeah, me too,[quotation mark] agrees the mouse. [quotation mark]I have a splitting headache. A little rest would be nice.[quotation mark][line break][quotation mark]I agree. I like to run with the pack as much as anyone, but I could do with a little downtime.[quotation mark][line break][quotation mark]Good night, everyone,[quotation mark] says the mouse."
+{"[quotation mark]Разреши задать вопрос[quotation mark], [unicode 8212] начинает Мыш,  [unicode 8212] [quotation mark]кто ты, собственно, такой?[quotation mark][line break]","[quotation mark]Меня зовут... эээ... как же его... секундочку... мда, хороший вопрос. Похоже, я не могу сейчас вспомнить свое имя. Почему бы вам не придумать его самим?[quotation mark][line break]","[quotation mark]Давай назовем его „маленький кусочек мозга, который мы нашли в холодильнике и у которого был странноватый вкус[quotation mark], [unicode 8212] предлагает Лаки.[line break]","[quotation mark]Нет, это слишком длинно. Давай просто назовем его „Мозголомтиком[quotation mark]. Как тебе такое имя?[quotation mark]","[line break][quotation mark]Подойдет[quotation mark], [unicode 8212]  соглашается Мозголомтик. [unicode 8212]  [quotation mark]С учетом всех обстоятельств я предпочитаю короткие имена.[quotation mark]"},
+{"[quotation mark]Ребят, а у вас есть имена?[quotation mark] [unicode 8212] спрашивает Мозголомтик.[line break]","[quotation mark]Да[quotation mark], [unicode 8212] отвечает пес. [unicode 8212] [quotation mark]Извини, что пренебрегли этикетом. Меня зовут Лаки, а моего друга мышь можно просто звать Мышом.[quotation mark][line break]","[quotation mark]Именно[quotation mark], [unicode 8212] подтверждает мышь[line break][quotation mark]Друзья, очень приятно с вами познакомиться.[quotation mark]"}, 
+{"[quotation mark]Ну, Мозголомтик, расскажи, каким животным ты был до того, как попал сюда. Я был собакой, а Мыш всегда был мышью.[quotation mark][line break]","[quotation mark]Я был кем-то другим, чем кусочек мозга?[quotation mark][line break]","[quotation mark]Мне кажется, ты был холодильником[quotation mark],  [unicode 8212] высказывает предположение Мыш. [unicode 8212] [quotation mark]Я съел мозг собаки, и появился Лаки. После этого мы открыли холодильник и съели его содержимое, и появился ты[quotation mark].[line break]","[quotation mark]Сомневаюсь, что это работает именно так[quotation mark], [unicode 8212] вполголоса замечает Лаки."}, 
+{"[quotation mark]Когда ты появился, ты сказал, что нам надо „обеспечить безопасность здания[quotation mark]. Что ты имел в виду?[quotation mark] [unicode 8212] спрашивает Лаки.[line break]","[quotation mark]Я имел в виду, что мы должны осмотреть всё здание, чтобы обеспечить защиту от любых угроз.[quotation mark][line break]","[quotation mark]Хорошo[quotation mark], [unicode 8212] говорит Мыш, стараясь не терять нить беседы, [unicode 8212] [quotation mark]но что ты имеешь в виду под зданием?[quotation mark]","[line break][quotation mark]Здание? Ну, это комплекс... точнее, это место, где все работают... Хм... В общем, это то, где мы есть[quotation mark], [unicode 8212] заключает Мозголомтик."}, 
+{"[quotation mark]What threat are you talking about?[quotation mark] asks the mouse.[line break][quotation mark]To be honest, I'm not sure,[quotation mark] replies the slice of brain. [quotation mark]This is so frustrating! I just can't remember, but I'm sure that there's a lot of them and that they are very bad.[quotation mark][line break][quotation mark]You know, you're sounding a bit paranoid,[quotation mark] observes the dog.[line break][quotation mark]Maybe, but if I just had my memories, I could… no, I'm afraid they're lost.[quotation mark]"}, 
+{"[quotation mark]Do you think there's anything we could do to get your memories back?[quotation mark] asks Lucky.[line break][quotation mark]How? I've tried remembering all sorts of things and nothing comes to mind.[quotation mark][line break][quotation mark]Probably because you're just a little slice of brain,[quotation mark] remarks the mouse. [quotation mark]If we could find the rest of your brain, which I guess must be around here some place, we could eat it and get back all your missing memories, right?[quotation mark][line break][quotation mark]Really? Do you think so?[quotation mark] wonders the slice of brain.[line break][quotation mark]Oh yes, certainly,[quotation mark] reassures the dog."}, 
+{"[quotation mark]But what if the rest of the brain finds us before we find it?[quotation mark] asks the mouse.[line break][quotation mark]Yeah, so?[quotation mark] says Lucky.[line break][quotation mark]The rest of the brain could eat us before we eat it,[quotation mark] replies the mouse anxiously.[line break][quotation mark]And what exactly would that change?[quotation mark] asks the slice of brain. [quotation mark]Either way, we'd all still be together in one spot, wouldn't we?[quotation mark] asks the slice of brain.[line break][quotation mark]Yes, but usually I prefer to eat others before they eat me.[quotation mark]"}, 
+{"[quotation mark]You know what we need?[quotation mark] asks Lucky. [quotation mark]A plan. We need a plan.[quotation mark][line break][quotation mark]Yes, I agree,[quotation mark] says the mouse. [quotation mark]What do you propose?[quotation mark][line break][quotation mark]Number one[quotation mark], explains the dog, [quotation mark]we need to explore a bit to, as the slice of brain says, secure the installation. Number two: to search for the missing brain. And number… um, the number that comes after two: we need to escape.[quotation mark][line break][quotation mark]Amazing! You're a genius, Lucky,[quotation mark] says the slice of brain."},
+{"[quotation mark]Escape? You mean out of here? Outside?[quotation mark] asks the mouse. [quotation mark]What does the outside world offer? Nothing but headaches, I'd say. Here, I have inherited lands and even a title -- did you know that I am a duke? It's true, I'm not kidding. I am the eighteenth duke of my line. You want me to throw all that away?[quotation mark][line break][quotation mark]But, there's a whole world out there![quotation mark] howls the dog.[line break][quotation mark]I've lived out there,[quotation mark] adds the slice of brain. [quotation mark]I think I lived not too far from the installation with my girlfriend… what was her name?[quotation mark]"}, 
+{"[quotation mark]Eww, a girlfriend, huh?[quotation mark] asks Lucky, suddenly interested.[line break][quotation mark]Details, please,[quotation mark] encourages the mouse.[line break][quotation mark]Well, to tell you the truth, I don't remember much about her, not even her name. That said, I do recall that was blindingly clever… she had a great sense of humor and a loud, rowdy laugh… and almond-shaped eyes of the deepest violet… and she had huge… hmm…  Sorry, I don't recall the word.[quotation mark]"},
+{"[quotation mark]If we manage to get out of the installation, do you think you could find your house?[quotation mark] asks Lucky.[line break][quotation mark]Sure, no doubt. There are only a handful of rooms to get through and we'll be out. The house is not far at all, we just have to follow the street… I don't remember which one, but I'd recognize it.[quotation mark][line break][quotation mark]Your amnesia does not fill me with confidence,[quotation mark] complains the mouse.[line break][quotation mark]If we can find the rest of the brain on our way out, everything will fall into place,[quotation mark] suggests Lucky."}, 
+{"[quotation mark]If we do manage to find a way out of the installation, do you think you can help Lucky find his family?[quotation mark] asks the mouse.[line break][quotation mark]Maybe. Probably. Lucky, is your house also nearby?[quotation mark] inquires the slice of brain.[line break][quotation mark]I think so,[quotation mark] replies the dog. [quotation mark]My family lives in a large, white house surrounded by tall trees. There can't be many houses like that.[quotation mark][line break][quotation mark]Are there any cats?[quotation mark] interrupts the mouse.[line break][quotation mark]Not one,[quotation mark] says the dog proudly."},
+{"[quotation mark]I had a troubling thought,[quotation mark] says the mouse.[line break][quotation mark]What?[quotation mark] asks the slice of brain.[line break][quotation mark]What are we going to do if we run into a cat?[quotation mark][line break][quotation mark]We'd eat its brains, wouldn't we?[quotation mark] answers the slice of brain. [quotation mark]I don't see a problem there.[quotation mark][line break][quotation mark]Oh, but I do,[quotation mark] says the dog. [quotation mark]We'd hear cat thoughts all the time. That would be intolerable.[quotation mark][line break][quotation mark]Absolutely![quotation mark] agrees the mouse. [quotation mark]Eating a cat? Sure. No problem. Count me in. But no way am I willing to listen to its thoughts. That would be too much.[quotation mark]"}, 
+{"[quotation mark]When we're outside, what do we need to do to find Lucky's house?[quotation mark] asks the mouse.[line break][quotation mark]First, let's head to my house,[quotation mark] replies the slice of brain. [quotation mark]I have a car, and that will speed up the search.[quotation mark][line break][quotation mark]Let me get this straight,[quotation mark] says the mouse, [quotation mark]you don't remember your own name, but you know how to drive?[quotation mark][line break][quotation mark]If not, I can,[quotation mark] says Lucky. [quotation mark]I've watched humans do it many times. Driving doesn't seem all that complicated.[quotation mark]"},
+{"[quotation mark]Listen, guys,[quotation mark] says the slice of brain, [quotation mark]It's getting harder and harder for me to focus; could I suggest that we hold off on the conversation for a bit so I can catch my figurative breath?[quotation mark][line break][quotation mark]Yeah, me too,[quotation mark] agrees the mouse. [quotation mark]I have a splitting headache. A little rest would be nice.[quotation mark][line break][quotation mark]I agree. I like to run with the pack as much as anyone, but I could do with a little downtime.[quotation mark][line break][quotation mark]Good night, everyone,[quotation mark] says the mouse."}
 }
 
 Section Everybody Dialogue

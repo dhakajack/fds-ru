@@ -313,7 +313,7 @@ To say descLabZoo:
 		-- 1:
 			say "Волк смотрит на тебя недобрым взглядом из своей клетки";
 		-- 2:
-			say "The room in which you were taught to press a button to get treats out of the reward machine";
+			say "Комната, в которой тебя научили нажимать кнопку, чтобы получать лакомства из машины для поощрений";
 		-- 3:
 			say "A cage takes up half the space in this room; the rest is dedicated to animal training equipment";
 		-- 4:
@@ -593,7 +593,7 @@ To say pnPotty:
 	if the consciousness of the player is less than 3:
 		say "bowl full of water";
 	otherwise:
-		say "toilet (the cover of which has been lifted)". 
+		say "унитаз (с поднятой крышкой)". 
 		
 Instead of simpleEating when the player is in Les Toilettes:
 	if the potty is in the void:
@@ -745,13 +745,17 @@ Carry out simpleUnlocking:
 	repeat with way running through directions:
 		if the door the way of the location is locked:
 			now the door the way from the location is unlocked;
-			say "You enter the code on the numeric keypad and hear the door to the [way] unlock.[no line break][one of][firstUnlocked][or][stopping][paragraph break]";
-			stop the action;
+			say "Ты вводишь код на цифровой клавиатуре и слышишь, как замок ведущей на [way] двери отпирается.[no line break]";
+			if the number of entries in unlockText is greater than zero:
+				now the BlockChatterFlag is true;
+				tell unlockText;
+			say paragraph break;
+	stop the action;
 	say "You don't see any locked door."
 	
-To say firstUnlocked:
-	now the BlockChatterFlag is true;[hate to side effect this way, but here it seems expedient]
-	say "[paragraph break][italic type][quotation mark]Hang on a minute,[quotation mark] says the dog. [quotation mark]What kind of a trick is that?[quotation mark][line break][quotation mark]To unlock these doors with electronic locks, you have to enter the right code.[quotation mark][line break][quotation mark]And you remember the code?[quotation mark] asks the mouse.[line break][quotation mark]Apparently so.[quotation mark][roman type]".
+The list of text called unlockText is always {
+"[paragraph break][italic type][quotation mark]Постой-ка минутку[quotation mark] [unicode 8212] просит пес. [unicode 8212] [quotation mark]Что это был за фокус?[quotation mark][line break]","[quotation mark]Эти двери с электронными замками отпираются, если ввести правильный код.[quotation mark][line break][quotation mark]И ты его помнишь?[quotation mark] [unicode 8212] удивляется Мыш.[line break][quotation mark]Как видишь[quotation mark].[roman type]"
+}
 	
 Section 2- simpleOpening
 
@@ -793,6 +797,9 @@ Carry out simpleEating:
 		say " (at least, nothing that looks appetizing)";
 	say "."
 	
+Rule for implicitly taking something (called the target) while eating:
+	try silently taking the target.
+
 Section 4- simplePushing
 
 simplePushing is an action applying to nothing. Understand "push" as simplePushing.
@@ -961,7 +968,7 @@ After eating the chien:
 	tell ateDog;
 	increment the consciousness of the player;
 	now the BlockChatterFlag is true;
-	say "[italic type]«Извини».[line break]«Извинить за что?»[line break]«Ну, типа я сожалею, что съел тебя».[line break]«Съел меня? И кто ты вообще?»[line break]«Мышь».[roman type][line break]";
+	say "[italic type]«Извини».[line break]«Извинить за что?[no line break]»[line break]«Ну, типа я сожалею, что съел тебя».[line break]«Съел меня? И кто ты вообще?[no line break]»[line break]«Мышь».[roman type][line break]";
 	increment the knownCommands of the player.
 	
 The list of text called ateDog is always {
@@ -1098,9 +1105,9 @@ mouseDogGuardDialogue is {
 {"[quotation mark]Ребят, а у вас есть имена?[quotation mark] [unicode 8212] спрашивает Мозголомтик.[line break]","[quotation mark]Да[quotation mark], [unicode 8212] отвечает пес. [unicode 8212] [quotation mark]Извини, что пренебрегли этикетом. Меня зовут Лаки, а моего друга мышь можно просто звать Мышом.[quotation mark][line break]","[quotation mark]Именно[quotation mark], [unicode 8212] подтверждает мышь[line break][quotation mark]Друзья, очень приятно с вами познакомиться.[quotation mark]"}, 
 {"[quotation mark]Ну, Мозголомтик, расскажи, каким животным ты был до того, как попал сюда. Я был собакой, а Мыш всегда был мышью.[quotation mark][line break]","[quotation mark]Я был кем-то другим, чем кусочек мозга?[quotation mark][line break]","[quotation mark]Мне кажется, ты был холодильником[quotation mark],  [unicode 8212] высказывает предположение Мыш. [unicode 8212] [quotation mark]Я съел мозг собаки, и появился Лаки. После этого мы открыли холодильник и съели его содержимое, и появился ты[quotation mark].[line break]","[quotation mark]Сомневаюсь, что это работает именно так[quotation mark], [unicode 8212] вполголоса замечает Лаки."}, 
 {"[quotation mark]Когда ты появился, ты сказал, что нам надо „обеспечить безопасность здания[quotation mark]. Что ты имел в виду?[quotation mark] [unicode 8212] спрашивает Лаки.[line break]","[quotation mark]Я имел в виду, что мы должны осмотреть всё здание, чтобы обеспечить защиту от любых угроз.[quotation mark][line break]","[quotation mark]Хорошo[quotation mark], [unicode 8212] говорит Мыш, стараясь не терять нить беседы, [unicode 8212] [quotation mark]но что ты имеешь в виду под зданием?[quotation mark]","[line break][quotation mark]Здание? Ну, это комплекс... точнее, это место, где все работают... Хм... В общем, это то, где мы есть[quotation mark], [unicode 8212] заключает Мозголомтик."}, 
-{"[quotation mark]What threat are you talking about?[quotation mark] asks the mouse.[line break][quotation mark]To be honest, I'm not sure,[quotation mark] replies the slice of brain. [quotation mark]This is so frustrating! I just can't remember, but I'm sure that there's a lot of them and that they are very bad.[quotation mark][line break][quotation mark]You know, you're sounding a bit paranoid,[quotation mark] observes the dog.[line break][quotation mark]Maybe, but if I just had my memories, I could… no, I'm afraid they're lost.[quotation mark]"}, 
-{"[quotation mark]Do you think there's anything we could do to get your memories back?[quotation mark] asks Lucky.[line break][quotation mark]How? I've tried remembering all sorts of things and nothing comes to mind.[quotation mark][line break][quotation mark]Probably because you're just a little slice of brain,[quotation mark] remarks the mouse. [quotation mark]If we could find the rest of your brain, which I guess must be around here some place, we could eat it and get back all your missing memories, right?[quotation mark][line break][quotation mark]Really? Do you think so?[quotation mark] wonders the slice of brain.[line break][quotation mark]Oh yes, certainly,[quotation mark] reassures the dog."}, 
-{"[quotation mark]But what if the rest of the brain finds us before we find it?[quotation mark] asks the mouse.[line break][quotation mark]Yeah, so?[quotation mark] says Lucky.[line break][quotation mark]The rest of the brain could eat us before we eat it,[quotation mark] replies the mouse anxiously.[line break][quotation mark]And what exactly would that change?[quotation mark] asks the slice of brain. [quotation mark]Either way, we'd all still be together in one spot, wouldn't we?[quotation mark] asks the slice of brain.[line break][quotation mark]Yes, but usually I prefer to eat others before they eat me.[quotation mark]"}, 
+{"[quotation mark]О каких угрозах ты говоришь?[quotation mark] [unicode 8212] спрашивает мышь.[line break]","[quotation mark]Если честно, я не помню[quotation mark], [unicode 8212] вздыхает Мозголомтик. [unicode 8212] [quotation mark]Просто рехнуться можно! Я не могу их вспомнить, но я уверен, что их полным-полно и одна хуже другой.[quotation mark][line break]","[quotation mark]Ты знаешь, похоже, у тебя паранойя[quotation mark], [unicode 8212] замечает пес.[line break]","[quotation mark]Всё может быть, но если бы я мог вернуть свои воспоминания... Нет, боюсь, они утрачены[quotation mark]."}, 
+{"[quotation mark]Думаешь, мы можем как-нибудь вернуть твои воспоминания?[quotation mark] [unicode 8212]  интересуется Лаки.[line break]","[quotation mark]Как бы мы это сделали? Я пытался вспомнить самые разные вещи, но ничего в голову не приходит[quotation mark].[line break]","[quotation mark]Возможно, это потому, что ты просто маленький кусочек мозга[quotation mark], [unicode 8212] замечает Мыш. [unicode 8212]  [quotation mark]Если бы нам удалось найти оставшуюся часть твоего мозга [unicode 8212] ","а она, не исключено, находится где-то здесь [unicode 8212] мы бы могли съесть ее и восстановить твою потерянную память, не так ли?[quotation mark][line break]","[quotation mark]Ты и вправду так думаешь?[quotation mark] [unicode 8212] недоверчиво переспрашивает Мозголомтик.[line break]","[quotation mark]Даже не сомневайся[quotation mark],  [unicode 8212] подтверждает пес."}, 
+{"[quotation mark]Но что, если оставшийся мозг найдет нас до того, как мы найдем его?[quotation mark] [unicode 8212] задает вопрос Мыш.[line break]","[quotation mark]И что с того?[quotation mark] [unicode 8212] говорит Лаки.[line break]","[quotation mark]Тогда он сможет съесть нас до того, как мы съедим его[quotation mark], [unicode 8212] с тревогой отвечает грызун.[line break]","[quotation mark]Но это же ничего не изменит! Мы же в любом случае останемся вместе, разве не так?[quotation mark] [unicode 8212] – замечает Мозголомтик.[line break]","[quotation mark]Да, но вообще мне больше нравится съедать других до того, как они съедят меня.[quotation mark]"}, 
 {"[quotation mark]You know what we need?[quotation mark] asks Lucky. [quotation mark]A plan. We need a plan.[quotation mark][line break][quotation mark]Yes, I agree,[quotation mark] says the mouse. [quotation mark]What do you propose?[quotation mark][line break][quotation mark]Number one[quotation mark], explains the dog, [quotation mark]we need to explore a bit to, as the slice of brain says, secure the installation. Number two: to search for the missing brain. And number… um, the number that comes after two: we need to escape.[quotation mark][line break][quotation mark]Amazing! You're a genius, Lucky,[quotation mark] says the slice of brain."},
 {"[quotation mark]Escape? You mean out of here? Outside?[quotation mark] asks the mouse. [quotation mark]What does the outside world offer? Nothing but headaches, I'd say. Here, I have inherited lands and even a title -- did you know that I am a duke? It's true, I'm not kidding. I am the eighteenth duke of my line. You want me to throw all that away?[quotation mark][line break][quotation mark]But, there's a whole world out there![quotation mark] howls the dog.[line break][quotation mark]I've lived out there,[quotation mark] adds the slice of brain. [quotation mark]I think I lived not too far from the installation with my girlfriend… what was her name?[quotation mark]"}, 
 {"[quotation mark]Eww, a girlfriend, huh?[quotation mark] asks Lucky, suddenly interested.[line break][quotation mark]Details, please,[quotation mark] encourages the mouse.[line break][quotation mark]Well, to tell you the truth, I don't remember much about her, not even her name. That said, I do recall that was blindingly clever… she had a great sense of humor and a loud, rowdy laugh… and almond-shaped eyes of the deepest violet… and she had huge… hmm…  Sorry, I don't recall the word.[quotation mark]"},

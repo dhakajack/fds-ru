@@ -709,7 +709,7 @@ After going south from Sas:
 
 Section Sas
 
-Sas is a room. The description of Sas is "[descSas]." The printed name of the sas is "Airlock".
+Sas is a room. The description of Sas is "[descSas]." The printed name of the sas is "Шлюз".
 
 The sasDoor is a locked door. It is north of Escalier 2 and south of Sas. The printed name of the sasDoor is "бронированную дверь шлюза".
 
@@ -718,7 +718,7 @@ The scientist is an edible thing in the sas. The scientist has a truth state cal
 To say descSas:
 	if the consciousness of the player is:
 		-- 3:
-			say "A long, tubular room bathed in red light";
+			say "Длинное цилиндрическое помещение, залитое красноватым светом";
 		-- 4:
 			say "The heavy armored doors, lack of windows, and tubular shape of the room remind you of a submarine. The light above the door at the other end of the room is red, signaling that the exterior door is locked";
 		say ". The stairs downward are behind you, to the south".
@@ -995,10 +995,12 @@ The list of text called patrolText is always {
 	
 After going north from Escalier 2 when the sasDoor is not closed for the first time:
 	now the BlockChatterFlag is true;
-	say "A women in her forties, dressed in a white lab coat sits behind a metal desk. She is half way between you and the door at the other end of the room. Her upper right arm is swathed in gauze, but the bandages are drenched in blood and she appears gravely injured. In her other hand, she brandishes a crowbar with determination.";
+	tell firstLook;
 	try looking;
-	say "She stares at you warily.";
+	say "Она настороженно смотрит на тебя.";
 	increment the knownCommands of the player.
+	
+The list of text called firstLook is always {"За металлическим столом сидит женщина лет сорока, одетая в белый лаборантский халат. Она находится на полпути между тобой и еще одной"," дверью на другом конце помещения. Ее правое предплечье перевязано марлей, но повязка насквозь пропиталась кровью. Женщина, похоже, тяжело ранена, однако в здоровой руке"," она решительно сжимает монтировку."}
 	
 After eating scientist:
 	now the BlockChatterFlag is true;

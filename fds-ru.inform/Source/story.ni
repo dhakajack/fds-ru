@@ -212,7 +212,7 @@ Instead of going through a closed door (called la porte):
 		try looking;
 	otherwise:
 		if la porte is locked:
-			say "This door is secured with an electronic lock.";
+			say "Эта дверь заперта на электронный замок.";
 		otherwise:
 			if la porte is buttoned:
 				say "First, you have to ";
@@ -641,42 +641,42 @@ The deconDoor is a locked door. It is west of Couloir 1 and east of Salle de Dé
 To say descDecon:
 	if the consciousness of the player is:
 		-- 3:
-			say "The showerheads are aimed at the center of a room bathed continuously in a deep, purple light";
+			say "Множество душевых головок направлены на центр помещения, который залит интенсивным фиолетовым светом";
 		-- 4: 
 			say "The high pressure nozzles that ring the room are designed to hose down personnel with an antiseptic solution as they come and go from potentially contaminated zones within the complex. The room is continuously illuminated by germicidal lights";
-	say ". Doors lead eastward to the hallway and northward to the stairs"
+	say ". Дверь к востоку ведет в коридор, а к западу – на лестницу"
 
 To say pnDecon:
 	if the consciousness of the player is:
 		-- 3:
-			say "The showers";
+			say "Душевая";
 		-- 4:
 			say "Decontamination room".
 			
 To say pnDeconDoor:
 	if the consciousness of the player is:
 		-- 3:
-			say "door to the showers";
+			say "дверь в душевую";
 		-- 4:
 			say "decontamination suite door".
 			
 Instead of simplePushing when the player is in the Salle de Décontamination:
 	if the consciousness of the player is:
 		-- 3:
-			say "You relax in the warm, gentle shower. After a moment, the shower stops spraying and you dry off.";
+			say "Ты расслабляешься под теплыми, ласковыми душевыми струями. Через некоторое время душ отключается, и ты высыхаешь.";
 		-- 4:
 			say "The personnel decontamination system blasts you with a phenolic-smelling spray.".
 
 Section Escalier 1
 
-Escalier 1 is a room. The description of Escalier 1  is "[descEscalier1]." The printed name of Escalier 1 is "Stairway (first level)".
+Escalier 1 is a room. The description of Escalier 1  is "[descEscalier1]." The printed name of Escalier 1 is "Лестница (первый уровень)".
 
 The esc1door is a locked door. It is north of Salle de Décontamination and south of Escalier 1.
 
-The printed name of esc1door is "door between the [if the consciousness of the player is 3]shower[otherwise]decontamination[end if] room and the stairs".
+The printed name of esc1door is "дверь между [if the consciousness of the player is 3]душевой[otherwise]decontamination room[end if] и лестницей".
 
 To say descEscalier1:
-	say "The stairway climbs to the north and connects the [if the consciousness of the player is 3]shower[otherwise]decontamination[end if] room to the south with the rest of the installation above".
+	say "Лестница ведет наверх к северу, соединяя [if the consciousness of the player is 3]душевые[otherwise]decontamination room[end if] на юге со всей остальной частью комплекса".
 	
 After going north from Salle de Décontamination:
 	say "[upNorth].";
@@ -687,17 +687,17 @@ After going south from Escalier 2:
 	try looking.
 	
 To say upNorth:
-	say "You climb the stairs towards the north".
+	say "Ты взбираешься по лестнице к северу".
 	
 To say downSouth:
 	say "You go down the stairs southwards".
 
 Section Escalier 2
 
-Escalier 2 is a room. The description of Escalier 2  is "[descEscalier2]." Escalier 2 is north from Escalier 1. The printed name of Escalier 2 is "Stairway (second level)".
+Escalier 2 is a room. The description of Escalier 2  is "[descEscalier2]." Escalier 2 is north from Escalier 1. The printed name of Escalier 2 is "Лестница (второй уровень)".
 
 To say descEscalier2:
-	say "The stairs go up towards the north and connect the lower set of stairs to the south with the airlock to the north".
+	say "Лестница поднимается с юга на север, оканчиваясь перед дверью шлюза".
 	
 After going north from Escalier 1:
 	say "[upNorth].";
@@ -711,7 +711,7 @@ Section Sas
 
 Sas is a room. The description of Sas is "[descSas]." The printed name of the sas is "Airlock".
 
-The sasDoor is a locked door. It is north of Escalier 2 and south of Sas. The printed name of the sasDoor is "armored airlock door".
+The sasDoor is a locked door. It is north of Escalier 2 and south of Sas. The printed name of the sasDoor is "бронированную дверь шлюза".
 
 The scientist is an edible thing in the sas. The scientist has a truth state called introducedFlag. The introducedFlag of scientist is false. The scientist has a number called conversations. The conversations of the scientist is 0.
 
@@ -1107,15 +1107,15 @@ mouseDogGuardDialogue is {
 {"[quotation mark]Когда ты появился, ты сказал, что нам надо „обеспечить безопасность здания[quotation mark]. Что ты имел в виду?[quotation mark] [unicode 8212] спрашивает Лаки.[line break]","[quotation mark]Я имел в виду, что мы должны осмотреть всё здание, чтобы обеспечить защиту от любых угроз.[quotation mark][line break]","[quotation mark]Хорошo[quotation mark], [unicode 8212] говорит Мыш, стараясь не терять нить беседы, [unicode 8212] [quotation mark]но что ты имеешь в виду под зданием?[quotation mark]","[line break][quotation mark]Здание? Ну, это комплекс... точнее, это место, где все работают... Хм... В общем, это то, где мы есть[quotation mark], [unicode 8212] заключает Мозголомтик."}, 
 {"[quotation mark]О каких угрозах ты говоришь?[quotation mark] [unicode 8212] спрашивает мышь.[line break]","[quotation mark]Если честно, я не помню[quotation mark], [unicode 8212] вздыхает Мозголомтик. [unicode 8212] [quotation mark]Просто рехнуться можно! Я не могу их вспомнить, но я уверен, что их полным-полно и одна хуже другой.[quotation mark][line break]","[quotation mark]Ты знаешь, похоже, у тебя паранойя[quotation mark], [unicode 8212] замечает пес.[line break]","[quotation mark]Всё может быть, но если бы я мог вернуть свои воспоминания... Нет, боюсь, они утрачены[quotation mark]."}, 
 {"[quotation mark]Думаешь, мы можем как-нибудь вернуть твои воспоминания?[quotation mark] [unicode 8212]  интересуется Лаки.[line break]","[quotation mark]Как бы мы это сделали? Я пытался вспомнить самые разные вещи, но ничего в голову не приходит[quotation mark].[line break]","[quotation mark]Возможно, это потому, что ты просто маленький кусочек мозга[quotation mark], [unicode 8212] замечает Мыш. [unicode 8212]  [quotation mark]Если бы нам удалось найти оставшуюся часть твоего мозга [unicode 8212] ","а она, не исключено, находится где-то здесь [unicode 8212] мы бы могли съесть ее и восстановить твою потерянную память, не так ли?[quotation mark][line break]","[quotation mark]Ты и вправду так думаешь?[quotation mark] [unicode 8212] недоверчиво переспрашивает Мозголомтик.[line break]","[quotation mark]Даже не сомневайся[quotation mark],  [unicode 8212] подтверждает пес."}, 
-{"[quotation mark]Но что, если оставшийся мозг найдет нас до того, как мы найдем его?[quotation mark] [unicode 8212] задает вопрос Мыш.[line break]","[quotation mark]И что с того?[quotation mark] [unicode 8212] говорит Лаки.[line break]","[quotation mark]Тогда он сможет съесть нас до того, как мы съедим его[quotation mark], [unicode 8212] с тревогой отвечает грызун.[line break]","[quotation mark]Но это же ничего не изменит! Мы же в любом случае останемся вместе, разве не так?[quotation mark] [unicode 8212] – замечает Мозголомтик.[line break]","[quotation mark]Да, но вообще мне больше нравится съедать других до того, как они съедят меня.[quotation mark]"}, 
-{"[quotation mark]You know what we need?[quotation mark] asks Lucky. [quotation mark]A plan. We need a plan.[quotation mark][line break][quotation mark]Yes, I agree,[quotation mark] says the mouse. [quotation mark]What do you propose?[quotation mark][line break][quotation mark]Number one[quotation mark], explains the dog, [quotation mark]we need to explore a bit to, as the slice of brain says, secure the installation. Number two: to search for the missing brain. And number… um, the number that comes after two: we need to escape.[quotation mark][line break][quotation mark]Amazing! You're a genius, Lucky,[quotation mark] says the slice of brain."},
-{"[quotation mark]Escape? You mean out of here? Outside?[quotation mark] asks the mouse. [quotation mark]What does the outside world offer? Nothing but headaches, I'd say. Here, I have inherited lands and even a title -- did you know that I am a duke? It's true, I'm not kidding. I am the eighteenth duke of my line. You want me to throw all that away?[quotation mark][line break][quotation mark]But, there's a whole world out there![quotation mark] howls the dog.[line break][quotation mark]I've lived out there,[quotation mark] adds the slice of brain. [quotation mark]I think I lived not too far from the installation with my girlfriend… what was her name?[quotation mark]"}, 
-{"[quotation mark]Eww, a girlfriend, huh?[quotation mark] asks Lucky, suddenly interested.[line break][quotation mark]Details, please,[quotation mark] encourages the mouse.[line break][quotation mark]Well, to tell you the truth, I don't remember much about her, not even her name. That said, I do recall that was blindingly clever… she had a great sense of humor and a loud, rowdy laugh… and almond-shaped eyes of the deepest violet… and she had huge… hmm…  Sorry, I don't recall the word.[quotation mark]"},
-{"[quotation mark]If we manage to get out of the installation, do you think you could find your house?[quotation mark] asks Lucky.[line break][quotation mark]Sure, no doubt. There are only a handful of rooms to get through and we'll be out. The house is not far at all, we just have to follow the street… I don't remember which one, but I'd recognize it.[quotation mark][line break][quotation mark]Your amnesia does not fill me with confidence,[quotation mark] complains the mouse.[line break][quotation mark]If we can find the rest of the brain on our way out, everything will fall into place,[quotation mark] suggests Lucky."}, 
-{"[quotation mark]If we do manage to find a way out of the installation, do you think you can help Lucky find his family?[quotation mark] asks the mouse.[line break][quotation mark]Maybe. Probably. Lucky, is your house also nearby?[quotation mark] inquires the slice of brain.[line break][quotation mark]I think so,[quotation mark] replies the dog. [quotation mark]My family lives in a large, white house surrounded by tall trees. There can't be many houses like that.[quotation mark][line break][quotation mark]Are there any cats?[quotation mark] interrupts the mouse.[line break][quotation mark]Not one,[quotation mark] says the dog proudly."},
-{"[quotation mark]I had a troubling thought,[quotation mark] says the mouse.[line break][quotation mark]What?[quotation mark] asks the slice of brain.[line break][quotation mark]What are we going to do if we run into a cat?[quotation mark][line break][quotation mark]We'd eat its brains, wouldn't we?[quotation mark] answers the slice of brain. [quotation mark]I don't see a problem there.[quotation mark][line break][quotation mark]Oh, but I do,[quotation mark] says the dog. [quotation mark]We'd hear cat thoughts all the time. That would be intolerable.[quotation mark][line break][quotation mark]Absolutely![quotation mark] agrees the mouse. [quotation mark]Eating a cat? Sure. No problem. Count me in. But no way am I willing to listen to its thoughts. That would be too much.[quotation mark]"}, 
-{"[quotation mark]When we're outside, what do we need to do to find Lucky's house?[quotation mark] asks the mouse.[line break][quotation mark]First, let's head to my house,[quotation mark] replies the slice of brain. [quotation mark]I have a car, and that will speed up the search.[quotation mark][line break][quotation mark]Let me get this straight,[quotation mark] says the mouse, [quotation mark]you don't remember your own name, but you know how to drive?[quotation mark][line break][quotation mark]If not, I can,[quotation mark] says Lucky. [quotation mark]I've watched humans do it many times. Driving doesn't seem all that complicated.[quotation mark]"},
-{"[quotation mark]Listen, guys,[quotation mark] says the slice of brain, [quotation mark]It's getting harder and harder for me to focus; could I suggest that we hold off on the conversation for a bit so I can catch my figurative breath?[quotation mark][line break][quotation mark]Yeah, me too,[quotation mark] agrees the mouse. [quotation mark]I have a splitting headache. A little rest would be nice.[quotation mark][line break][quotation mark]I agree. I like to run with the pack as much as anyone, but I could do with a little downtime.[quotation mark][line break][quotation mark]Good night, everyone,[quotation mark] says the mouse."}
+{"[quotation mark]Но что, если оставшийся мозг найдет нас до того, как мы найдем его?[quotation mark] [unicode 8212] задает вопрос Мыш.[line break]","[quotation mark]И что с того?[quotation mark] [unicode 8212] говорит Лаки.[line break]","[quotation mark]Тогда он сможет съесть нас до того, как мы съедим его[quotation mark], [unicode 8212] с тревогой отвечает грызун.[line break]","[quotation mark]Но это же ничего не изменит! Мы же в любом случае останемся вместе, разве не так?[quotation mark] [unicode 8212] замечает Мозголомтик.[line break]","[quotation mark]Да, но вообще мне больше нравится съедать других до того, как они съедят меня.[quotation mark]"}, 
+{"«Знаете, что нам нужно? [unicode 8212] спрашивает Лаки. [unicode 8212] План. Нам нужен план действий.»[line break]","«Согласен, [unicode 8212] отзывается Мыш. [unicode 8212] Что ты предлагаешь?»[line break]","«Во-первых, [unicode 8212] начинает пес, [unicode 8212] нам надо продолжить обход, чтобы, как сказал Мозголомтик, обеспечить защиту здания от угроз. Во-вторых, найти недостающий мозг. И в-... эээ, ну в каких-то там после двух, нам надо бежать отсюда».[line break]","«Класс! Лаки, ты просто гений», восхищается Мозголомтик."},
+{"«Бежать отсюда? Хочешь сказать, во внешний мир? [unicode 8212] возражает Мыш. [unicode 8212] Чего там хорошего? Я бы сказал, ничего, кроме проблем. Здесь у меня наследные владения и"," даже титул [unicode 8212] вы знаете, что я герцог? Это правда, я не шучу. Я восемнадцатый герцог в своем роду. Вы что, хотите, чтобы я отказался от всего этого?»[line break]","«Но снаружи ведь целый огромный мир!» [unicode 8212] взвывает пес[line break]","«Мне кажется, я жил там, [unicode 8212] добавляет Мозголомтик. [unicode 8212] Где-то недалеко от этого здания вместе с моей девушкой... Как же ее звали?»"}, 
+{"«О, у тебя была девушка?» [unicode 8212] неожиданно проявляет заинтересованность Лаки.[line break]","«Можно поподробнее», [unicode 8212] присоединяется к нему Мыш.[line break]","«Ну, если честно, я почти ничего не могу про нее вспомнить, даже ее имени. Хотя… я помню, что она была необыкновенно умна... ","у нее было замечательное чувство юмора и такой громкий, заразительный смех... и миндалевидные ","глаза темно-фиалкового цвета... и у нее были огромные... как их... забыл слово»."},
+{"«Как ты думаешь, если нам удастся выбраться из здания, ты сможешь найти свой дом?» [unicode 8212] спрашивает Лаки.[line break]","«Конечно, без сомнения. Тут всего ничего помещений, которые отделяют нас от выхода. Мой дом совсем рядышком, нам просто надо идти по улице... не помню, правда, по какой, но я узнаю ее, когда увижу».[line break]","«Твоя амнезия как-то не внушает мне доверия», [unicode 8212] вздыхает Мыш.[line break]","«Если по пути к выходу мы сумеем найти оставшийся мозг, всё встанет на свои места», [unicode 8212] предполагает Лаки."}, 
+{"«Если нам таки удастся найти выход, мы поможем Лаки найти его семью?» [unicode 8212] задает очередной вопрос Мыш.[line break]","«Ну, наверно, может быть. Лаки, твой дом тоже где-то поблизости?» [unicode 8212] осведомляется Мозголомтик.[line break]","«Кажется, да, [unicode 8212] отвечает пес. [unicode 8212] Моя семья живет в большом белом доме в окружении высоких деревьев. Вряд ли существует много подобных домов».[line break]","«А кошки там есть?» [unicode 8212] прерывает Мыш.[line break]«Ни одной», [unicode 8212] с гордостью заявляет Лаки."},
+{"«Меня беспокоит одна мысль», [unicode 8212] нервничает мышь.[line break]","«Какая же?» [unicode 8212] откликается Мозголомтик.[line break]","«Что нам делать, если мы вдруг встретим кошку?»[line break]","«Съесть ее мозг, разве нет? [unicode 8212] говорит Мозголомтик. [unicode 8212] Делов-то!»[line break]","«Не всё так просто, [unicode 8212] возражает пес. [unicode 8212] Мы тогда постоянно будем слышать кошкины мысли. Это было бы невыносимо».[line break]","«Именно! [unicode 8212] соглашается Мыш. [unicode 8212] Съесть кошку? Конечно, всегда пожалуйста. ","С удовольствием приму в этом участие. Но вот мысли ее слушать [unicode 8212] это уж увольте, благодарю покорно»."}, 
+{"«Когда мы выберемся наружу, что нам надо будет сделать, чтобы найти дом Лаки?» [unicode 8212] спрашивает Мыш.[line break]","«Сначала нам надо будет добраться до моего дома, [unicode 8212] отвечает Мозголомтик. [unicode 8212] У меня есть машина, с ней поиски пойдут быстрее».[line break]","«Давай-ка проясним этот момент, [unicode 8212] хмыкает Мыш, [unicode 8212] ты даже имени своего не помнишь, но знаешь, как водить машину?»[line break]","«С этим в случае чего и я справлюсь, [unicode 8212] успокаивает его Лаки. [unicode 8212] Я много раз видел, как люди это делают, ничего в этом сложного нет»."},
+{"«Слушайте, парни, [unicode 8212] говорит Мозголомтик, [unicode 8212] мне всё труднее и труднее сохранять концентрацию. Может, прервем пока нашу беседу, чтобы я мог, так сказать, отдышаться?»[line break]","«Конечно, [unicode 8212] соглашается Мыш. [unicode 8212] А то голова прямо-таки раскалывается. Надо бы отдохнуть».[line break]","«Я тоже за. Обожаю марш-броски всей стаей, но пора уже сделать привал».[line break]","«Всем спокойной ночи», [unicode 8212] резюмирует Мыш."}
 }
 
 Section Everybody Dialogue

@@ -725,15 +725,31 @@ To say descSas:
 			
 Instead of going north when the player is in the sas:
 	if scientist is in the sas:
-		say "You would need to get past the scientist and she doesn't appear to be all that cooperative. More over, since you don't know the code to open the outer door, it wouldn't make much sense to try.";
+		say "Тебе пришлось бы пройти мимо женщины, а она выглядит не слишком сговорчивой. Кроме того, ты все равно не знаешь кода от замка внешней двери, так что даже пробовать не стоит.";
 	otherwise:
 		say "Useless. The door is hermitically sealed and can only be opened by someone in the control room."
 			
 Before eating scientist when the conversations of scientist are less than 5:
 	now the BlockChatterFlag is true;
-	say "[one of]The scientist beats you back with her crowbar. Once out of reach of your slavering maw, she presses a button on the intercom and says, [quotation mark]Attention, control room, this is Doctor Rambaud in the airlock. Julien is here with me. Unfortunately, I have to report that the experiment has failed. Don't unlock the outer door no matter what.[quotation mark][line break][or]Doctor Rambaud does not budge from behind the desk, but as you approach she lands a series of blows with her crowbar that makes you reconsider your actions.[or]The scientist acknowledges, [quotation mark]I have to give you credit for your perseverance, but… [quotation mark] and she whacks you solidly on the nose. Stunned, you stagger back out of reach of her crowbar.[or]Doctor Rambaud beats you repeatedly with the crowbar.[stopping]";
+	say "[one of][beat1][or][beat2][or][beat3][or][beat4][stopping].";
 	stop the action.
 	
+The list of text called beat1text is always {
+"Женщина отгоняет тебя ударом монтировки. Оказавшись вне твоей досягаемости, она нажимает клавишу на переговорном устройстве и говорит: «Внимание, комната управления, это доктор Рамбо"," из шлюза. Со мной тут Жюльен. К сожалению, вынуждена сообщить, что эксперимент не удался. Что бы ни случилось, не отпирайте наружную дверь»"
+}.
+
+To say beat1:
+	tell beat1text.
+	
+To say beat2:
+	say "Доктор Рамбо не двигается из-за стола, но при твоем приближении встречает тебя серией ударов монтировкой, которые заставляют тебя передумать".
+	
+To say beat3:
+	say "Женщина говорит с уважением: «Восхищаюсь твоим упорством, но…», [unicode 8212]  после чего смачно прикладывает тебя монтировкой по носу. Оглушенный, ты отшатываешься так, чтобы ей было тебя не достать".
+	
+To say beat4:
+	say "Доктор Рамбо вновь пускает в ход монтировку".
+
 
 Chapter 10 - Verbs
 
@@ -828,36 +844,79 @@ Carry out simpleTalking:
 	if the bloody corpse of Docteur Rambaud is in the sas:
 		now the BlockChatterFlag is true;
 		if the curedFlag of the player is not true:
-			say "[one of]Speaking into the intercom, you explain your plan. The director of the installation grabs the microphone and wishes you good luck. Beyond that, he instructs you report back when you have succeeded. Short of that, though, he requests that you not use the intercom[or]The control room refuses to talk to you until you have a proven cure in hand[stopping]. They hang up on you and the intercom goes dark.";
+			say "[one of][intercom-zero][or]The control room refuses to talk to you until you have a proven cure in hand[stopping]. They hang up on you and the intercom goes dark.";
 			now the intercom is not live;
 		otherwise:
 			increase the conversations of the player by 1;
 			if the conversations of the player is:
 				-- 1:
-					say "[quotation mark]Control room, Professor Drummond speaking.[quotation mark][line break][quotation mark]It's me, your dog, Lucky! I'm in the airlock! I am so happy to hear your voice![quotation mark][line break][quotation mark]Um. Huh? Are you messing with me? The intercom is only for official communications. Who is this?[quotation mark][paragraph break][italic type][quotation mark]It's him! It's the father of my family,[quotation mark] says Lucky.[line break][quotation mark]Calm down, Lucky,[quotation mark] insists the scientist. [quotation mark]Please let Julien do the talking.[quotation mark][roman type][paragraph break][quotation mark]Excuse me,[quotation mark] says Julien. [quotation mark]I can explain everything. I am Julien Truffaut.[quotation mark][line break][quotation mark]The guard?[quotation mark][line break][quotation mark]Yes.[quotation mark][line break][quotation mark]Impossible. Doctor Rambaud said that he had turned. Zombies can't talk. I don't have time for your crap, now get off the line.[quotation mark][paragraph break]";
+					tell intercomText1;
 				-- 2:
-					say "[quotation mark]I'm not joking,[quotation mark] pleads Julien. [quotation mark]Doctor Rambaud has cured me.[quotation mark][line break][quotation mark]Okay, enough,[quotation mark] answers the professor. [quotation mark]If she's there, put her on.[quotation mark][line break][quotation mark]She is… occupied… at the moment.[quotation mark] While you are speaking, you drag the scientist's lifeless body around the corner to the stairwell.[paragraph break][quotation mark]Listen,[quotation mark] you continue, [quotation mark]if you don't believe me, turn on the surveillance cameras in the airlock. You'll be able to see me.[quotation mark][line break][quotation mark]Okay, give me a sec.[quotation mark][paragraph break]";
+					tell intercomText2;
 				-- 3:
-					say "[quotation mark]Do you see me?[quotation mark] you ask.[line break][quotation mark]Yes. Got you on the screen. But how can you still be alive? I thought you'd been infected by the virus.[quotation mark][line break][quotation mark]Well, yes, you're right, but as I told you…[quotation mark][paragraph break][italic type][quotation mark]Let me explain,[quotation mark] interrupts the scientist.[roman type][paragraph break][quotation mark]Doctor Rambaud prepared a cure using the microfluidic biosynthesis workstation following protocol M13 as she discussed with you previously. My neural pathways were restored and I am entirely cured.[quotation mark][line break][quotation mark]Okay… But that would mean… this could be it. An end the pandemic![quotation mark][line break][quotation mark]Right. We need to move on this quickly.[quotation mark][paragraph break]";
+					tell intercomText3;
 				-- 4: 
-					say "You request to speak to the director of the entire research complex, Colonel Greillier, and you relate everything that has happened, leaving out, for now, some of the details suggested by Lucky and the mouse.[paragraph break]After a couple hours of discussion and some blood tests, the colonel is convinced and orders that the airlock doors be unsealed, permitting you to exit. ";
+					tell intercomText4;
 					terminate the game;
 	otherwise:
 		now the BlockChatterFlag is true;
 		increase the conversations of scientist by 1;
 		if the conversations of scientist is:
 			-- 1:
-				say "You start babbling incoherently, the words refusing to come. As the sounds trip off your tongue, the scientist stares at you incredulously.[paragraph break][quotation mark]Is it possible?[quotation mark] she asks. [quotation mark]Are you still capable of speaking somehow?[quotation mark][line break][quotation mark]Yes,[quotation mark] you groan painfully, [quotation mark]I… speak.[quotation mark][line break][quotation mark]Incredible! It's a miracle, Julien. What do you remember?[quotation mark][paragraph break][italic type][quotation mark]Julien? Who's Julien?[quotation mark] asks Lucky.[line break][quotation mark]Not me,[quotation mark] says the mouse. [quotation mark]Maybe the name belongs to our buddy, the slice of brain?[quotation mark][line break][quotation mark]I don't recall, but sure, I guess I could be this Julien. I mean, why not?[quotation mark][roman type][paragraph break][quotation mark]Nothing. I don't remember a thing… Julien… that's me?[quotation mark][line break][quotation mark]Yes, Julien. It's you. And I'm your Isabelle. Isabelle Rambaud,[quotation mark] replies the scientist in a disappointed tone.[paragraph break]";
+				tell parleyText1;
 			-- 2:
-				say "[italic type][quotation mark]She has pretty eyes (for a giant),[quotation mark] remarks the mouse.[line break][quotation mark]Shut up,[quotation mark] say the slice of brain and Lucky in unison.[roman type][paragraph break]You force yourself to form the words, one after another.[paragraph break][quotation mark]What are we doing here?[quotation mark][line break][quotation mark]Listen, Julien, I don't have much time. I am a medical researcher and you are a guard. We both work at an installation dedicated to finding a cure for the zombie777 virus, which has devastated the entire world.[quotation mark][line break][quotation mark]A guard?[quotation mark][line break][quotation mark]Yes. Pay attention, Julien, this is important. A crowd of pandemic victims surrounded the lab complex and you were protecting me when you were scratched by one of them. I had to give you the experimental treatment to prevent you from turning into a zombie.[quotation mark][line break][quotation mark]So, I'm cured?[quotation mark][line break][quotation mark]No, not even close.[quotation mark][paragraph break]";
+				tell parleyText2;
 			-- 3:
-				say "[quotation mark]So, the treatment didn't work?[quotation mark] you ask.[line break][quotation mark]No, not entirely it would seem. I had a problem with the microfluidic biosynthesis unit that produced the dose I gave you. I think that one of the ingredients must have been left out of that batch. I was trying to repair the unit when you caught me off guard. You attacked me, but I managed to hole up here in the airlock. So. That's where things stand.[quotation mark][line break][quotation mark]Sorry.[quotation mark][line break][quotation mark]It wasn't you. You were a full-blown zombie at the time. But… how is it that now you're able to talk? I've never heard of a zombie that could talk -- it just doesn't happen.[quotation mark][paragraph break]";
+				tell parleyText3;
 			-- 4:
-				say "[quotation mark]It's really hard for us to talk.[quotation mark][line break][quotation mark]Naturally, your neural pathways are in a state of… hold on… what do you mean, [apostrophe]us[apostrophe]?[quotation mark][paragraph break][italic type][quotation mark]Tell her about me,[quotation mark] implores the mouse, full of excitement.[line break][quotation mark]And about me![quotation mark] adds Lucky.[roman type][paragraph break][quotation mark]Yeah. About that. I said [apostrophe]us[apostrophe] because there are three minds in my head: a mouse, a dog named Lucky, and a slice of brain. We work together as best we can to get around and talk.[quotation mark][line break][quotation mark]Well.[quotation mark] She stares a moment at the ceiling to gather her thoughts. [quotation mark]Well, I suppose that explains everything. Your brain was rebooted, more or less erased by the virus, but somehow you have managed to sort of reload it with normal brains. That slice of brain that you mentioned must have been the biopsy that I took from Julien before the virus had invaded that part of his brain.[quotation mark][paragraph break]";
+				tell parleyText4;
 			-- 5:
-				say "[quotation mark]So, we're well and truly screwed?[quotation mark] you say.[paragraph break][italic type][quotation mark]Totally,[quotation mark] whines the mouse.[line break][quotation mark]Yeah, I'd say so,[quotation mark] agrees Lucky.[roman type][paragraph break][quotation mark]Maybe not… [quotation mark][line break][quotation mark]You have an idea?[quotation mark][line break][quotation mark]Yes, I think so. Do exactly what I say: I don't have long for this world. I can't even feel my legs; it's only a matter of time. However… if you eat my brain -- hang on, not yet! Let me finish talking -- thanks. As I was saying, if you eat my brain, my personality will meld with all of yours. You are still actively infected with the virus and in time it will destroy what's left of your brain, but the infection seems to have been slowed by the first treatment, even if it wasn't completely effective. If there's enough time, I can repair the synthesis unit and we can try one more time to produce a cure for the virus. If we succeed, I can live on in you, along with your thoughts.[quotation mark][line break][quotation mark]So, I should eat your brain now?[quotation mark][line break][quotation mark]Go for it.[quotation mark][paragraph break]";
+				tell parleyText5;
 			-- otherwise:
 				say "There's nothing more to say."
+				
+The list of text called parleyText1 is always {
+"Ты начинаешь что-то бессвязно лепетать [unicode 8212] слова никак не хотят вспоминаться. Когда звуки слетают с твоего языка, женщина-ученый смотрит на тебя с недоверием.[paragraph break]","«Как такое возможно? [unicode 8212] удивляется она. [unicode 8212] Ты еще как-то ухитряешься говорить?»[line break]","«Да, [unicode 8212] произносишь ты с мучительным стоном, [unicode 8212] я… го-во-рю».[line break]","«Невероятно! Жюльен, это же чудо! Ты помнишь что-нибудь?»[paragraph break]","[italic type]«Жюльен? Это еще кто? [unicode 8212] спрашивает Лаки».[line break]","«Не я, [unicode 8212] отзывается Мыш. [unicode 8212] Может, это нашего друга Мозголомтика так зовут?»[line break]","«Я не знаю, но конечно, я вполне могу быть этим Жюльеном. В конце концов, почему бы и нет?»[roman type][paragraph break]«Ровным счетом ничего. Я совсем ничего не помню… Жюльен… Это я?»[line break]","«Да, Жюльен, это ты. А я [unicode 8212] твоя Изабель. Изабель Рамбо, [unicode 8212] отвечает женщина разочарованным тоном».[paragraph break]"
+}.
+
+The list of text called parleyText2 is always {
+"[italic type]«У нее красивые глаза (для великанши, конечно)», [unicode 8212] замечает Мыш.[line break]","«Заткнись», [unicode 8212] в один голос говорят Мозголомтик и Лаки.[roman type][paragraph break]Ты заставляешь себя выговаривать слова, одно за одним.[paragraph break]","«Что. Ты. Здесь. Делаешь?»[line break]«Жюльен, у меня нет времени. Я [unicode 8212] исследователь-медик, а ты [unicode 8212] охранник. Мы оба работаем в учреждении, занимающимся поиском лекарства от вируса Зомби777, опустошившего всю планету».[line break]","«Охранник?»[line break]«Да. Слушай внимательно, Жюльен, это важно. Толпа жертв пандемии окружила наш лабораторный комплекс, и один из них"," поцарапал тебя, когда ты пытался меня защитить. Мне пришлось опробовать на тебе экспериментальной метод лечения, чтобы ты не превратился в зомби».[line break]","«Так я выздоровел?»[line break]«Если бы!»[paragraph break]"
+}.
+
+The list of text called parleyText3 is always {
+"«То есть лечение не сработало?» [unicode 8212] спрашиваешь ты.[line break]«По-видимому, не до конца. У меня возникла проблема с микроструйной установкой биосинтеза, где была приготовлена"," доза, которую я тебе дала. Мне кажется, там не хватало одного ингредиента. Я пыталась отремонтировать установку и так увлеклась, что ты застал меня врасплох. Ты напал на"," меня, но мне удалось спрятаться здесь, в шлюзе. Вот так примерно и обстоят дела».[line break]","«Прости».[line break]«Это был не ты. На тот момент ты был самым настоящим зомби. Но... Как тебе удается говорить? Я никогда не слышала о говорящих зомби [unicode 8212] такого просто не бывает».[paragraph break]"
+}.
+
+The list of text called parleyText4 is always {
+"«Нам действительно тяжело говорить».[line break]«Конечно, при таком-то состоянии нейронных связей … Постой-ка… Что значит [unicode 8222]нам[unicode 8220]?»[paragraph break][italic type]«Расскажи ей про меня», [unicode 8212] умоляет Мыш, еле сдерживая эмоции.[line break]","«И про меня!» [unicode 8212] добавляет Лаки[roman type][paragraph break]«Да. Насчет этого. Я сказал [unicode 8222]нам[unicode 8220], потому что в моей голове сразу три разума: мышь, собака по кличке Лаки и кусочек мозга. Мы стараемся действовать сообща, чтобы худо-бедно передвигаться и"," разговаривать».[line break]«Ну что ж, [unicode 8212] Изабель бросает задумчивый взгляд на потолок, собираясь с мыслями, [unicode 8212] похоже, это объясняет всё. Твой мозг был перезагружен, стерт"," вирусом, но каким-то образом ты сумел, так сказать, зарядить его нормальными мозгами. Тот кусочек мозга, о котором ты говоришь [unicode 8212] это, судя по всему, тот биопсийный"," образец, который я взяла у Жюльена до того, как вирус проник в эту часть его мозга».[paragraph break]"
+}.
+
+The list of text called parleyText5 is always {
+"«Так что, для нас теперь всё потеряно?» [unicode 8212] спрашиваешь ты.[paragraph break][italic type]«Нам хана», [unicode 8212] жалобно пищит Мыш.[line break]«Похоже на то», [unicode 8212] вздыхает Лаки.[roman type][paragraph break]«Может, и нет…»[line break]«У тебя есть идеи?»","[line break]«Мне кажется, да. Делай, как я говорю: мне всё равно недолго осталось. Я уже и ног своих не чувствую, мое время подходит к концу. Но... если ты съешь мои мозги [unicode 8212] постой, не так"," быстро! Дай мне закончить [unicode 8212] спасибо. Как я уже сказала, если ты съешь мои мозги, моя личность сольется с вашими. Ты по-прежнему инфицирован, и со временем вирус"," разрушит остатки твоего мозга, но лекарство все-таки затормозило его распространение, хотя и не принесло полного исцеления. Хватило бы времени [unicode 8212] я бы тогда починила установку"," биосинтеза, и мы смогли бы еще раз попытаться изготовить лекарство от вируса. Если у нас всё получится, я буду жить внутри тебя, среди твоих мыслей.[line break]«А теперь можно съесть твои"," мозги?»[line break]«Угощайся».[paragraph break]"
+}.
+
+To say intercom-zero:
+	tell intercomText0.
+	
+The list of text called intercomText0 is always {
+"Speaking into the intercom, you explain your plan. The director of the installation grabs the microphone and wishes you good luck. Beyond that, he instructs you report back when you have succeeded. Short of that, though, he requests that you not use the intercom"
+}
+
+The list of text called intercomText1 is always {
+"[quotation mark]Control room, Professor Drummond speaking.[quotation mark][line break][quotation mark]It's me, your dog, Lucky! I'm in the airlock! I am so happy to hear your voice![quotation mark][line break][quotation mark]Um. Huh? Are you messing with me? The intercom is only for official communications. Who is this?[quotation mark][paragraph break][italic type][quotation mark]It's him! It's the father of my family,[quotation mark] says Lucky.[line break][quotation mark]Calm down, Lucky,[quotation mark] insists the scientist. [quotation mark]Please let Julien do the talking.[quotation mark][roman type][paragraph break][quotation mark]Excuse me,[quotation mark] says Julien. [quotation mark]I can explain everything. I am Julien Truffaut.[quotation mark][line break][quotation mark]The guard?[quotation mark][line break][quotation mark]Yes.[quotation mark][line break][quotation mark]Impossible. Doctor Rambaud said that he had turned. Zombies can't talk. I don't have time for your crap, now get off the line.[quotation mark][paragraph break]"
+}
+
+The list of text called intercomText2 is always {
+"[quotation mark]I'm not joking,[quotation mark] pleads Julien. [quotation mark]Doctor Rambaud has cured me.[quotation mark][line break][quotation mark]Okay, enough,[quotation mark] answers the professor. [quotation mark]If she's there, put her on.[quotation mark][line break][quotation mark]She is… occupied… at the moment.[quotation mark] While you are speaking, you drag the scientist's lifeless body around the corner to the stairwell.[paragraph break][quotation mark]Listen,[quotation mark] you continue, [quotation mark]if you don't believe me, turn on the surveillance cameras in the airlock. You'll be able to see me.[quotation mark][line break][quotation mark]Okay, give me a sec.[quotation mark][paragraph break]"
+}
+
+The list of text called intercomText3 is always {
+"[quotation mark]Do you see me?[quotation mark] you ask.[line break][quotation mark]Yes. Got you on the screen. But how can you still be alive? I thought you'd been infected by the virus.[quotation mark][line break][quotation mark]Well, yes, you're right, but as I told you…[quotation mark][paragraph break][italic type][quotation mark]Let me explain,[quotation mark] interrupts the scientist.[roman type][paragraph break][quotation mark]Doctor Rambaud prepared a cure using the microfluidic biosynthesis workstation following protocol M13 as she discussed with you previously. My neural pathways were restored and I am entirely cured.[quotation mark][line break][quotation mark]Okay… But that would mean… this could be it. An end the pandemic![quotation mark][line break][quotation mark]Right. We need to move on this quickly.[quotation mark][paragraph break]"
+}
+
+The list of text called intercomText4 is always {
+"You request to speak to the director of the entire research complex, Colonel Greillier, and you relate everything that has happened, leaving out, for now, some of the details suggested by Lucky and the mouse.[paragraph break]After a couple hours of discussion and some blood tests, the colonel is convinced and orders that the airlock doors be unsealed, permitting you to exit. "
+}
 									
 Section 6 - simpleRepairing
 

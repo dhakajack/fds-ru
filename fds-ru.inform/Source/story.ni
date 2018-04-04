@@ -116,11 +116,12 @@ Chapter 5 -Langauge-specific tweaks
 Rule for printing the banner text: 
 	place an inline element called "titre" reading "На Страже";
 	say line break;
-	say "Рассказ: Джек Уэлч[line break]";
-	say "Перевод: Валентин Коптелцев[line break]";
-	say "Выпуск [release number] / Серийный Номер 180225 / Информ 7 вариант 6M62 (I6/v6.33 lib 6/12N)[line break]".
+	say story headline;
+	say paragraph break;
+	say "Оригинальная история [unicode 8212] Джек Уэлч[line break]";
+	say "Русский перевод [unicode 8212] Валентин Коптелцев[line break]";
+	say "Релиз [release number] / Серийный Номер 180225 / Inform 7 build 6M62 (I6/v6.33 lib 6/12N)[line break]".
 	
-
 Rule for listing nondescript items:
 	let L be a list of things;
 	say "Ты видишь здесь ";
@@ -130,11 +131,11 @@ Rule for listing nondescript items:
 		add item to L;
 	repeat with N running from 1 to the number of entries in L:
 		if N is greater than 1 and N is the number of entries in L:
-			say " et ";
+			say " и ";
 		let E be entry N of L;
-		say "[an E]";
+		say "[E]";
 		if E is open and E contains exactly one thing:
-			say " (contenant [a random thing in E])";
+			say " (в которой находится [random thing in E])";
 		if the number of entries in L is greater than 2 and N is less than (the number of entries in L minus 1):
 			say ", ";
 	say "."
@@ -186,7 +187,7 @@ After printing the banner text:
 	increment the knownCommands of the player.
 	
 The list of text called bannerText is always {
-"[line break][italic type]Где я? И вообще, кто я?[roman type][paragraph break]Ты просыпаешься в одиночестве в пустой синеватой комнате.[paragraph break]","[italic type]Почему я не могу ничего вспомнить?[paragraph break]Мне надо сконцентрироваться! Что случилось? Давай, думай! Думай же![paragraph break]Как бы то ни было, здесь я ответов не найду -- мне придется осмотреть окрестности.[roman type]"
+"[line break][italic type]Где я? И вообще, кто я?[roman type][paragraph break]Ты просыпаешься в одиночестве в пустой синеватой комнате.[paragraph break]","[italic type]Почему я не могу ничего вспомнить?[paragraph break]Мне надо сконцентрироваться! Что случилось? Давай, думай! Думай же![paragraph break]Как бы то ни было, здесь я ответов не найду -- мне придется осмотреть окрестности.[roman type][line break]"
 }
 	
 [max 217 unicode characters between quotes due to expansion of intermediates during compliation как жал]
@@ -235,7 +236,7 @@ To say descBlocOperatoire:
 		-- 0:
 			say "Темное помещение[one of]. Здесь нет ничего интересного[or][stopping]";
 		-- 1:
-			say "Опа, здесь кровь -- в этой огромной синей комнате с металлическими стенами.";
+			say "Опа, здесь кровь [unicode 8212] в этой огромной синей комнате с металлическими стенами";
 		-- 2:
 			say "Голубая комната, в которой люди режут и потрошат животных";
 		-- 3:
@@ -250,7 +251,7 @@ To say pnBlocOpératoire:
 		-- 1:
 			say "Жуткое место";
 		-- 2:
-			say "The torture chamber";
+			say "Камера пыток";
 		-- 3:
 			say "Operating room";
 		-- 4:
@@ -267,7 +268,7 @@ To say descCouloir2:
 		-- 1:
 			say "Огромный белый коридор, соединяющий жуткое место на западе с логовом злого волка на севере";
 		-- 2:
-			say "Коридор, ведущий из моего уютного убежища на севере к комнате ужасов на западе. На восточной стене сияет красная кнопка";
+			say "Коридор, ведущий из моего уютного убежища на севере к комнате ужасов на западе";
 			say "[liftDoorDogStatus]";
 		-- 3:
 			say "The central corridor for level two. The operating room is to the west, the kennel to the north, the lab to the south, and the elevator to the east";
@@ -276,7 +277,7 @@ To say descCouloir2:
 			
 To say liftDoorDogStatus:
 	if the door east from the location is closed:
-		say ". A red button shines on the wall to the east";
+		say ". На восточной стене сияет красная кнопка";
 	otherwise:
 		say ". Проход к востоку исчез".
 			
@@ -334,11 +335,11 @@ To say openNord:
 		say "Стена к северу отъезжает в сторону, открывая проход в соседнее помещение".
 
 	
-The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "клетку[if the cage is closed]  (она закрыта)[end if]".
+The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "клетку[if the cage is closed] (она закрыта)[end if]".
 
 The chien is an edible thing. It is in the cage. The printed name of the chien is "[if the consciousness of the player is 1]wolf[otherwise]dog[end if]". The chien can be dead. The chien is not dead. 
 
-The animal body is a thing. It is in the void.
+The animal body is a thing. It is in the void. The printed name of the animal body is "труп животного".
 
 The food dispenser is in the Laboratoire Zoologique. It is buttoned. The printed name of the food dispenser is "автоматическую кормушку".
 
@@ -422,8 +423,7 @@ To say portesReferment:
 	if the consciousness of the player is less than 3:
 		say "стена за твоей спиной бесшумно возвращается на место";
 	otherwise:
-		say "doors close silently behind you";
-	say " .".
+		say "doors close silently behind you".
 	
 After going west from an Ascenseur 2:
 	say "[portesReferment].";
@@ -555,7 +555,7 @@ After going north from Couloir 1 when the labPathDoor is open for the first time
 	try looking.
 	
 The list of text called chopLicking is always {
-"[italic type][quotation mark]Ммммм![quotation mark] говорит Лаки и облизывается.[line break][quotation mark]Чему это ты так обрадовался?[quotation mark][line break]","[quotation mark]Видишь вон тот здоровенный ящик? Вот он действительно волшебный: это холодильник![quotation mark][line break][quotation mark]Мы забираемся в холодильник, чтобы попасть в другое место?[quotation mark][line break]","[quotation mark]Нет, мы едим то, что внутри![quotation mark][roman type][paragraph break]"
+"[italic type]«Ммммм!» [unicode 8212] говорит Лаки и облизывается.[line break]«Чему это ты так обрадовался?»[line break]","«Видишь вон тот здоровенный ящик? Вот он действительно волшебный: это холодильник!»[line break]«Мы забираемся в холодильник, чтобы попасть в другое место?»[line break]","«Нет, мы едим то, что внутри!»[roman type][paragraph break]"
 }
 
 
@@ -1017,7 +1017,7 @@ After opening the labZooDoor:
 	increment the knownCommands of the player.
 	
 After going north from Couloir 2 for the first time:
-	say "Ты проскальзываешь в волчье логово – это место неплохо тебе знакомо, но всё равно вызывает ужас.";
+	say "Ты проскальзываешь в волчье логово [unicode 8212] это место неплохо тебе знакомо, но всё равно вызывает ужас.";
 	try looking;
 	say "Волк, как обычно, заперт в железной клетке, так что ничто не мешает тебе исследовать помещение, держась подальше от его хищных клыков.";
 	increment the knownCommands of the Player.
@@ -1029,6 +1029,7 @@ After eating the chien:
 	now the chien is dead;
 	now the animal body is in the cage;
 	tell ateDog;
+	say line break;
 	increment the consciousness of the player;
 	now the BlockChatterFlag is true;
 	say "[italic type]«Извини».[line break]«Извинить за что?[no line break]»[line break]«Ну, типа я сожалею, что съел тебя».[line break]«Съел меня? И кто ты вообще?[no line break]»[line break]«Мышь».[roman type][line break]";
@@ -1097,7 +1098,7 @@ Every turn:
 				if the number of entries in mouseDogDialogue is greater than zero:
 					say "[italic type]«";
 					tell entry 1 of mouseDogDialogue;
-					say "[quotation mark][roman type][paragraph break]";
+					say "».[roman type][paragraph break]";
 					remove entry 1 from mouseDogDialogue;
 			-- 3:
 				if the number of entries in mouseDogGuardDialogue is greater than zero:
@@ -1138,7 +1139,7 @@ mouseDialogue is a list of text that varies.
 	
 mouseDialogue is {
 "Как бы там ни было, я, кажется, прилично подрос. Хм, что бы это значило.",
-"Мне явно чего-то хочется, но вот чего – никак не пойму.",
+"Мне явно чего-то хочется, но вот чего [unicode 8212] никак не пойму.",
 "Ну-ка, чего мне обычно хочется?",
 "Спать? Не-а. Пить? Не-а. Секса? Не-а.[paragraph break]Елки зеленые! Неужто я заболел?",
 "Ах, вот оно что. Я голоден.",
@@ -1153,15 +1154,15 @@ Section MouseDog Dialogue
 mouseDogDialogue is a list of lists of text that varies. 
 
 mouseDogDialogue is {	
-{"Мышь? Что еще за мышь?»[line break]«Мышь, которая здесь живет.»[line break]«Та самая проклятая мышь, которая постоянно тырит крошки вокруг моей кормушки?»[line break]«Да, именно так. Еще раз – я просто хотел извиниться, если расстроил тебя."},
-{"Не переживай из-за этого. На твоем месте я поступил бы так же.»[line break]«Спасибо.»[line break]«Скажи, мышь, у тебя есть имя?»[line break]","«Нет, мы, мыши, обходимся без имен. Так что можешь звать меня просто Мышью, точнее – „Мышом[quotation mark]. Ну, а тебя как звать?»[line break]","«„Lucky[quotation mark]. Ну, по крайней мере так называли меня в моей семье, пока я не попал сюда. Местные живодеры называют меня „Объект 205-Альфа[quotation mark], но „Лаки[quotation mark] мне как-то больше нравится».[line break]«Хорошо, Лаки."},
-{"Мыш, ты можешь мне кое-что объяснить? Как так получилось, что ты, крошечная мышка, проглотил меня – крупного, сильного пса, в десятки раз превосходящего тебя в размерах?»[line break]","«Ты знаешь, я задавался тем же вопросом. Постой-ка -- ты сказал «пес»? Я думал, ты волк!»[line break]«Нет, я собака.»[line break]«Ты уверен?»[line break]«Да, вполне."},
-{"Никак не могу догадаться, как же я тебя съел».[line break]«Ты что-нибудь об этом помнишь?»[line break]«Я неожиданно почувствовал непреодолимое желание съесть мозги».[line break]«Мозги? Что за мозги?»[line break]«В данном случае твои».[line break]«А, понятно… Точнее, ничего не понятно."},
-{"Мыш, ты всегда здесь жил?»[line break]«Мы обитаем здесь много поколений, это наше родовое гнездо. Мы охраняем его от посягательств всяких захватчиков. Мыши-полевки – это сплошь бандиты, гопники и воры».[line break]","«Ты когда-нибудь видел мир снаружи?»[line break]«У меня нет ни малейшего желания. Конечно, мне рассказывали там про небо, облака всякие, поля и тому подобное, но меня это не интересует."},
-{"А у тебя как, Лаки? Ты вроде говорил про семью. У тебя есть жена? Мы, мыши, не особо верим в брак, но я слыхал, что собаки в этом отношении более консервативны».[line break]","«Семья, да, но не жена (хотя соседская пуделиха… ну ладно, это другая история). Нет, когда я говорю про семью, то имею в виду семью людей."},
-{"Ты был у них в рабстве?» [unicode 8212] спрашивает Мыш.[line break]","«Да нет, ну что ты. Я играл с детьми, они меня кормили, дни напролет ласкали и гладили меня, у меня даже кровать своя была.»","[line break]«Ты выдумываешь. Никогда ничего подобного не видел. Люди не выносят животных [unicode 8212] они так и норовят раздавить нас ногой."},
-{"Да ты просто вообще ничего не знаешь о людях», [unicode 8212] заключает Лаки.[line break]","«Что характерно [unicode 8212] и знать не хочу, благодарю покорно».[line break]","«Тебе бы понравилась моя семья».[line break]«В таком случае, разреши поинтересоваться, что же заставило тебя покинуть такую замечательную семью?»[line break]","«Не то чтобы я ушел от них специально. Мы гуляли в лесу, я увидел белку, а дальше ты сам можешь всё себе представить. С тех пор я их не видел».[line break]","«Только не говори мне про белок. Они еще хуже полевок."},
-{"Лаки, как ты думаешь, ты найдешь свою семью?»[line break]«Очень на это надеюсь».[line break]","«Я тоже. Мы бы с тобой показали этим белкам»[line break]«Ага, это было бы круто."}
+{"Мышь? Что еще за мышь?»[line break]«Мышь, которая здесь живет».[line break]«Та самая проклятая мышь, которая постоянно тырит крошки вокруг моей кормушки?»[line break]«Да, именно так. Еще раз [unicode 8212] я просто хотел извиниться, если расстроил тебя"},
+{"Не переживай из-за этого. На твоем месте я поступил бы так же».[line break]«Спасибо».[line break]«Скажи, мышь, у тебя есть имя?»[line break]","«Нет, мы, мыши, обходимся без имен. Так что можешь звать меня просто Мышью, точнее [unicode 8212] [unicode 8222]Мышом[unicode 8220]. Ну, а тебя как звать?»[line break]","«[unicode 8222]Lucky[unicode 8220]. Ну, по крайней мере так называли меня в моей семье, пока я не попал сюда. Местные живодеры называют меня [unicode 8222]Объект 205-Альфа[unicode 8220], но [unicode 8222]Лаки[unicode 8220] мне как-то больше нравится».[line break]«Хорошо, Лаки"},
+{"Мыш, ты можешь мне кое-что объяснить? Как так получилось, что ты, крошечная мышка, проглотил меня [unicode 8212] крупного, сильного пса, в десятки раз превосходящего тебя в размерах?»[line break]","«Ты знаешь, я задавался тем же вопросом. Постой-ка [unicode 8212] ты сказал [unicode 8222]пес[unicode 8220]? Я думал, ты волк!»[line break]«Нет, я собака».[line break]«Ты уверен?»[line break]«Да, вполне"},
+{"Никак не могу догадаться, как же я тебя съел».[line break]«Ты что-нибудь об этом помнишь?»[line break]«Я неожиданно почувствовал непреодолимое желание съесть мозги».[line break]«Мозги? Что за мозги?»[line break]«В данном случае твои».[line break]«А, понятно… Точнее, ничего не понятно"},
+{"Мыш, ты всегда здесь жил?»[line break]«Мы обитаем здесь много поколений, это наше родовое гнездо. Мы охраняем его от посягательств всяких захватчиков. Мыши-полевки – это сплошь бандиты, гопники и воры».[line break]","«Ты когда-нибудь видел мир снаружи?»[line break]«У меня нет ни малейшего желания. Конечно, мне рассказывали там про небо, облака всякие, поля и тому подобное, но меня это не интересует"},
+{"А у тебя как, Лаки? Ты вроде говорил про семью. У тебя есть жена? Мы, мыши, не особо верим в брак, но я слыхал, что собаки в этом отношении более консервативны».[line break]","«Семья, да, но не жена (хотя соседская пуделиха… ну ладно, это другая история). Нет, когда я говорю про семью, то имею в виду семью людей"},
+{"Ты был у них в рабстве?» [unicode 8212] спрашивает Мыш.[line break]","«Да нет, ну что ты. Я играл с детьми, они меня кормили, дни напролет ласкали и гладили меня, у меня даже кровать своя была.»","[line break]«Ты выдумываешь. Никогда ничего подобного не видел. Люди не выносят животных [unicode 8212] они так и норовят раздавить нас ногой"},
+{"Да ты просто вообще ничего не знаешь о людях», [unicode 8212] заключает Лаки.[line break]","«Что характерно [unicode 8212] и знать не хочу, благодарю покорно».[line break]","«Тебе бы понравилась моя семья».[line break]«В таком случае, разреши поинтересоваться, что же заставило тебя покинуть такую замечательную семью?»[line break]","«Не то чтобы я ушел от них специально. Мы гуляли в лесу, я увидел белку, а дальше ты сам можешь всё себе представить. С тех пор я их не видел».[line break]","«Только не говори мне про белок. Они еще хуже полевок"},
+{"Лаки, как ты думаешь, ты найдешь свою семью?»[line break]«Очень на это надеюсь».[line break]","«Я тоже. Мы бы с тобой показали этим белкам»[line break]«Ага, это было бы круто"}
 }
 
 

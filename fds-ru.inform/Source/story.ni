@@ -275,7 +275,7 @@ To say descCouloir2:
 		-- 3:
 			say "The central corridor for level two. The operating room is to the west, the kennel to the north, the lab to the south, and the elevator to the east";
 		-- 4:
-			say "The central corridor for level two. The operating room is to the west, the kennel to the north, the lab to the south, and the elevator to the east".
+			say "Центральный коридор второго уровня. Операционная находится к западу, помещение для содержания собак [unicode 8212] к северу, лаборатория [unicode 8212] на юге, а лифт [unicode 8212] на востоке".
 			
 To say liftDoorDogStatus:
 	if the door east from the location is closed:
@@ -294,7 +294,7 @@ To say pnCouloir2:
 		-- 3:
 			say "Corridor, Level 2";
 		-- 4:
-			say "Level 2: Physiological Experiments".
+			say "Уровень 2: Отдел физиологических экспериментов".
 	
 		
 After going east from Couloir 2 when the ascenseur2door is open for the first time:
@@ -381,7 +381,7 @@ To say pnAsc:
 		if Ascenseur 2 is visited:
 			say ", которая вибрирует";
 	otherwise:
-		say "The elevator".
+		say "Лифт".
 
 Ascenseur 2 is an elevator. The Ascenseur2door is an elevatorDoor. It is east of Couloir 2 and west of Ascenseur 2. 
 
@@ -392,7 +392,7 @@ Instead of pushing an elevatorDoor:
 			-- 2:
 				say " своей мордой[one of] (которая, насколько ты помнишь, раньше была длиннее)[or][stopping] и замечаешь легкую вибрацию. Секунду спустя стена на западе отъезжает, и за ней оказывается коридор.";
 			-- otherwise:
-				say ", the elevator [if the location is Ascenseur 2]descends to the first level[otherwise]goes up to the second level[end if] and the doors open to the west."; 
+				say ", и лифт [if the location is Ascenseur 2]спускается на первый уровень[otherwise]поднимается на второй уровень[end if], после чего его дверь отъезжает в сторону, открывая проход на запад."; 
 		if the player is in Ascenseur 2:
 			move the player to Ascenseur 1, without printing a room description;
 			now Ascenseur1door is open;
@@ -404,7 +404,7 @@ Instead of pushing an elevatorDoor:
 			-- 2:
 				say ", и стена отъезжает в сторону, открывая проход на восток.";
 			-- otherwise:
-				say " and the elevator door opens to the east.";
+				say ", и на востоке открывается дверь лифта.";
 		if the player is in Couloir 2:
 			now Ascenseur2door is open;
 		otherwise:
@@ -416,16 +416,16 @@ After going east from Couloir 2:
 		now the Ascenseur2door is closed.
 		
 To say portesReferment:
-	say "Ты ";
+	say "Как только ты ";
 	if the player is in an elevator:
-		say "enter";
+		say "захoдишь[if the consciousness of the player is greater than 2] в кабину[end if]";
 	otherwise:
 		say "выходишь";
-	say ", и ";
+	say ", ";
 	if the consciousness of the player is less than 3:
 		say "стена за твоей спиной бесшумно возвращается на место";
 	otherwise:
-		say "doors close silently behind you".
+		say "дверь бесшумно закрывается за твоей спиной".
 	
 After going west from an Ascenseur 2:
 	say "[portesReferment].";
@@ -442,22 +442,22 @@ The labBioDoor is a locked door. It is south of Couloir 2 and north of Laboratoi
 To say descLabBio:
 	if the consciousness of the player is:
 		-- 3:
-			say "The room is lined floor to ceiling with high-tech equipment. On a typical day, the room would be full of blinking lights and the whir of robotic actuators, but right now the equipment is dark and you don't hear the slightest sound";
+			say "Помещение от пола до потолка заставлено сложным оборудованием. Обычно здесь повсюду сияют лампочки и жужжат роботизированные приводы, но сейчас ни один из приборов не подает признаков жизни, а тишина не нарушается никакими звуками";
 		-- 4:
 			if the disjoncteurs are not broken:
-				say "With power restored, the room is now lit up like a Christmas tree, the computer fans are whirring, and the microfluidic station stands ready to carry out even the most complex biochemical syntheses";
+				say "Теперь, когда электроснабжение восстановлено, все помещение сияет огнями, как рождественская елка, и наполнено жужжанием компьютерных кулеров. Микроструйная установка готова к любым, даже самым сложным операциям биохимического синтеза";
 			otherwise:
-				say "The room is entirely dark, and neither the computers nor the robotic molecular synthesis unit are working. It's obvious that somewhere electrical power to the room has been cut"
+				say "Помещение погружено во тьму, не работают ни компьютеры, ни роботизированная установка молекулярного синтеза. Судя по всему, электроснабжение данной комнаты где-то отключено"
 					
 To say pnLabBio:
 	if the consciousness of the player is:
 		-- 3:
-			say "Biochemical Laboratory";
+			say "Биохимическая лаборатория";
 		-- 4:
-			say "Molecular Synthesis Laboratory".
+			say "Лаборатория молекулярного синтеза".
 			
 To say pnLabBioDoor:
-	say "laboratory door".
+	say "дверь лаборатории".
 	
 
 Section Couloir 1
@@ -472,7 +472,7 @@ To say descCouloir1:
 		-- 3:
 			say "Центральный коридор уровня 1 соединяет туалеты на юге, душевые на западе, лабораторию на севере и лифт на востоке";
 		-- 4:
-			say "The central corridor on level one leads south to the restroom, west to the decontamination suite, north to the histopathology laboratory, and east to the elevator".
+			say "Центральный коридор на первом уровне соединяет туалеты на юге, санпропускники на западе, лабораторию на севере и лифт на востоке".
 		
 To say pnCouloir1:
 	if the consciousness of the player is:
@@ -481,7 +481,7 @@ To say pnCouloir1:
 		-- 3:
 			say "Коридор, уровень 1";
 		-- 4:
-			say "Level 1: Biocontainment".
+			say "Уровень 1: биобезопасность".
 			
 After going east from Couloir 1:
 		say "[portesReferment].";
@@ -614,7 +614,7 @@ Instead of simpleEating when the player is in Les Toilettes:
 			-- 3:
 				say "Нет, это было бы слишком отвратительно[one of] (даже для поедателя мозгов)[or][stopping]."; 
 			-- 4:
-				say "Do you have any idea how many species of pathogenic bacteria live in the water? No way."
+				say "Знаешь, сколько видов патогенных бактерий живет в сырой воде? Нет уж."
 				
 After going south from Couloir 1 when the consciousness of the player is 3 for the first time:
 		now the BlockChatterFlag is true;
@@ -645,15 +645,19 @@ To say descDecon:
 		-- 3:
 			say "Множество душевых головок направлены на центр помещения, который залит интенсивным фиолетовым светом";
 		-- 4: 
-			say "The high pressure nozzles that ring the room are designed to hose down personnel with an antiseptic solution as they come and go from potentially contaminated zones within the complex. The room is continuously illuminated by germicidal lights";
+			tell showerDesc;
 	say ". Дверь к востоку ведет в коридор, а к западу [unicode 8212] на лестницу"
+	
+The list of text called showerDesc is always {
+"Распылители высокого давления по периметру помещения служат для того, чтобы обмывать персонал, приходящий из потенциально контаминированных зон"," комплекса, раствором антисептика. Помещение залито интенсивным фиолетовым светом. Двери ведут в коридор на востоке и на лестницу к северу"
+}
 
 To say pnDecon:
 	if the consciousness of the player is:
 		-- 3:
 			say "Душевая";
 		-- 4:
-			say "Decontamination room".
+			say "Санпропускник".
 			
 To say pnDeconDoor:
 	if the consciousness of the player is:
@@ -915,7 +919,7 @@ To say intercom-zero:
 	tell intercomText0.
 	
 The list of text called intercomText0 is always {
-"Speaking into the intercom, you explain your plan. The director of the installation grabs the microphone and wishes you good luck. Beyond that, he instructs you report back when you have succeeded. Short of that, though, he requests that you not use the intercom"
+"Склонившись к переговорному устройству, ты рассказываешь свой план. Директор комплекса хватает микрофон и желает тебе удачи. ","Он также дает тебе указание сообщить, когда ты всё закончишь. Однако до этого момента он просит тебя не пользоваться связью. ","После этого на той стороне вешают трубку, и светодиод переговорного устройства гаснет"
 }
 
 The list of text called intercomText1 is always {
@@ -1209,20 +1213,20 @@ EverybodyDialogue is a list of lists of text that varies.
 EverybodyDialogue is {
 {"«Какое невероятное чувство!» [unicode 8212] восхищается женщина.[line break]«Со временем к этому привыкаешь», [unicode 8212] лаконично замечает Мыш.[line break]«","Расскажи ей наш план, Лаки», [unicode 8212] предлагает Мозголомтик.[line break]«Хорошо, [unicode 8212] отзывается пес, [unicode 8212] пойдем с самого начала… Во-первых, нам надо найти оставшуюся часть мозга Жюльена. Во-вторых, нам надо"," выбраться из здания; и в-что там после двух, мы займемся поисками моей семьи»."},
 {"«Пусть так, [unicode 8212] говорит Изабель, [unicode 8212] но прежде всего нам надо пройти за пределы помещения, где вы меня встретили, а для этого нам надо синтезировать лекарство».[line break]","«Это невозможно», [unicode 8212] отрезает Мыш.[line break]«Почему?» [unicode 8212] слегка ошарашено спрашивает исследовательница.[line break]","«Это вопрос математики, [unicode 8212] педантично разъясняет Мыш. [unicode 8212] План Лаки начинается с пункта номер один. Перед номером один ничего нет».[line break]","«Номер ноль?» [unicode 8212] высказывает предположение Изабель.[paragraph break][roman type]«…»[paragraph break][italic type]«Ладно, [unicode 8212] соглашается она, [unicode 8212] а как насчет перенумерации? Первый пункт: приготовить лекарство; второй пункт: выбраться из здания; третий пункт: найти семью Лаки. Так пойдет?»[line break]","«Конечно, [unicode 8212] говорит Лаки, [unicode 8212] это звучит вполне разумно.»[line break]","«И к тому же совершенно корректно с точки зрения математики», [unicode 8212] добавляет Мыш."},
-{"«Listen,[quotation mark] says Lucky, still counting the steps in Isabelle's plan. [quotation mark]What are we going to do about the missing brain? If I have this right, we need it to put Julien back together.[quotation mark][line break]«Unfortunately,[quotation mark] replies Isabelle, [quotation mark]the slice of brain is all that's left of Julien now. Right now we're all using the neural pathways of his entire brain to think, but nothing is left of Julien's original personality except what was stored in the brain biopsy. It's a heavy loss, particularly for me.[quotation mark][line break]«Why for you?[quotation mark] asks the mouse.[line break]«Because we were to be married, Julien and I.[quotation mark][line break]«Sorry,[quotation mark] consoles the slice of brain. [quotation mark]I'm sure that if I could remember you, I would really like you.[quotation mark]"},
-{"«Isabelle, do you think that one day we'll find my family?[quotation mark] asks Lucky.[line break]«Yes, I'm certain of it.[quotation mark][line break]«How can you be so sure?[quotation mark] asks the slice of brain.[line break]«Because I know the family: Jean-Paul and Alexandra Drummond and their daughters, Léa et Camille. They live not more than a hundred meters from me and Julien.[quotation mark][line break]«Yes, I've heard those names often around my house. I'm sure you're right! But, how could you know who I was talking about?[quotation mark] asks Lucky.[line break]«Because I saw them in your thoughts,[quotation mark] answers the scientist."},
-{"«Are you saying that you can see what Lucky is thinking?[quotation mark] asks the mouse. [quotation mark]How could that be possible?[quotation mark][line break]«We're all part of one brain now. Our minds are more or less merged. I can access his thoughts and conversely, he can access mine.[quotation mark][line break]«Cool![quotation mark] says the mouse. [quotation mark]We've got superpowers.[quotation mark]"},
-{"«I have to say that I find that somewhat improbable,[quotation mark] says the dog. [quotation mark]If you can see my thoughts, what number am I thinking of right now?[quotation mark][line break]The scientist ponders for a moment and says, «The number one.[quotation mark][line break]«Well, yes,[quotation mark] admits the dog. [quotation mark]But perhaps that was a random guess. Try again…[quotation mark][line break]«You're thinking of the number two,[quotation mark] says the scientist with conviction.[line break]«Yes again![quotation mark] says the dog, now satisfied.[line break]«But,[quotation mark] objects the mouse, [quotation mark]Lucky only knows two numbers… what does that prove?[quotation mark]"},
-{"«Fine,[quotation mark] says the scientist patiently, [quotation mark]let's take another example. Mouse, I am thinking at this very moment of this morning's breakfast. I am trying to visualize it in as much detail as I can… try to see it.[quotation mark][line break]«Where?[quotation mark] asks the mouse. [quotation mark]I can't smell anything.[quotation mark][line break]«Ah,[quotation mark] says Isabelle, [quotation mark]Therein lies the problem. I was thinking in visual terms. Here, let me imagine its aroma, its taste… [quotation mark][line break]«Oh! Yes, yes! I'm starting to sense it! My gods! It was a huge meal! This is fabulous. Can I relive every meal you've ever eaten? Pinch me, I'm dreaming.[quotation mark]"},
-{"«Even though I find the memory of your last meal delicious, right now I don't feel like eating anything but brains. That's kind of weird, isn't it?[quotation mark] remarks the mouse.[line break]«In fact, it's entirely normal for someone who has been zombified,[quotation mark] replies the scientist.[line break]«We're zombies?[quotation mark] asks Lucky.[line break]«No,[quotation mark] clarifies the scientist. [quotation mark]Together we constitute a single zombie, sharing Julien's body.[quotation mark][line break]«At least I'm in my own body,[quotation mark] remarks the slice of brain."}, 
-{"«Are other zombies as pleasant as we are?[quotation mark] asks Lucky.[line break]«No,[quotation mark] replies Isabelle, [quotation mark]they are monsters. We're something else entirely. I'd say that we're sort of a pseudozombie, having received a partially effective treatment. Your typical zombie can't talk or think, all they can do is eat brains.[quotation mark][line break]«And that's a problem?[quotation mark] asks the mouse.[line break]«Rather a big one,[quotation mark] remarks the scientist. [quotation mark]They've just about destroyed civilization![quotation mark]"}, 
-{"«How is that possible?[quotation mark] asks the slice of brain.[line break]«The virulence of this virus is without precedent,[quotation mark] replies the scientist. [quotation mark]The slightest scratch is enough to transmit the virus. The first cases were reported in Cambodia and twenty-four hours later thousands of cases appeared around the world thanks to international flights. A week later: global chaos. Without electricity, food, and water, the largest cities collapsed almost immediately. Fires have swept the countryside. Only a few pockets of humanity remain.[quotation mark]"},
-{"«What about animals?[quotation mark] asks the mouse. [quotation mark]Were they affected?[quotation mark][line break]«In fact,[quotation mark] replies Isabelle, [quotation mark]we think that the disease was canine in origin. Before we lost communications with the Pasteur Institute in Ho Chi Minh City, they had isolated a mutant form of rabies putatively responsible for the pandemic.[quotation mark][line break]«Rabies![quotation mark] Lucky cries, [quotation mark]There's nothing more terrifying than rabies![quotation mark][line break]«Until now,[quotation mark] corrects the slice of brain."},
-{"«If zombie-ism spreads so quickly,[quotation mark] worries Lucky, [quotation mark]do you think that my family has survived?[quotation mark][line break]«Yes, I know so,[quotation mark] reassures the scientist. [quotation mark]The Drummonds work here at the installation and all staff families are housed within the compound. You're not far from them right now.[quotation mark][line break]«That's great![quotation mark] exclaims the dog."}, 
-{"«Isabelle,[quotation mark] says the mouse, [quotation mark]if the cure works as expected, what will become of us?[quotation mark][line break]«In what sense?[quotation mark][line break]«Will we remain individuals with our own thoughts or do you think that we'll somehow blend together into one mind?[quotation mark][line break]«Impossible to say. Up until now, we've all lead our own separate lives. You have your memories, I have mine. But in the future, we'll see everything from the same point of view. We'll share one body and it's possible that over time we'll end up as a single mind. Can't really say right now how that will go.[quotation mark]"}, 
-{"«I never wanted to be anything other than a mouse. What you say terrifies me -- that my mind might be diluted or even fade out of existence.[quotation mark][line break]«But look at the plus side,[quotation mark] says Lucky. [quotation mark]Look into my thoughts -- this is how it feels to chase a squirrel. And here's what it feel like to be scratched between the ears.[quotation mark][line break]«Yes, I suppose.[quotation mark][line break]«And here,[quotation mark] says the scientist, [quotation mark]is what Earth looks like from space -- something that no other mouse has ever seen.[quotation mark][line break]«Hmm. Impressive. And I suppose that for my part, I have some memories to share as well: the warmth of sleeping huddled with the other mice, the joy of stealing bits and scraps from around Lucky's food dispenser…[quotation mark][line break]«Hey![quotation mark] howls the dog."}, 
-{"«When I saw Julien's body enter the airlock, I noticed that he was getting around with difficulty, shambling, if you will,[quotation mark] says the scientist.[line break]«Right. I know how to walk,[quotation mark] says the slice of brain, [quotation mark]but I find it infuriatingly difficult to do it.[quotation mark][line break]«The mouse doesn[apostrophe]t help,[quotation mark] whines Lucky. [quotation mark]He's always moving the legs, and I don't think he knows what he's doing.[quotation mark][line break]«Me?[quotation mark] says the mouse with indignation, [quotation mark]You're the one who's always trying to run on all fours.[quotation mark][line break]«Okay, gentlemen,[quotation mark] says the scientist, [quotation mark]Do you think I could convince you to let one of us drive at a time?[quotation mark][line break]«Yes, certainly,[quotation mark] agrees the slice of brain, [quotation mark]You have the wheel.[quotation mark]"}, 
-{"«Okay[quotation mark], says the scientist. [quotation mark]I need to concentrate on how we're going to produce an effective cure.[quotation mark][line break]«Right -- enough chit-chat, fellows, let her focus,[quotation mark] suggests the slice of brain.[line break]«Right, okay,[quotation mark] say the mouse and dog."}
+{"«Послушайте, [unicode 8212] говорит Лаки, снова и снова пересчитывая пункты плана, предложенного Изабель, [unicode 8212] а что нам делать по поводу пропавшего мозга? Если я ничего не путаю, без него нам не привести Жюльена в норму».[line break]","«К сожалению, [unicode 8212] отвечает Изабель, [unicode 8212] тот кусочек мозга [unicode 8212] это всё, что на данный момент осталось от Жюльена. Хотя мы сейчас и используем его нейронные связи для своих мыслей, от ","первоначальной личности Жюльена не осталось ничего, кроме частички, сохраненной в биопсийной пробе его мозга. Это тяжелая потеря, особенно для меня».[line break]","«Почему именно для тебя?» [unicode 8212] интересуется Мыш.[line break]","«Потому что мы, Жюльен и я, собирались пожениться.»[line break]","«Прости, [unicode 8212] пытается утешить ее Мозголомтик. [unicode 8212] Уверен, что если бы я смог вспомнить тебя, то обязательно полюбил бы.»"},
+{"«Изабель, как ты думаешь, мы сможем когда-нибудь найти мою семью?» [unicode 8212] спрашивает Лаки.[line break]","«Да, несомненно».[line break]«Почему ты так уверена?» [unicode 8212] недоумевает Мозголомтик.[line break]","«Потому что я знаю эту семью: Жан-Поль и Александра Драммонды и их дочери, Леа и Камилла. Они живут всего-то метрах в ста от нас с Жюльеном»[line break],","«Да, я часто слышал эти имена у себя дома. Точно, ты права! Но как ты догадалась, о ком я говорю?» [unicode 8212] удивляется Лаки.[line break]","«Просто я видела их в твоих мыслях», [unicode 8212] отвечает она."},
+{"«Ты хочешь сказать, что можешь видеть, о чем думает Лаки? [unicode 8212] изумляется Мыш. [unicode 8212] Как такое возможно?»[line break]","«Мы все сейчас являемся частями одного мозга. Наши умы в той или иной степени соединены друг с другом. Я могу проникнуть в его мысли, а он, в свою очередь [unicode 8212] в мои».[line break]","«Круто! [unicode 8212] восклицает Мыш. [unicode 8212] У нас теперь есть суперспособности»."},
+{"«Должен сказать, мне как-то с трудом в это верится, [unicode 8212] сомневается пес. [unicode 8212] Если ты видишь мои мысли, скажи, какое число я сейчас загадал?»[line break]","Женщина на мгновение задумывается и выдает: «Единицу».[line break]","«Угадала, [unicode 8212] нехотя признает пес. [unicode 8212] Но, возможно, это просто случайное совпадение. Попробуй-ка еще раз…»[line break]","«Теперь ты думаешь о числе два», [unicode 8212] уверенно заявляет Изабель.[line break]","«И снова угадала!» [unicode 8212] говорит пес, на сей раз убежденный в ее способностях.[line break]","«Да ну, [unicode 8212] возражает Мыш, [unicode 8212] Лаки всего до двух умеет считать... Тоже мне доказательство!»"},
+{"«Ладно, [unicode 8212] терпеливо отвечает исследовательница, [unicode 8212] давайте еще один пример. Мыш, в данный момент я вспоминаю свой сегодняшний завтрак. Я пытаюсь представить его себе во всех подробностях... Попробуй его увидеть».[line break]","«Где? [unicode 8212] спрашивает Мыш. [unicode 8212] Я ничего не чую.»[line break]","«Ах, [unicode 8212] говорит Изабель, [unicode 8212] вот в чем проблема. Я думала зрительными образами. Ну, давай я представлю себе его аромат, его вкус… »[line break]","«О! Да, да! Я чувствую! Офигеть! Сколько еды! Это фантастика. И я могу заново пережить все твои завтраки, обеды и ужины? Ущипните меня, я сплю»."},
+{"«Хотя твои воспоминания о последнем завтраке просто восхитительны, сейчас мне не хочется есть ничего, кроме мозгов. Это как-то странно, правда?» [unicode 8212] замечает Мыш.[line break]","«Вообще-то это совершенно нормально для зомби», [unicode 8212] отвечает Изабель.[line break]","«То есть мы [unicode 8212] компания зомби?» [unicode 8212] спрашивает Лаки.[line break]","«Не сосем так, [unicode 8212] поясняет женщина. [unicode 8212] Поскольку мы делим одно тело, то и зомби мы всего один».[line break]","«Ну, хоть я нахожусь в своем собственном теле», [unicode 8212] вздыхает Мозголомтик."}, 
+{"«А другие зомби такие же милые, как мы?» [unicode 8212] задает вопрос Лаки.[line break]","«Ну что ты, [unicode 8212] отвечает Изабель, [unicode 8212] они настоящие чулдовища. Мы совершенно другие. Я бы сказала, что после частично успешного лечения мы стали чем-то вроде псевдозомби. Обычный зомби не умеет ни говорить, ни думать, а только пожирает мозги».[line break]","«А это проблема?» [unicode 8212] спрашивает Мыш.[line break]","«Еще какая! [unicode 8212] говорит исследовательница. [unicode 8212] они почти уничтожили цивилизацию!»"}, 
+{"«Неужели такое могло случиться?» [unicode 8212] удивляется Мозголомтик.[line break]","«Способность этого вируса к распространению беспрецедентна, [unicode 8212] поясняет женщина-ученый. [unicode 8212] Малейшей царапины достаточно, чтобы заразиться. Первые случаи заболевания были зарегистрированы в Камбодже,"," а уже через двадцать четыре часа пассажиры международных авиарейсов разнесли заразу по всему миру [unicode 8212] счет жертв пошел на тысячи. Еще через"," неделю наступил глобальный хаос. Во всех крупнейших городах практически немедленно случился коллапс из-за отсутствия продовольствия,"," воды и электричества. Сельские поселения охвачены пожарами."," От человечества осталась жалкая горстка выживших»."},
+{"«А что с животными? [unicode 8212] спрашивает Мыш. –- Им тоже грозит опасность?»[line break]","«На самом деле, [unicode 8212] отвечает Изабель, [unicode 8212] мы думаем, что первоначальным источником заразы стали собаки. Незадолго до того, как мы утратили связь с"," Пастеровским институтом в Хошимине, им удалось выделить мутировавшую форму вируса бешенства, который, по-видимому, и стал причиной пандемии».[line break]","«Бешенство! [unicode 8212] восклицает Лаки. [unicode 8212] Ужаснее бешенства ничего нет!»[line break]","«Не было до недавнего времени», [unicode 8212] поправляет его Мозголомтик."},
+{"«Зомбешенство так быстро распространяется, [unicode 8212] волнуется Лаки, [unicode 8212] как ты думаешь, моя семья выжила?»[line break]","«Я не думаю, я знаю, что да, [unicode 8212] успокаивает его исследовательница. [unicode 8212] Драммонды работают в этом комплексе, а семьи всех работников живут здесь же на его закрытой территории. На самом деле, мы сейчас недалеко от них».[line break]","«Ура!» [unicode 8212] радуется пес."}, 
+{"«Изабель, [unicode 8212] интересуется Мыш, [unicode 8212] если лекарство сработает, то что будет с нами?»[line break]","«В каком смысле?»[line break]","«Мы останемся отдельными личностями с собственными мыслями или каким-то образом станем единым разумом?»[line break]","«Не могу сказать. До сих пор у каждого из нас была своя жизнь. У тебя свои воспоминания, у меня свои. Но в будущем мы всё будем"," видеть с одной и той же точки зрения. У нас общее тело, и вполне возможно, что и разум в конце концов станет общим. Сейчас я не могу строить никаких"," прогнозов на этот счет»."}, 
+{"«Я никогда не хотел быть никем, кроме как мышью. То, что ты говоришь, ужасно [unicode 8212] что моя личность, мой разум растворится или вообще перестанет существовать».[line break]","«У этого ведь есть и хорошая сторона, [unicode 8212] возражает Лаки. [unicode 8212] Загляни в мои мысли [unicode 8212] вот как бывает, когда гонишься за белкой. А это восхитительное чувство, когда тебя чешут за ушами…»[line break]","«Да, неплохо».[line break]«А вот, [unicode 8212] добавляет Изабель, [unicode 8212] вид Земли из космоса. Этого еще ни одна мышь не видела!»[line break]","«Да, впечатляет. Думаю, у меня, со своей стороны, тоже есть воспоминания, которыми не стыдно поделиться. Это приятное"," тепло, когда спишь, прижавшись к другим мышам, эта радость, когда тыришь крошки вокруг кормушки Лаки…»[line break]","«Эй!» [unicode 8212] рявкает пес."}, 
+{"«Когда тело Жюльена вошло в шлюз, я обратила внимание, как тяжело ему идти [unicode 8212] оно просто еле волочило ноги», [unicode 8212] замечает Изабель.[line break]","«Точно. Я знаю, как ходить, [unicode 8212] отвечает Мозголомтик, [unicode 8212] но мне это дается до отвращения тяжело».[line break]","«Да еще мыши всякие путаются, [unicode 8212] жалуется Лаки. [unicode 8212] Он постоянно шевелит ногами, и при этом, мне кажется, сам не понимает, что делает».[line break]","«Это я-то? [unicode 8212] возмущается Мыш.  Да ты сам так и норовишь опуститься на четвереньки!»[line break]","«Ладно, джентльмены, [unicode 8212] подводит итог женщина-ученый, [unicode 8212] как вы думаете, мне удастся убедить вас доверить управление кому-нибудь одному?»[line break]","«Конечно, [unicode 8212] соглашается Мозголомтик, [unicode 8212] тебе и штурвал в руки»."}, 
+{"«Спасибо, [unicode 8212] говорит Изабель. [unicode 8212] А теперь мне надо сконцентрироваться, чтобы изготовить лекарство, которое нас вылечит».[line break]","«Правильно -- парни, хорош болтать, не мешайте ей думать», [unicode 8212] призывает Мозголомтик.[line break]","«Ладно», [unicode 8212] отвечают пес с мышью и замолкают."}
 }
 
 Section Cured Dialogue
@@ -1258,21 +1262,23 @@ Instead of pushing the intercom:[only present at consciousness 4]
 	otherwise:
 		say "You have already activated the intercom; the red LED is still on."
 
-The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "electrical panel".
+The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "электрощит".
 
-The disjoncteurs are in the panneau électrique. The disjoncteurs are plural-named. The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]flipped[otherwise]reset[end if] circuit breakers".
+The disjoncteurs are in the panneau électrique. The disjoncteurs are plural-named. The disjoncteurs are broken. The printed name of the disjoncteurs is "несколько [if the disjoncteurs are broken]flipped[otherwise]reset[end if] автоматических предохранителей".
 
 Instead of touching the disjoncteurs:
-	say "You reset the circuit breakers";
+	say "Ты включаешь предохранители";
 	now the disjoncteurs are not broken;
 	if the servo motor is broken:
-		say ".[paragraph break]There's a sharp clicking sound from the electrical panel and you notice that the circuit breakers have again tripped";
+		say ".[paragraph break]Внутри щита раздается громкий щелчок, и ты видишь, что предохранители вновь оказались сброшены";
 		now the disjoncteurs are broken;
 	say "."
 
-The microfluidic synthesis unit is an openable closed container in the void. The printed name of the microfluidic synthesis unit is "microfluidic synthesis unit".
+The microfluidic synthesis unit is an openable closed container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза".
 
 The servo motor is in the microfluidic synthesis unit. The servo motor is broken. The printed name of the servo motor is "[pnServo]". 
+
+[TODO: custom local description for synthesis unit - coordinate with room description to avoid redundancy.]
 
 To say pnServo:
 	say "servo motor";
@@ -1280,11 +1286,11 @@ To say pnServo:
 		say " that you have repaired".
 
 After opening the microfluidic synthesis unit:
-	say "You open the service panel and immediately recognize the problem: a fleck of solder has fallen across the terminals of a servo motor, shorting it out."
+	say "Открыв сервисную панель, ты сразу видишь причину проблемы: кусок припоя замкнул выводы одного из сервоприводов."
 	
 Instead of touching the servo motor:
 	now the servo motor is not broken;
-	say "You brush aside the bit of solder. The machine should work normally now, when powered up."
+	say "Ты смахиваешь кусок припоя с контактов. Можно надеяться, что теперь при подаче питания установка будет работать нормально."
 
 Chapter 16 - End Game
 

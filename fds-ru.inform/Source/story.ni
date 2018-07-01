@@ -805,13 +805,13 @@ Carry out simpleOpening:
 			try opening the door the way from the location;
 			stop the action;
 		if the door the way of the location is locked and the consciousness of the player is greater than 2:
-			say "You would have to first unlock the door [the way].";
+			say "Сначала тебе придется отпереть дверь.";
 			stop the action;
 	repeat with the item running through visible containers:
 		if the item is closed:
 			try opening the item;
 			stop the action;
-	say "Здесь, похоже, нечего открывать." 
+	say "Непонятно, что здесь открывать." 
 	
 [this works here because things only contain a single item]
 After opening something (called the item):
@@ -844,7 +844,7 @@ Carry out simplePushing:
 	repeat with the item running through visible buttoned things:
 		try pushing the item;
 		stop the action;
-	say "There's nothing to push here."
+	say "Здесь нечего нажимать."
 	
 Section 5- simpleTalking
 
@@ -852,7 +852,7 @@ simpleTalking is an action applying to nothing. Understand "talk" as simpleTalki
 
 Check simpleTalking:
 	if the player is not in the sas:
-		say "No one is around. Who are you talking to[one of]?[paragraph break]Do you want everyone to think you're nuts[or][stopping]?";
+		say "Вокруг никого. С кем ты разговариваешь[one of]?[paragraph break]Хочешь, чтобы все думали, что у тебя крыша поехала[or][stopping]?";
 		stop the action;
 	otherwise:
 		if the bloody corpse of Docteur Rambaud is in the sas:
@@ -946,7 +946,7 @@ Carry out simpleRepairing:
 	repeat with the item running through visible broken things:
 		try touching the item;
 		stop the action;
-	say "You don't see anything in need of repair."
+	say "Ты не видишь здесь ничего, что нуждалось бы в ремонте."
 	
 Instead of touching something (called the item):
 	now the item is not broken;
@@ -986,11 +986,11 @@ To increment the knownCommands of the player:
 After reading a command:
 	[To prevent players bypassing the CSS to play beyond end of game]
 	if the knownCommands of the player is zero:
-		say "The game has ended. To play again, reload the game in your browser.";
+		say "Игра окончена. Для повторного прохождения перезапустите игру в браузере.";
 		reject the player's command;
 	[To reject non-numerical input]
 	if the player's command does not match "[number]":
-		say "Please type the number corresponding to the desired command.";
+		say "Выберите одну из команд выше.";
 		reject the player's command;
 	[process numerical input]	
 	let C be the number understood;

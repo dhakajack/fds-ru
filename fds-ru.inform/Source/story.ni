@@ -828,9 +828,9 @@ Carry out simpleEating:
 	repeat with the item running through visible edible things:
 		try eating the item;
 		stop the action;
-	say "Здесь нечего есть";
+	say "Здесь нет ничего съестного";
 	if the pile of dog food is in the location:
-		say " (at least, nothing that looks appetizing)";
+		say " (по крайней мере такого, чтобы вызывало у тебя аппетит)";
 	say "."
 	
 Rule for implicitly taking something (called the target) while eating:
@@ -1323,49 +1323,49 @@ To infos:
 	say ".[paragraph break]";
 	
 To credits:
-	say "[bold type]>credits[roman type]";
+	say "[bold type]>благодарности[roman type]";
 	open HTML tag "ul";
 	open HTML tag "li";
-	say "Organizers of both competitions.";
+	say "Организаторам всех трех вышеупомянутых конкурсов.";
 	close HTML tag;
 	open HTML tag "li";
-	place a link to web site "http://www.ifwiki.org/index.php/Graham_Nelson" reading "Graham Nelson";
-	say " for having conceived and written Inform.";
+	place a link to web site "http://www.ifwiki.org/index.php/Graham_Nelson" reading "Грэхему Нельсону (Graham Nelson)";
+	say " за создание платформы Inform.";
 	close HTML tag;
 	open HTML tag "li";
-	say "Authors of the extensions used in this work and its previous versions : ";
-	place a link to web site "http://www.ifwiki.org/index.php/Eric_Forgeot" reading "Éric Forgeot";
+	say "создателям дополнительных библиотек, использовавшихся в этом произведении (в том числе в его предыдущих версиях): ";
+	place a link to web site "http://www.ifwiki.org/index.php/Eric_Forgeot" reading " Эрику Форжо (Éric Forgeot)";
 	say ", ";
-	place a link to web site "http://www.ifwiki.org/index.php/Emily_Short" reading "Emily Short";
+	place a link to web site "http://www.ifwiki.org/index.php/Emily_Short" reading "Эмили Шорт (Emily Short)";
 	say ", ";
-	place a link to web site "http://www.ifwiki.org/index.php/Erik_Temple" reading "Erik Temple";
+	place a link to web site "http://www.ifwiki.org/index.php/Erik_Temple" reading "Эрику Темплу (Erik Temple)";
 	say ", and ";
-	place a link to web site "http://www.ifwiki.org/index.php/Juhana_Leinonen" reading "Juhana Leinonen";
+	place a link to web site "http://www.ifwiki.org/index.php/Juhana_Leinonen" reading " Юхане Лейнонен (Juhana Leinonen)";
 	say ".";
 	close HTML tag;
 	open HTML tag "li";
-	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Ben Collins-Sussman";
-	say ", who painted the cover.";
+	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Бену Коллинзу-Суссману (Ben Collins-Sussman)";
+	say ", нарисовавшему обложку к игре.";
 	close HTML tag;
 	open HTML tag "li";
-	say "Proofers and beta-testers: ";
+	say "Всем, кто помогал вычитать текст и тестировать игру: ";
 	place a link to web site "http://www.ifwiki.org/index.php/Eric_Forgeot" reading "Éric Forgeot";
 	say ", ";
-	place a link to web site "http://www.ifwiki.org/index.php/St%C3%A9phane_Flauder" reading "Stéphane Flauder";
-	say ", Denise Jobin, ";
-	place a link to web site "http://www.ifwiki.org/index.php/Mathbrush" reading "Brian Rushton";
+	place a link to web site "http://www.ifwiki.org/index.php/St%C3%A9phane_Flauder" reading "Стефану Флодеру (Stéphane Flauder)";
+	say ", Денизе Жобан (Denise Jobin), ";
+	place a link to web site "http://www.ifwiki.org/index.php/Mathbrush" reading "Брайану Раштону (Brian Rushton)";
 	say ", and ";
-	place a link to web site "http://www.ifwiki.org/index.php/Hugo_Labrande" reading "Hugo Labrande";
-	say " (original version). Lara Welch, ";
-	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Ben Collins-Sussman";
-	say " (English version).";
+	place a link to web site "http://www.ifwiki.org/index.php/Hugo_Labrande" reading "Хьюго Лабранду (Hugo Labrande)";
+	say " (исходная французская версия); Ларе Уэлч ";
+	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Бену Коллинзу-Суссману (Ben Collins-Sussman)";
+	say " (английская версия); ХХХ, ХХХ, и ХХХ (русская версия).";
 	close HTML tag;
 	open HTML tag "li";
-	place a link to web site "http://www.fiction-interactive.fr/author/corax/" reading "Corax";
-	say " for suggestions regarding accessibility.";
+	place a link to web site "http://www.fiction-interactive.fr/author/corax/" reading "Кораксу (Corax)";
+	say " за предложения относительно того, как сделать игру более дружелюбной для слабовидящих.";
 	close HTML tag;
 	close HTML tag;
-	say "[bold type]FIN."
+	say "[bold type]КОНЕЦ."
 	
 Chapter 17 - Testing
 

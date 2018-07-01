@@ -1125,7 +1125,9 @@ Every turn:
 			-- 4:
 				if the curedFlag of the player is true:
 					if the number of entries in CuredDialogue is greater than zero:
-						say "[italic type][entry 1 of CuredDialogue][roman type][paragraph break]";
+						say italic type;
+						tell entry 1 of CuredDialogue;
+						say "[roman type][paragraph break]";
 						remove entry 1 from CuredDialogue;
 				otherwise:
 					if the number of entries in EverybodyDialogue is greater than zero:
@@ -1231,18 +1233,18 @@ EverybodyDialogue is {
 
 Section Cured Dialogue
 
-CuredDialogue is a list of text that varies. 
+CuredDialogue is a list of lists of text that varies. 
 	
-CuredDialogue is { 
-"«It's done,[quotation mark] says the scientist. [quotation mark]Time for roll call: Lucky?[quotation mark][line break]«Here.[quotation mark][line break]«The Duke of Mousedom?[quotation mark][line break]«Present.[quotation mark][line break]«The slice of Julien's brain?[quotation mark][line break]«Here.[quotation mark][line break]«Good,[quotation mark] says Isabelle, [quotation mark]it sounds like we all made it safe and sound.[quotation mark]",
-"«So, now we get out of here?[quotation mark] suggests the dog.[line break]«Yes,[quotation mark] says Isabelle.[line break]«But the exterior airlock door is still electronically locked. No one can open it aside from Colonel Greillier in the control room,[quotation mark] says the slice of brain.[line break]«Yes, we will need to convince him to open it,[quotation mark] agrees the scientist.",
-"«That sort of surprises me, that you remember Colonel Greillier. I thought that you couldn't remember names.[quotation mark][line break]«Of the Colonel?[quotation mark] asks the slice of brain. [quotation mark]How could I forget your boss? Just last week he tumbled into our pool at his birthday party. I suppose we were all a little soused that evening.[quotation mark][line break]«Soused?[quotation mark] asks the mouse. [quotation mark]Oh, I can see it in your thoughts. Soused, huh? Looks like fun.[quotation mark][line break]«Hang on a minute, mouse.[quotation mark] says Isabelle, [quotation mark]Julien, you just expressed a complicated thought. Do you think your memory is returning?[quotation mark][line break]«Hmph. How could I know?[quotation mark]",
-"«Julien,[quotation mark] says the scientist, [quotation mark]What did you give me as a gift our first Christmas?[quotation mark][line break]«Gloves?[quotation mark][line break]«And they were… [quotation mark][line break]«Far too large for you! Yes, I had bought them for my brother, but when you gave me a present and I didn't have anything for you… yes, um, are you still upset about that?[quotation mark][line break]«No, not really. I was just testing your memory.[quotation mark]",
-"«Give me another test![quotation mark][line break]«Okay. What do you call me when we're all alone?[quotation mark][line break]«Isabelle?[quotation mark][line break]«No, think! When it's just the two of us… [quotation mark][line break]«I'd rather not say in front of Lucky and the mouse.[quotation mark][line break]«Oh, come on,[quotation mark] says the dog. [quotation mark]We're all sharing one mind now; there aren't any real secrets here.[quotation mark][line break]«Very well,[quotation mark] says Julien, still a bit hesitant, [quotation mark]I call you my bunny rabbit.[quotation mark][line break]«Bunny?[quotation mark] says the mouse. [quotation mark]She used to be a rabbit? Now I am totally confused.[quotation mark]",
-"«Good, Julien, it seems to me that you're on the road to recovering your memory,[quotation mark] says the scientist.[line break]«You think so? Even though you said that I'm just a little slice of brain? Is it possible that these memories aren't really mine, but I'm just reading them from your thoughts?[quotation mark][line break]«I would have to say that a little slice of brain wouldn't be capable of proposing such an elaborate hypothesis. It seems to me your whole brain is now back at work.[quotation mark]",
-"«But, if I understood you correctly,[quotation mark] says Lucky, [quotation mark]you said that the virus completely wipes zombie brains, leaving nothing.[quotation mark][line break]«Yes, that is what I said,[quotation mark] admits the scientist, [quotation mark]but we've never had a case like this one to study. I'd say it's time to revise our understanding about what's going on. It seems that the brain isn't destroyed, but rather that higher thought processes are suppressed. The neural pathways are still intact. In fact, that has to be the case: our very existence is a matter of piggy-backing on those pathways.[quotation mark]",
-"«That's great![quotation mark] says Julien. [quotation mark]Then, we can restore all the zombies![quotation mark][line break]«My God, Julien, you're right. We haven't lost them,[quotation mark] replies the scientist. [quotation mark]For the first time, there's a chance that we could put the world back on its feet and end this nightmare.[quotation mark][line break]«Even the sick dogs?[quotation mark] asks Lucky.[line break]«Yes, including dogs and every other species infected by the virus,[quotation mark] replies the scientist.",
-"«So, now what?[quotation mark] asks the mouse.[line break]«Julien,[quotation mark] says Isabelle, [quotation mark]we have to talk with the Colonel and convince him that you're cured and that we now have a way to reverse the damage caused by the virus.[quotation mark][line break]«Okay, I'll do my best,[quotation mark] says Julien.[line break]«Onward, comrades![quotation mark] cries the mouse."
+CuredDialogue is {
+{"«Вроде всё, -- говорит исследовательница, -- теперь пора устроить перекличку. Лаки?»[line break]«Здесь».[line break]«Мышиный Герцог?»[line break]«Присутствует».[line break]","«Мозголомтик?»[line break]«На месте».[line break]«Отлично, -- подводит итог Изабель, -- похоже, мы все пережили лечение без потерь»."},
+{"«Ну что, будем выбираться отсюда?» -- предлагает пес.[line break]«Да», -- говорит Изабель.[line break]","«Но внешний шлюз по-прежнему заблокирован, и никто не сможет открыть его, кроме полковника Грелье из комнаты управления», -- замечает Мозголомтик.[line break]","«Да, нам придется убедить его отпереть шлюз», -- соглашается женщина-ученый. "},
+{"«Мне как-то удивительно, что ты помнишь полковника Грелье. Мне казалось, что ты не в состоянии запоминать имена».[line break]","«Полковника-то? – восклицает Мозголомтик. -- Как же я могу забыть твоего начальника? На прошлой неделе он свалился в бассейн на праздновании своего дня рождения. Думаю, мы все слегка перебрали в тот вечер.»[line break]","«Перебрали? -- переспрашивает Мыш.-- Дай-ка я гляну в твоих мыслях... Перебрали, говоришь? Выглядит забавно».[line break]«Мыш, подожди секундочку, -- просит Изабель, -- Жюльен, ты только что высказал сложную мысль. Как ты думаешь, память к тебе возвращается?»","[line break]«Хм. Откуда ж мне знать»"},
+{"«Жюльен, -- говорит исследовательница, -- что ты подарил мне на наше первое Рождество?»[line break]«Перчатки?»[line break]«И они были… »[line break]","«Слишком велики тебе! Да, я вообще-то купил их брату, но когда ты вручила мне подарок, а у меня ничего для тебя не было… Ты до сих пор из-за них расстраиваешься?»[line break]","«Да нет, что ты. Я просто проверяла твою память»."},
+{"«Испытай меня еще раз!»[line break]«Давай. Как ты называешь меня, когда мы наедине?»[line break]«Изабель?»[line break]«Нет, подумай еще! Когда, кроме нас, никого нет…»[line break]","«Я бы не хотел говорить это при Лаки и Мыше».[line break]«Да ладно тебе, -- подбадривает его пес. -- У нас сейчас всё равно один мозг на всех, так что никаких секретов быть не может».[line break]","«Ну хорошо, -- отвечает Жюльен, всё еще колеблясь, -- я называю тебя моим зайчиком».[line break]","«Зайчиком? -- удивляется Мыш. -- Она была зайцем? Вот теперь я окончательно запутался»"},
+{"«Отлично, Жюльен, похоже, ты на пути к восстановлению своей памяти», -- говорит женщина.[line break]","«Ты правда так думаешь? Даже несмотря на то, что, как ты говорила, я -- всего лишь маленький кусочек мозга? А может, это вовсе и не мои воспоминания, а я просто выуживаю их из твоих мыслей?»","[line break]«Я бы сказала, что маленький кусочек мозга вряд ли способен сформулировать такую сложную гипотезу. ","Мне кажется, твой мозг снова в деле в полном объеме»."},
+{"«Но, если я правильно тебя понял, -- говорит Лаки, -- ты говорила, что вирус полностью стирает мозги у зомби, не оставляя ничего».[line break]","«Да, я это говорила, -- признает Изабель, -- но мы никогда не имели дела с подобным случаем. ","По-моему, настало время пересмотреть наши представления о происходящем. Похоже, что мозг не разрушается -- вирус лишь подавляет высшие мыслительные процессы. ","Нейронные связи остаются целы. На самом деле, иначе и быть не может: без использования этих связей мы бы просто не могли существовать»."},
+{"«Но это же замечательно! -- заявляет Жюльен. -- Это значит, что мы сможем вылечить всех зомби!»[line break]","«Господи, Жюльен, ты прав. Мы не потеряли их, -- отвечает исследовательница. -- С тех пор, как всё это началось, у нас впервые появился шанс вернуть мир в нормальное состояние и покончить с этим кошмаром».[line break]","«Это и заболевших собак касается?» -- уточняет Лаки.[line break]","«Конечно, и собак, и всех других пораженных вирусом животных», -- подтверждает Изабель"},
+{"«И что теперь?» -- спрашивает Мыш.[line break]","«Жюльен, -- взволнованно говорит Изабель, -- нам необходимо поговорить с полковником и убедить его, что ты исцелен и что у нас есть теперь способ бороться с вирусом».","[line break]«Хорошо, я постараюсь», -- соглашается Жюльен.","[line break]«Вперед, друзья!» восклицает Мыш"}
 }.
 
 Chapter 15 - The Void
@@ -1303,21 +1305,21 @@ To terminate the game:
 	now the knownCommands of the player is 0.
 	
 To say VictoryText:
-	say "[paragraph break]        *** YOU HAVE WON ***[roman type][paragraph break]You have saved the world from the scourge of the zombie777 virus.[paragraph break]".
+	say "[paragraph break]        *** ТЫ ПОБЕДИЛ ***[roman type][paragraph break]Ты спас мир от вируса zombie777.[paragraph break]".
 	
 To infos:
-	say "[bold type]>about[roman type][line break]This game was originally created as part of the ";
+	say "[bold type]об игре[roman type][line break]Эта игра изначально была написана на Конкурс Интерактивной Литературы на Французском-2018 ";
 	place a link to web site "http://www.fiction-interactive.fr/concours/concours-2018/" reading "2018 French Interactive Fiction Competition";
-	say ". The English translation of the game was submitted to the ";
+	say ". Английский перевод игры участвовал в конкурсе IFcomp ";
 	place a link to web site "https://ifcomp.org/" reading "2018 IFcomp";
-	say ". The game was written in ";
+	say ". Русский перевод игры принял участие в КРИЛ-2018. Игра написана на";
 	place a link to web site "http://inform7.com/" reading "Inform 7";
-	say ". The source code is available on ";
-	place a link to web site "https://github.com/dhakajack/web-engarde" reading "github";
-	say " and is provided under ";
-	place a link to web site "https://github.com/dhakajack/web-engarde/blob/master/LICENSE" reading "MIT license";
-	say ". Please report any errors using the ";
-	place a link to web site "https://github.com/dhakajack/web-engarde/issues" reading "online bug tracker";
+	say ". Исходный код доступен на ";
+	place a link to web site "https://github.com/dhakajack/web-engarde" reading "Гитхабе";
+	say " и может использоваться в соответствии с условиями лицензии MIT ";
+	place a link to web site "https://github.com/dhakajack/web-engarde/blob/master/LICENSE" reading "лицензии MIT";
+	say ". Об ошибках в игре сообщайте, пожалуйста, через баг-трекер ";
+	place a link to web site "https://github.com/dhakajack/web-engarde/issues" reading "баг-трекер";
 	say ".[paragraph break]";
 	
 To credits:

@@ -1,4 +1,4 @@
-было бы круто"FDS-RU" by Jack Welch
+"FDS-RU" by Jack Welch
 
 The story headline is "Рыцарь без мозга и упрека".
 The story genre is "horror".
@@ -631,7 +631,7 @@ After going south from Couloir 1 when the consciousness of the player is 4 for t
 	try looking.
 	
 The list of text called bathroomScientistText is always {
-"Войдя в санузел, ты замечаешь краем глаза какое-то движение.[paragraph break][italic type]Кто здесь?[roman type][paragraph break]","Ты внимательно изучаешь свое отражение в зеркале. Конечно, это Жюльен [unicode 8212] по-прежнему в своей голубой униформе охранника и в форменном кепи, несмотря ни на что."
+"Ты внимательно изучаешь свое отражение в зеркале. Конечно, это Жюльен -- по-прежнему в своей голубой униформе охранника и в форменном кепи, несмотря ни на что."
 }
 
 Section Salle de Décontamination
@@ -671,7 +671,7 @@ Instead of simplePushing when the player is in the Salle de Décontamination:
 		-- 3:
 			say "Ты расслабляешься под теплыми, ласковыми душевыми струями. Через некоторое время душ отключается, и ты высыхаешь.";
 		-- 4:
-			say "The personnel decontamination system blasts you with a phenolic-smelling spray.".
+			say "Дезинфекционный душ обдает тебя струями пахнущего фенолом антисептика.".
 
 Section Escalier 1
 
@@ -679,10 +679,10 @@ Escalier 1 is a room. The description of Escalier 1  is "[descEscalier1]." The p
 
 The esc1door is a locked door. It is north of Salle de Décontamination and south of Escalier 1.
 
-The printed name of esc1door is "дверь между [if the consciousness of the player is 3]душевой[otherwise]decontamination room[end if] и лестницей".
+The printed name of esc1door is "дверь между [if the consciousness of the player is 3]душевой[otherwise]санпропускники[end if] и лестницей".
 
 To say descEscalier1:
-	say "Лестница ведет наверх к северу, соединяя [if the consciousness of the player is 3]душевые[otherwise]decontamination room[end if] на юге со всей остальной частью комплекса".
+	say "Лестница ведет наверх к северу, соединяя [if the consciousness of the player is 3]душевые[otherwise]санпропускники[end if] на юге со всей остальной частью комплекса".
 	
 After going north from Salle de Décontamination:
 	say "[upNorth].";
@@ -696,7 +696,7 @@ To say upNorth:
 	say "Ты взбираешься по лестнице к северу".
 	
 To say downSouth:
-	say "You go down the stairs southwards".
+	say "Ты спускаешься по ступеням к югу".
 
 Section Escalier 2
 
@@ -737,7 +737,7 @@ Instead of going north when the player is in the sas:
 	if scientist is in the sas:
 		say "Тебе пришлось бы пройти мимо женщины, а она выглядит не слишком сговорчивой. Кроме того, ты все равно не знаешь кода от замка внешней двери, так что даже пробовать не стоит.";
 	otherwise:
-		say "Useless. The door is hermitically sealed and can only be opened by someone in the control room."
+		say "Бесполезно. Дверь абсолютно герметична, открыть ее можно только из комнаты управления."
 			
 Before eating scientist when the conversations of scientist are less than 5:
 	now the BlockChatterFlag is true;
@@ -765,6 +765,17 @@ Chapter 10 - Verbs
 
 Section 1 - simpleUnlocking
 
+To say (kuda - a direction) po-russki:
+	if kuda is:
+		-- east:
+			say "восток";
+		-- west:
+			say "запад";
+		-- north:
+			say "север";
+		-- south:
+			say "юг";
+
 simpleUnlocking is an action applying to nothing. Understand "unlock" as simpleUnlocking.
 
 Carry out simpleUnlocking:
@@ -772,15 +783,7 @@ Carry out simpleUnlocking:
 		if the door the way of the location is locked:
 			now the door the way from the location is unlocked;
 			say "Ты вводишь код на цифровой клавиатуре и слышишь, как замок ведущей на ";
-			if the way is:
-				-- east:
-					say "восток";
-				-- west:
-					say "запад";
-				-- north:
-					say "север";
-				-- south:
-					say "юг";
+			say the way po-russki;
 			say " двери отпирается.[no line break][one of][firstUnlocked][or][stopping][paragraph break]";
 			stop the action;
 	say "Здесь нет запертых дверей."
@@ -805,7 +808,9 @@ Carry out simpleOpening:
 			try opening the door the way from the location;
 			stop the action;
 		if the door the way of the location is locked and the consciousness of the player is greater than 2:
-			say "Сначала тебе придется отпереть дверь.";
+			say "Сначала тебе придется отпереть дверь, ведущую нa";
+			say the way po-russki;
+			say ".";	
 			stop the action;
 	repeat with the item running through visible containers:
 		if the item is closed:
@@ -1097,11 +1102,15 @@ The list of text called postScientistBrain is always {
 		
 Chapter 14 - Dialogue
 
+The list of text called curedText is always {
+"Роботизированная станция издает короткий писк и заполняет флакончик зеленоватой флуоресцентной жидкостью. Ты берешь ","флакончик, произносишь короткий тост за собственное здоровье и выпиваешь всю жидкость одним глотком.[paragraph break][italic type]","«Я ничего не чувствую», [unicode 8212] беспокоится Мозголомтик.[line break]«Подожди», [unicode 8212] успокаивает его Изабель.[line break]","«И я тоже», [unicode 8212] подает голос Мыш.[line break]","«Имей же терпение», [unicode 8212] повторяет женщина.[line break]","«Ёшкин кот!» [unicode 8212] гавкает Лаки. «Кажется, что-то…»[line break]","«Поехали!» [unicode 8212] выкрикивает доктор Рамбо.[roman type][paragraph break]","Тебя начинает бить дрожь, и ты оседаешь на пол, теряя сознание. Когда ты приходишь в себя и вновь встаешь, то ","обращаешь внимание, что твоя кожа приобрела свой нормальный оттенок, и ты теперь в состоянии ходить, не ","раскачиваясь, словно тростник на ветру. Короче говоря, ты исцелен.[paragraph break]"
+}
+
 Every turn:
 	if the curedFlag of the player is not true:
 		if the disjoncteurs are not broken and the servo motor is not broken and the player is in the Laboratoire Biochimique:
 			now the BlockChatterFlag is true;
-			say "The robotic workstation emits a beep and fills a flask with fluorescent green fluid. You take the flask, propose a short toast to yourself, and kick it back in one gulp.[paragraph break][italic type]«I don't feel anything», [unicode 8212] worries the slice of brain.[line break]«Wait for it», [unicode 8212] reassures Isabelle.[line break]«Me neither», [unicode 8212] pipes up the mouse.[line break]«Wait for it», [unicode 8212] insists the scientist.[line break]«Oh my!» [unicode 8212] barks Lucky. «Something's starting to…»[line break]«And we're off!» [unicode 8212] shouts the doctor.[italic type][paragraph break]You shake violently and pass out. When you are able to stand up again, you note that you skin has recovered its normal tint and that you can walk without lurching back and forth. In short, you've been cured.[paragraph break]";
+			tell curedText;
 			now the curedFlag of the player is true;
 	if the BlockChatterFlag is false:
 		if the consciousness of the player is:
@@ -1215,12 +1224,12 @@ EverybodyDialogue is {
 {"«Какое невероятное чувство!» [unicode 8212] восхищается женщина.[line break]«Со временем к этому привыкаешь», [unicode 8212] лаконично замечает Мыш.[line break]«","Расскажи ей наш план, Лаки», [unicode 8212] предлагает Мозголомтик.[line break]«Хорошо, [unicode 8212] отзывается пес, [unicode 8212] хотя план слегка поменялся… ","Во-первых, нам надо найти оставшуюся часть мозга Жюльена. ","Во-вторых, нам надо выбраться из здания; и в-что там после двух, мы займемся поисками моей семьи»."},
 {"«Пусть так, [unicode 8212] говорит Изабель, [unicode 8212] но прежде всего нам надо пройти за пределы помещения, где вы меня встретили, а для этого нам надо синтезировать лекарство».[line break]","«Это невозможно», [unicode 8212] отрезает Мыш.[line break]«Почему?» [unicode 8212] слегка ошарашено спрашивает исследовательница.[line break]","«Это вопрос математики, [unicode 8212] педантично разъясняет Мыш. [unicode 8212] План Лаки начинается с пункта номер один. Перед номером один ничего нет».[line break]","«Номер ноль?» [unicode 8212] высказывает предположение Изабель.[paragraph break][roman type]«…»[paragraph break][italic type]«Ладно, [unicode 8212] соглашается она, [unicode 8212] а как насчет перенумерации? Первый пункт: приготовить лекарство; второй пункт: выбраться из здания; третий пункт: найти семью Лаки. Так пойдет?»[line break]","«Конечно, [unicode 8212] говорит Лаки, [unicode 8212] это звучит вполне разумно».[line break]","«И к тому же совершенно корректно с точки зрения математики», [unicode 8212] добавляет Мыш."},
 {"«Послушайте, [unicode 8212] говорит Лаки, снова и снова пересчитывая пункты плана, предложенного Изабель, [unicode 8212] а что нам делать по поводу пропавшего мозга? Если я ничего не путаю, без него нам не привести Жюльена в норму».[line break]","«К сожалению, [unicode 8212] отвечает Изабель, [unicode 8212] тот кусочек мозга [unicode 8212] это всё, что на данный момент осталось от Жюльена. Хотя мы сейчас и используем его нейронные связи для своих мыслей, от ","первоначальной личности Жюльена не осталось ничего, кроме частички, сохраненной в биопсийной пробе его мозга. Это тяжелая потеря, особенно для меня».[line break]","«Почему именно для тебя?» [unicode 8212] интересуется Мыш.[line break]","«Потому что мы, Жюльен и я, собирались пожениться».[line break]","«Прости, [unicode 8212] пытается утешить ее Мозголомтик. [unicode 8212] Уверен, что если бы я смог вспомнить тебя, то обязательно полюбил бы»."},
-{"«Изабель, как ты думаешь, мы сможем когда-нибудь найти мою семью?» [unicode 8212] спрашивает Лаки.[line break]","«Да, несомненно».[line break]«Почему ты так уверена?» [unicode 8212] недоумевает Мозголомтик.[line break]","«Потому что я знаю эту семью: Жан-Поль и Александра Драммонды и их дочери, Леа и Камилла. Они живут всего-то метрах в ста от нас с Жюльеном»[line break],","«Да, я часто слышал эти имена у себя дома. Точно, ты права! Но как ты догадалась, о ком я говорю?» [unicode 8212] удивляется Лаки.[line break]","«Просто я видела их в твоих мыслях», [unicode 8212] отвечает она."},
+{"«Изабель, как ты думаешь, мы сможем когда-нибудь найти мою семью?» [unicode 8212] спрашивает Лаки.[line break]","«Да, несомненно».[line break]«Почему ты так уверена?» [unicode 8212] недоумевает Мозголомтик.[line break]","«Потому что я знаю эту семью: Жан-Поль и Александра Драммонды и их дочери, Леа и Камилла. Они живут всего-то метрах в ста от нас с Жюльеном».[line break],","«Да, я часто слышал эти имена у себя дома. Точно, ты права! Но как ты догадалась, о ком я говорю?» [unicode 8212] удивляется Лаки.[line break]","«Просто я видела их в твоих мыслях», [unicode 8212] отвечает она."},
 {"«Ты хочешь сказать, что можешь видеть, о чем думает Лаки? [unicode 8212] изумляется Мыш. [unicode 8212] Как такое возможно?»[line break]","«Мы все сейчас являемся частями одного мозга. Наши умы в той или иной степени соединены друг с другом. Я могу проникнуть в его мысли, а он, в свою очередь [unicode 8212] в мои».[line break]","«Круто! [unicode 8212] восклицает Мыш. [unicode 8212] У нас теперь есть суперспособности»."},
 {"«Должен сказать, мне как-то с трудом в это верится, [unicode 8212] сомневается пес. [unicode 8212] Если ты видишь мои мысли, скажи, какое число я сейчас загадал?»[line break]","Женщина на мгновение задумывается и выдает: «Единицу».[line break]","«Угадала, [unicode 8212] нехотя признает пес. [unicode 8212] Но, возможно, это просто случайное совпадение. Попробуй-ка еще раз…»[line break]","«Теперь ты думаешь о числе два», [unicode 8212] уверенно заявляет Изабель.[line break]","«И снова угадала!» [unicode 8212] говорит пес, на сей раз убежденный в ее способностях.[line break]","«Да ну, [unicode 8212] возражает Мыш, [unicode 8212] Лаки всего до двух умеет считать... Тоже мне доказательство!»"},
-{"«Ладно, [unicode 8212] терпеливо отвечает исследовательница, [unicode 8212] давайте еще один пример. Мыш, в данный момент я вспоминаю свой сегодняшний завтрак. Я пытаюсь представить его себе во всех подробностях... Попробуй его увидеть».[line break]","«Где? [unicode 8212] спрашивает Мыш. [unicode 8212] Я ничего не чую.»[line break]","«Ах, [unicode 8212] говорит Изабель, [unicode 8212] вот в чем проблема. Я думала зрительными образами. Ну, давай я представлю себе его аромат, его вкус… »[line break]","«О! Да, да! Я чувствую! Офигеть! Сколько еды! Это фантастика. И я могу заново пережить все твои завтраки, обеды и ужины? Ущипните меня, я сплю»."},
-{"«Хотя твои воспоминания о последнем завтраке просто восхитительны, сейчас мне не хочется есть ничего, кроме мозгов. Это как-то странно, правда?» [unicode 8212] замечает Мыш.[line break]","«Вообще-то это совершенно нормально для зомби», [unicode 8212] отвечает Изабель.[line break]","«То есть мы [unicode 8212] компания зомби?» [unicode 8212] спрашивает Лаки.[line break]","«Не сосем так, [unicode 8212] поясняет женщина. [unicode 8212] Поскольку мы делим одно тело, то и зомби мы всего один».[line break]","«Ну, хоть я нахожусь в своем собственном теле», [unicode 8212] вздыхает Мозголомтик."}, 
-{"«А другие зомби такие же милые, как мы?» [unicode 8212] задает вопрос Лаки.[line break]","«Ну что ты, [unicode 8212] отвечает Изабель, [unicode 8212] они настоящие чулдовища. Мы совершенно другие. Я бы сказала, что после частично успешного лечения мы стали чем-то вроде псевдозомби. Обычный зомби не умеет ни говорить, ни думать, а только пожирает мозги».[line break]","«А это проблема?» [unicode 8212] спрашивает Мыш.[line break]","«Еще какая! [unicode 8212] говорит исследовательница. [unicode 8212] они почти уничтожили цивилизацию!»"}, 
+{"«Ладно, [unicode 8212] терпеливо отвечает исследовательница, [unicode 8212] давайте еще один пример. Мыш, в данный момент я вспоминаю свой сегодняшний завтрак. Я пытаюсь представить его себе во всех подробностях... Попробуй его увидеть».[line break]","«Где? [unicode 8212] спрашивает Мыш. [unicode 8212] Я ничего не чую».[line break]","«Ах, [unicode 8212] говорит Изабель, [unicode 8212] вот в чем проблема. Я думала зрительными образами. Ну, давай я представлю себе его аромат, его вкус… »[line break]","«О! Да, да! Я чувствую! Офигеть! Сколько еды! Это фантастика. И я могу заново пережить все твои завтраки, обеды и ужины? Ущипните меня, я сплю»."},
+{"«Хотя твои воспоминания о последнем завтраке просто восхитительны, сейчас мне не хочется есть ничего, кроме мозгов. Это как-то странно, правда?» [unicode 8212] замечает Мыш.[line break]","«Вообще-то это совершенно нормально для зомби», [unicode 8212] отвечает Изабель.[line break]","«То есть мы [unicode 8212] компания зомби?» [unicode 8212] спрашивает Лаки.[line break]","«Не совсем так, [unicode 8212] поясняет женщина. [unicode 8212] Поскольку мы делим одно тело, то и зомби мы всего один».[line break]","«Ну, хоть я нахожусь в своем собственном теле», [unicode 8212] вздыхает Мозголомтик."}, 
+{"«А другие зомби такие же милые, как мы?» [unicode 8212] задает вопрос Лаки.[line break]","«Ну что ты, [unicode 8212] отвечает Изабель, [unicode 8212] они настоящие чулдовища. Мы совершенно другие. Я бы сказала, что после частично успешного лечения мы стали чем-то вроде псевдозомби. Обычный зомби не умеет ни говорить, ни думать, а только пожирает мозги».[line break]","«А это проблема?» [unicode 8212] спрашивает Мыш.[line break]","«Еще какая! [unicode 8212] говорит исследовательница. [unicode 8212] Они почти уничтожили цивилизацию!»"}, 
 {"«Неужели такое могло случиться?» [unicode 8212] удивляется Мозголомтик.[line break]","«Способность этого вируса к распространению беспрецедентна, [unicode 8212] поясняет женщина-ученый. [unicode 8212] Малейшей царапины достаточно, чтобы заразиться. Первые случаи заболевания были зарегистрированы в Камбодже,"," а уже через двадцать четыре часа пассажиры международных авиарейсов разнесли заразу по всему миру [unicode 8212] счет жертв пошел на тысячи. Еще через"," неделю наступил глобальный хаос. Во всех крупнейших городах практически немедленно случился коллапс из-за отсутствия продовольствия,"," воды и электричества. Сельские поселения охвачены пожарами."," От человечества осталась жалкая горстка выживших»."},
 {"«А что с животными? [unicode 8212] спрашивает Мыш. –- Им тоже грозит опасность?»[line break]","«На самом деле, [unicode 8212] отвечает Изабель, [unicode 8212] мы думаем, что первоначальным источником заразы стали собаки. Незадолго до того, как мы утратили связь с"," Пастеровским институтом в Хошимине, им удалось выделить мутировавшую форму вируса бешенства, который, по-видимому, и стал причиной пандемии».[line break]","«Бешенство! [unicode 8212] восклицает Лаки. [unicode 8212] Ужаснее бешенства ничего нет!»[line break]","«Не было до недавнего времени», [unicode 8212] поправляет его Мозголомтик."},
 {"«Зомбешенство так быстро распространяется, [unicode 8212] волнуется Лаки, [unicode 8212] как ты думаешь, моя семья выжила?»[line break]","«Я не думаю, я знаю, что да, [unicode 8212] успокаивает его исследовательница. [unicode 8212] Драммонды работают в этом комплексе, а семьи всех работников живут здесь же на его закрытой территории. На самом деле, мы сейчас недалеко от них».[line break]","«Ура!» [unicode 8212] радуется пес."}, 
@@ -1237,13 +1246,13 @@ CuredDialogue is a list of lists of text that varies.
 CuredDialogue is {
 {"«Вроде всё, [unicode 8212] говорит исследовательница, [unicode 8212] теперь пора устроить перекличку. Лаки?»[line break]«Здесь».[line break]«Мышиный Герцог?»[line break]«Присутствует».[line break]","«Мозголомтик?»[line break]«На месте».[line break]«Отлично, [unicode 8212] подводит итог Изабель, [unicode 8212] похоже, мы все пережили лечение без потерь»."},
 {"«Ну что, будем выбираться отсюда?» [unicode 8212] предлагает пес.[line break]«Да», [unicode 8212] говорит Изабель.[line break]","«Но внешний шлюз по-прежнему заблокирован, и никто не сможет открыть его, кроме полковника Грелье из комнаты управления», [unicode 8212] замечает Мозголомтик.[line break]","«Да, нам придется убедить его отпереть шлюз», [unicode 8212] соглашается женщина-ученый. "},
-{"«Мне как-то удивительно, что ты помнишь полковника Грелье. Мне казалось, что ты не в состоянии запоминать имена».[line break]","«Полковника-то? – восклицает Мозголомтик. [unicode 8212] Как же я могу забыть твоего начальника? На прошлой неделе он свалился в бассейн на праздновании своего дня рождения. Думаю, мы все слегка перебрали в тот вечер.»[line break]","«Перебрали? [unicode 8212] переспрашивает Мыш. [unicode 8212] Дай-ка я гляну в твоих мыслях... Перебрали, говоришь? Выглядит забавно».[line break]«Мыш, подожди секундочку, [unicode 8212] просит Изабель, [unicode 8212] Жюльен, ты только что высказал сложную мысль. Как ты думаешь, память к тебе возвращается?»","[line break]«Хм. Откуда ж мне знать»"},
+{"«Мне как-то удивительно, что ты помнишь полковника Грелье. Мне казалось, что ты не в состоянии запоминать имена».[line break]","«Полковника-то? – восклицает Мозголомтик. [unicode 8212] Как же я могу забыть твоего начальника? На прошлой неделе он свалился в бассейн на праздновании своего дня рождения. Думаю, мы все слегка перебрали в тот вечер».[line break]","«Перебрали? [unicode 8212] переспрашивает Мыш. [unicode 8212] Дай-ка я гляну в твоих мыслях... Перебрали, говоришь? Выглядит забавно».[line break]«Мыш, подожди секундочку, [unicode 8212] просит Изабель, [unicode 8212] Жюльен, ты только что высказал сложную мысль. Как ты думаешь, память к тебе возвращается?»","[line break]«Хм. Откуда ж мне знать?»"},
 {"«Жюльен, [unicode 8212] говорит исследовательница, [unicode 8212] что ты подарил мне на наше первое Рождество?»[line break]«Перчатки?»[line break]«И они были… »[line break]","«Слишком велики тебе! Да, я вообще-то купил их брату, но когда ты вручила мне подарок, а у меня ничего для тебя не было… Ты до сих пор из-за них расстраиваешься?»[line break]","«Да нет, что ты. Я просто проверяла твою память»."},
 {"«Испытай меня еще раз!»[line break]«Давай. Как ты называешь меня, когда мы наедине?»[line break]«Изабель?»[line break]«Нет, подумай еще! Когда, кроме нас, никого нет…»[line break]","«Я бы не хотел говорить это при Лаки и Мыше».[line break]«Да ладно тебе, [unicode 8212] подбадривает его пес. [unicode 8212] У нас сейчас всё равно один мозг на всех, так что никаких секретов быть не может».[line break]","«Ну хорошо, [unicode 8212] отвечает Жюльен, всё еще колеблясь, [unicode 8212] я называю тебя моим зайчиком».[line break]","«Зайчиком? [unicode 8212] удивляется Мыш. [unicode 8212] Она была зайцем? Вот теперь я окончательно запутался»"},
 {"«Отлично, Жюльен, похоже, ты на пути к восстановлению своей памяти», [unicode 8212] говорит женщина.[line break]","«Ты правда так думаешь? Даже несмотря на то, что, как ты говорила, я [unicode 8212] всего лишь маленький кусочек мозга? А может, это вовсе и не мои воспоминания, а я просто выуживаю их из твоих мыслей?»","[line break]«Я бы сказала, что маленький кусочек мозга вряд ли способен сформулировать такую сложную гипотезу. ","Мне кажется, твой мозг снова в деле в полном объеме»."},
 {"«Но, если я правильно тебя понял, [unicode 8212] говорит Лаки, [unicode 8212] ты говорила, что вирус полностью стирает мозги у зомби, не оставляя ничего».[line break]","«Да, я это говорила, [unicode 8212] признает Изабель, [unicode 8212] но мы никогда не имели дела с подобным случаем. ","По-моему, настало время пересмотреть наши представления о происходящем. Похоже, что мозг не разрушается [unicode 8212] вирус лишь подавляет высшие мыслительные процессы. ","Нейронные связи остаются целы. На самом деле, иначе и быть не может: без использования этих связей мы бы просто не могли существовать»."},
-{"«Но это же замечательно! [unicode 8212] заявляет Жюльен. [unicode 8212] Это значит, что мы сможем вылечить всех зомби!»[line break]","«Господи, Жюльен, ты прав. Мы не потеряли их, [unicode 8212] отвечает исследовательница. [unicode 8212] С тех пор, как всё это началось, у нас впервые появился шанс вернуть мир в нормальное состояние и покончить с этим кошмаром».[line break]","«Это и заболевших собак касается?» [unicode 8212] уточняет Лаки.[line break]","«Конечно, и собак, и всех других пораженных вирусом животных», [unicode 8212] подтверждает Изабель"},
-{"«И что теперь?» [unicode 8212] спрашивает Мыш.[line break]","«Жюльен, [unicode 8212] взволнованно говорит Изабель, [unicode 8212] нам необходимо поговорить с полковником и убедить его, что ты исцелен и что у нас есть теперь способ бороться с вирусом».","[line break]«Хорошо, я постараюсь», [unicode 8212] соглашается Жюльен.","[line break]«Вперед, друзья!» восклицает Мыш"}
+{"«Но это же замечательно! [unicode 8212] заявляет Жюльен. [unicode 8212] Это значит, что мы сможем вылечить всех зомби!»[line break]","«Господи, Жюльен, ты прав. Мы не потеряли их, [unicode 8212] отвечает исследовательница. [unicode 8212] С тех пор, как всё это началось, у нас впервые появился шанс вернуть мир в нормальное состояние и покончить с этим кошмаром».[line break]","«Это и заболевших собак касается?» [unicode 8212] уточняет Лаки.[line break]","«Конечно, и собак, и всех других пораженных вирусом животных», [unicode 8212] подтверждает Изабель."},
+{"«И что теперь?» [unicode 8212] спрашивает Мыш.[line break]","«Жюльен, [unicode 8212] взволнованно говорит Изабель, [unicode 8212] нам необходимо поговорить с полковником и убедить его, что ты исцелен и что у нас есть теперь способ бороться с вирусом».","[line break]«Хорошо, я постараюсь», [unicode 8212] соглашается Жюльен.","[line break]«Вперед, друзья!» восклицает Мыш."}
 }.
 
 Chapter 15 - The Void
@@ -1265,7 +1274,7 @@ Instead of pushing the intercom:[only present at consciousness 4]
 
 The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "электрощит".
 
-The disjoncteurs are in the panneau électrique. The disjoncteurs are plural-named. The disjoncteurs are broken. The printed name of the disjoncteurs is "несколько [if the disjoncteurs are broken]flipped[otherwise]reset[end if] автоматических предохранителей".
+The disjoncteurs are in the panneau électrique. The disjoncteurs are plural-named. The disjoncteurs are broken. The printed name of the disjoncteurs is "несколько [if the disjoncteurs are broken]сброшенных[otherwise]включенных[end if] автоматических предохранителей".
 
 Instead of touching the disjoncteurs:
 	say "Ты включаешь предохранители";
@@ -1275,14 +1284,14 @@ Instead of touching the disjoncteurs:
 		now the disjoncteurs are broken;
 	say "."
 
-The microfluidic synthesis unit is an openable closed container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза".
+The microfluidic synthesis unit is an openable closed container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза[if the microfluidic synthesis unit is closed] (она закрыта)[end if]".
 
 The servo motor is in the microfluidic synthesis unit. The servo motor is broken. The printed name of the servo motor is "[pnServo]". 
 
 [TODO: custom local description for synthesis unit - coordinate with room description to avoid redundancy.]
 
 To say pnServo:
-	say "servo motor";
+	say "сервопривод";
 	if the servo motor is not broken:
 		say " that you have repaired".
 
@@ -1308,16 +1317,16 @@ To say VictoryText:
 	
 To infos:
 	say "[bold type]об игре[roman type][line break]Эта игра изначально была написана на Конкурс Интерактивной Литературы на Французском-2018 ";
-	place a link to web site "http://www.fiction-interactive.fr/concours/concours-2018/" reading "2018 French Interactive Fiction Competition";
-	say ". Английский перевод игры участвовал в конкурсе IFcomp ";
-	place a link to web site "https://ifcomp.org/" reading "2018 IFcomp";
-	say ". Русский перевод игры принял участие в КРИЛ-2018. Игра написана на";
+	place a link to web site "http://www.fiction-interactive.fr/concours/concours-2018/" reading "(2018 French Interactive Fiction Competition)";
+	say ". Английский перевод игры участвовал в конкурсе ";
+	place a link to web site "https://ifcomp.org/" reading "IFcomp 2018";
+	say "года. Русский перевод игры принял участие в КРИЛ-2018. Игра написана на ";
 	place a link to web site "http://inform7.com/" reading "Inform 7";
 	say ". Исходный код доступен на ";
 	place a link to web site "https://github.com/dhakajack/web-engarde" reading "Гитхабе";
-	say " и может использоваться в соответствии с условиями лицензии MIT ";
+	say " и может использоваться в соответствии с условиями ";
 	place a link to web site "https://github.com/dhakajack/web-engarde/blob/master/LICENSE" reading "лицензии MIT";
-	say ". Об ошибках в игре сообщайте, пожалуйста, через баг-трекер ";
+	say ". Об ошибках в игре сообщайте, пожалуйста, через ";
 	place a link to web site "https://github.com/dhakajack/web-engarde/issues" reading "баг-трекер";
 	say ".[paragraph break]";
 	
@@ -1355,7 +1364,7 @@ To credits:
 	place a link to web site "http://www.ifwiki.org/index.php/Mathbrush" reading "Брайану Раштону (Brian Rushton)";
 	say ", and ";
 	place a link to web site "http://www.ifwiki.org/index.php/Hugo_Labrande" reading "Хьюго Лабранду (Hugo Labrande)";
-	say " (исходная французская версия); Ларе Уэлч ";
+	say " (исходная французская версия); Ларе Уэлч, ";
 	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Бену Коллинзу-Суссману (Ben Collins-Sussman)";
 	say " (английская версия); ХХХ, ХХХ, и ХХХ (русская версия).";
 	close HTML tag;

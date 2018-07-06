@@ -1322,7 +1322,7 @@ To infos:
 	place a link to web site "http://www.fiction-interactive.fr/concours/concours-2018/" reading "(2018 French Interactive Fiction Competition)";
 	say ". Английский перевод игры участвовал в конкурсе ";
 	place a link to web site "https://ifcomp.org/" reading "IFcomp 2018";
-	say "года. Русский перевод игры принял участие в КРИЛ-2018. Игра написана на ";
+	say " года. Русский перевод игры принял участие в КРИЛ-2018. Игра написана на ";
 	place a link to web site "http://inform7.com/" reading "Inform 7";
 	say ". Исходный код доступен на ";
 	place a link to web site "https://github.com/dhakajack/web-engarde" reading "Гитхабе";

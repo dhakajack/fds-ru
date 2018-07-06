@@ -2,7 +2,7 @@
 
 The story headline is "Рыцарь без мозга и упрека".
 The story genre is "ужастик".
-The release number is 3.
+The release number is 4.
 The story creation year is 2018.
 The story description is "По чему ты не скучаешь, так это по своей памяти."
 
@@ -115,6 +115,8 @@ To say hiddenExitList:
 
 Chapter 5 -Langauge-specific tweaks
 
+A container can be male or female. A container is usually male.
+
 Rule for printing the banner text: 
 	place an inline element called "titre" reading "На Страже";
 	say line break;
@@ -137,7 +139,7 @@ Rule for listing nondescript items:
 		let E be entry N of L;
 		say "[E]";
 		if E is open and E contains exactly one thing:
-			say " (в которой находится [random thing in E])";
+			say " (в которо[if E is female]й[otherwise]м[end if] [random thing in E])";
 		if the number of entries in L is greater than 2 and N is less than (the number of entries in L minus 1):
 			say ", ";
 	say "."
@@ -147,7 +149,6 @@ Rule for implicitly taking something (called the target):
 	say "(сначала ты берешь [target])[command clarification break]".
 
 The can't go that way rule response (A) is "Этим путем не пройти."
-
 
 Chapter 6 - Suppress Mention of Doors
 
@@ -339,7 +340,7 @@ To say openNord:
 		say "Стена к северу отъезжает в сторону, открывая проход в соседнее помещение".
 
 	
-The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "[if the cage is open]открытую [end if]клетку[if the cage is closed] (она закрыта)[end if]".
+The cage is an openable closed female container in the Laboratoire Zoologique. The printed name of the cage is "[if the cage is open]открытую [end if]клетку[if the cage is closed] (она закрыта)[end if]".
 
 The chien is an edible thing. It is in the cage. The printed name of the chien is "[if the consciousness of the player is 1]волк[otherwise]собака[end if]". The chien can be dead. The chien is not dead. 
 
@@ -588,7 +589,7 @@ Instead of simpleOpening when the player is in Les Toilettes:
 	if the consciousness of the player is less than 3:
 		say "[if the potty is in Les Toilettes]Резервуар с водой уже открыт[otherwise]Ты поднимаешь крышку, под которой оказывается резервуар с водой[end if].";
 	otherwise:
-		say "[if the potty is in Les Toilettes]Крышка унитаза уже поднята.[otherwise]Ты поднимаешь крышку унитаза[end if].";
+		say "[if the potty is in Les Toilettes]Крышка унитаза уже поднята[otherwise]Ты поднимаешь крышку унитаза[end if].";
 	now the potty is in Les Toilettes.
 	
 The potty is a thing in the void. The printed name of the potty is "[pnPotty]".
@@ -633,7 +634,7 @@ After going south from Couloir 1 when the consciousness of the player is 4 for t
 	try looking.
 	
 The list of text called bathroomScientistText is always {
-"Ты внимательно изучаешь свое отражение в зеркале. Конечно, это Жюльен -- по-прежнему в своей голубой униформе охранника и в форменном кепи, несмотря ни на что."
+"Ты внимательно изучаешь свое отражение в зеркале. Конечно, это Жюльен -- по-прежнему в своей голубой униформе охранника и в форменном кепи, несмотря ни на что.[line break]"
 }
 
 Section Salle de Décontamination
@@ -810,7 +811,7 @@ Carry out simpleOpening:
 			try opening the door the way from the location;
 			stop the action;
 		if the door the way of the location is locked and the consciousness of the player is greater than 2:
-			say "Сначала тебе придется отпереть дверь, ведущую нa";
+			say "Сначала тебе придется отпереть дверь, ведущую нa ";
 			say the way po-russki;
 			say ".";	
 			stop the action;
@@ -1272,11 +1273,11 @@ Instead of pushing the intercom:[only present at consciousness 4]
 		say "На переговорном устройстве загорается маленький красный светодиод, показывающий, что линия связи с комнатой управления включена.";
 		now the intercom is live;
 	otherwise:
-		say "Ты уже включил переговорное устройство – об этом говорит горящий красный светодиод."
+		say "Ты уже включил переговорное устройство [unicode 8212] об этом говорит горящий красный светодиод."
 
 The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "электрощит".
 
-The disjoncteurs are in the panneau électrique. The disjoncteurs are plural-named. The disjoncteurs are broken. The printed name of the disjoncteurs is "несколько [if the disjoncteurs are broken]сброшенных[otherwise]включенных[end if] автоматических предохранителей".
+The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенных[otherwise]включенных[end if] автоматических предохранителей".  [proper-named to avoid articles]
 
 Instead of touching the disjoncteurs:
 	say "Ты включаешь предохранители";
@@ -1286,7 +1287,7 @@ Instead of touching the disjoncteurs:
 		now the disjoncteurs are broken;
 	say "."
 
-The microfluidic synthesis unit is an openable closed container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза[if the microfluidic synthesis unit is closed] (она закрыта)[end if]".
+The microfluidic synthesis unit is an openable closed female container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза[if the microfluidic synthesis unit is closed] (она закрыта)[end if]".
 
 The servo motor is in the microfluidic synthesis unit. The servo motor is broken. The printed name of the servo motor is "[pnServo]". 
 
@@ -1295,7 +1296,7 @@ The servo motor is in the microfluidic synthesis unit. The servo motor is broken
 To say pnServo:
 	say "сервопривод";
 	if the servo motor is not broken:
-		say " (который теперь работает)".
+		say ", который теперь работает".
 
 After opening the microfluidic synthesis unit:
 	say "Открыв сервисную панель, ты сразу видишь причину проблемы: кусок припоя замкнул выводы одного из сервоприводов."

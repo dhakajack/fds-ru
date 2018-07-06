@@ -1,10 +1,10 @@
 "FDS-RU" by Jack Welch
 
 The story headline is "Рыцарь без мозга и упрека".
-The story genre is "horror".
+The story genre is "ужастик".
 The release number is 2.
 The story creation year is 2018.
-The story description is "The one thing you don't miss is memory."
+The story description is "По чему ты не скучаешь, так это по своей памяти."
 
 Include Vorple Element Manipulation by Juhana Leinonen.
 Include Vorple Hyperlinks by Juhana Leinonen.
@@ -218,13 +218,13 @@ Instead of going through a closed door (called la porte):
 			say "Эта дверь заперта на электронный замок.";
 		otherwise:
 			if la porte is buttoned:
-				say "First, you have to ";
+				say "Сначала надо ";
 				if the player is in an elevator:
-					say "indicate the destination floor.";
+					say "определиться с этажом назначения.";
 				otherwise:
-					say "call the elevator.";
+					say "вызвать лифт.";
 			otherwise:
-				say "The door is closed."
+				say "Дверь закрыта."
 			
 To say bougePas:
 	say "Стена не поддается".
@@ -242,9 +242,13 @@ To say descBlocOperatoire:
 		-- 2:
 			say "Голубая комната, в которой люди режут и потрошат животных";
 		-- 3:
-			say "The operating table stands in the middle of the blue room, surrounded by surgical equipment. The exit leads to the corridor";
+			say "Посреди синей комнаты стоит операционный стол в окружении хирургического оборудования. Выход ведет в коридор";
 		-- 4:
-			say "The operating table in the middle of the room is covered in blue surgical drapes. The table has various straps and contraptions to immobilize animals during surgery. Just next to the table is an anesthesia machine, with knobs and dials, and tubes leading to the ceiling. Just above it, there are several vital signs monitors, all of which are off at present. A portable radiography machine has been wheeled in next to the table.[paragraph break]The central corridor for level two is just off to the east"
+			tell ORtext.
+			
+The list of text called ORtext is always {
+"Стоящий в середине помещения операционный стол покрыт хирургическими простынями голубого цвета. Он оборудован целым набором ремней и приспособлений для фиксации животных во время операции. ","Рядом со столом стоит наркозный аппарат с россыпью ручек-крутилок и шкал; от него куда-то к потолку уходят шланги. Прямо над наркозником висит несколько мониторов жизненной активности пациента, которые сейчас все выключены. ","Кто-то подкатил передвижной рентген прямо к столу.[paragraph break]Центральный коридор уровня 2 находится к востоку"
+}
 			
 To say pnBlocOpératoire:
 	if the consciousness of the player is:
@@ -255,9 +259,9 @@ To say pnBlocOpératoire:
 		-- 2:
 			say "Камера пыток";
 		-- 3:
-			say "Operating room";
+			say "Операционная";
 		-- 4:
-			say "Surgical theater".
+			say "Операционный зал".
 
 Section Couloir 2
 
@@ -272,10 +276,8 @@ To say descCouloir2:
 		-- 2:
 			say "Коридор, ведущий из моего уютного убежища на севере к комнате ужасов на западе";
 			say "[liftDoorDogStatus]";
-		-- 3:
-			say "The central corridor for level two. The operating room is to the west, the kennel to the north, the lab to the south, and the elevator to the east";
-		-- 4:
-			say "Центральный коридор второго уровня. Операционная находится к западу, помещение для содержания собак [unicode 8212] к северу, лаборатория [unicode 8212] на юге, а лифт [unicode 8212] на востоке".
+		-- otherwise:
+			say "Центральный коридор второго уровня. Операционная находится к западу, помещение для содержания собак [unicode 8212] к северу, лаборатория [unicode 8212]  на юге, а лифт [unicode 8212] на востоке".
 			
 To say liftDoorDogStatus:
 	if the door east from the location is closed:
@@ -292,7 +294,7 @@ To say pnCouloir2:
 		-- 2:
 			say "Опасный проход";
 		-- 3:
-			say "Corridor, Level 2";
+			say "Коридор, Уровень 2";
 		-- 4:
 			say "Уровень 2: Отдел физиологических экспериментов".
 	
@@ -318,9 +320,9 @@ To say descLabZoo:
 		-- 2:
 			say "Комната, в которой тебя научили нажимать кнопку, чтобы получать лакомства из машины для поощрений";
 		-- 3:
-			say "A cage takes up half the space in this room; the rest is dedicated to animal training equipment";
+			say "Огромная клетка занимает половину помещения; на о ставшейся площади размещено оборудование для тренировки животных";
 		-- 4:
-			say "Animals are kept here in a large cage, which allows them to remain active during experiments that can last up to several weeks[one of]. You notice a sign taped to the cage: [apostrophe]Subject 205-Alpha[apostrophe][or][stopping]"
+			say "Животных держат здесь в здоровенной клетке, которая позволяет им не терять подвижности во время экспериментов, которые могут длиться неделями. Ты замечаешь этикетку, приклеенную к клетке: [unicode 8222]Объект 205-Альфа[unicode 8220]"
 			
 To say pnLabZoo:
 	if the consciousness of the player is:
@@ -329,9 +331,9 @@ To say pnLabZoo:
 		-- 2:
 			say "Дом, милый дом";
 		-- 3:
-			say "The kennel";
+			say "Kонура";
 		-- 4:
-			say "Zoological laboratory".
+			say "Зоологическая лаборатория".
 	
 To say openNord:
 		say "Стена к северу отъезжает в сторону, открывая проход в соседнее помещение".
@@ -339,7 +341,7 @@ To say openNord:
 	
 The cage is an openable closed container in the Laboratoire Zoologique. The printed name of the cage is "[if the cage is open]открытую [end if]клетку[if the cage is closed] (она закрыта)[end if]".
 
-The chien is an edible thing. It is in the cage. The printed name of the chien is "[if the consciousness of the player is 1]wolf[otherwise]dog[end if]". The chien can be dead. The chien is not dead. 
+The chien is an edible thing. It is in the cage. The printed name of the chien is "[if the consciousness of the player is 1]волк[otherwise]собака[end if]". The chien can be dead. The chien is not dead. 
 
 The animal body is a thing. It is in the void. The printed name of the animal body is "труп животного".
 
@@ -351,10 +353,10 @@ Instead of pushing the food dispenser:
 		-- 2:
 			say "В награду на пол высыпается несколько кусочков корма. Ты съедаешь их, но они не могут утолить твой голод.";
 		-- 3:
-			say "You don't find the reward nuggets that fall at your feet the least bit appetizing.";
+			say "Предназначенные для поощрения животных кусочки корма, выпавшие к твоим ногам из автокормушки, не кажутся тебе аппетитными.";
 			move the pile of dog food to the Laboratoire Zoologique;
 		-- 4:
-			say "The operant conditioning device dispenses a few dog food pellets that pile up on the ground.";
+			say "Из прибора для тренировки условного рефлекса вываливается на пол несколько кусочков собачьего лакомства.";
 			move the pile of dog food to the Laboratoire Zoologique.
 			
 The pile of dog food is in the void.
@@ -593,7 +595,7 @@ The potty is a thing in the void. The printed name of the potty is "[pnPotty]".
 
 To say pnPotty:
 	if the consciousness of the player is less than 3:
-		say "bowl full of water";
+		say "резервуар с водой";
 	otherwise:
 		say "унитаз (с поднятой крышкой)". 
 		
@@ -664,7 +666,7 @@ To say pnDeconDoor:
 		-- 3:
 			say "дверь в душевую";
 		-- 4:
-			say "decontamination suite door".
+			say "дверь санпропускника".
 			
 Instead of simplePushing when the player is in the Salle de Décontamination:
 	if the consciousness of the player is:
@@ -955,7 +957,7 @@ Carry out simpleRepairing:
 	
 Instead of touching something (called the item):
 	now the item is not broken;
-	say "You repair [the item]."
+	say "Ты ремонтируешь [item]."
 	[override touch with specific repair actions.]
 	
 Section 7 - Numbering
@@ -1001,7 +1003,7 @@ After reading a command:
 	let C be the number understood;
 	[accept known commands only]
 	if (C > knownCommands of the player) or (C < 1):
-		say "Select from one of the above command links.";
+		say "Выберите одну из ссылок на команды, указанных выше.";
 		reject the player's command;
 	place an inline element called "command" reading "> [entry C of printedActions]";
 	try entry C of possibleActions.		
@@ -1270,7 +1272,7 @@ Instead of pushing the intercom:[only present at consciousness 4]
 		say "На переговорном устройстве загорается маленький красный светодиод, показывающий, что линия связи с комнатой управления включена.";
 		now the intercom is live;
 	otherwise:
-		say "You have already activated the intercom; the red LED is still on."
+		say "Ты уже включил переговорное устройство – об этом говорит горящий красный светодиод."
 
 The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "электрощит".
 
@@ -1293,7 +1295,7 @@ The servo motor is in the microfluidic synthesis unit. The servo motor is broken
 To say pnServo:
 	say "сервопривод";
 	if the servo motor is not broken:
-		say " that you have repaired".
+		say " (который теперь работает)".
 
 After opening the microfluidic synthesis unit:
 	say "Открыв сервисную панель, ты сразу видишь причину проблемы: кусок припоя замкнул выводы одного из сервоприводов."

@@ -1,18 +1,16 @@
-* Notez: Ce jeu ne fonctionne pas avec l'interpréteur Lectrote. En tant que je sache, d'autres interpréteurs fonctionnent bien. Si vous rencontrez des problèmes, une version en ligne восток disponible.
+=== SOLUTION ===
 
-=== РЕШЕНИЕ ===
+Here’s the minimal solution for “На Страже”.
 
-Вот минимальное решение игры.
+A few hints:
 
-Несколько советов:
+* You can’t type commands. The keyboard isn’t used in this game; toss it out the window.
+* Before tossing it, check under the window to be be sure that no one is below.
+* During the game, colored boxes will appear.
+* Each color corresponds to a command.
+* It’s up to you to figure out what command each color represents.
+* Don’t worry — you can’t put the game into an unwinnnable state, so feel free to experiment.
 
-* Vous ne pouvez pas tapez des commandes. Le clavier n'est pas utilisé dans ce jeu ; jetez-le par la fenêtre.
-* Avant de le lancer, regardez sous la fenêtre pour vous assurer que personne n'est pas là.
-* Pendant le jeu, des cases colorées apparaîtront.
-* Chaque couleur correspond à une commande.
-* C'est à vous d'expérimenter pour élucider la signification de chaque couleur.
-* Ne vous en faites pas -- vous ne pouvez pas mettre le jeu dans un état non gangable.
-* Même si la position d'une case changera pendant le jeu, c'est sa couleur qui compte.
 
 Команды:
 

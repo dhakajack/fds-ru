@@ -2,7 +2,7 @@
 
 The story headline is "Рыцарь без мозга и упрека".
 The story genre is "ужастик".
-The release number is 5.
+The release number is 6.
 The story creation year is 2018.
 The story description is "По чему ты не скучаешь, так это по своей памяти."
 
@@ -927,7 +927,7 @@ To say intercom-zero:
 	tell intercomText0.
 	
 The list of text called intercomText0 is always {
-"Склонившись к переговорному устройству, ты рассказываешь свой план. Директор комплекса хватает микрофон и желает тебе удачи. ","Он также дает тебе указание сообщить, когда ты всё закончишь. Однако до этого момента он просит тебя не пользоваться связью. ","После этого на той стороне вешают трубку, и светодиод переговорного устройства гаснет"
+"Склонившись к переговорному устройству, ты рассказываешь свой план. Директор комплекса хватает микрофон и желает тебе удачи. ","Он также дает тебе указание сообщить, когда ты всё закончишь. Однако до этого момента он просит тебя не пользоваться связью"
 }
 
 The list of text called intercomText1 is always {
@@ -1319,7 +1319,7 @@ To say VictoryText:
 	say "[paragraph break]        *** ТЫ ПОБЕДИЛ ***[roman type][paragraph break]Ты спас мир от вируса Зомби777.[paragraph break]".
 	
 To infos:
-	say "[bold type]об игре[roman type][line break]Эта игра изначально была написана на Конкурс Интерактивной Литературы на Французском-2018 ";
+	say "[bold type]>об игре[roman type][line break]Эта игра изначально была написана на Конкурс Интерактивной Литературы на Французском-2018 ";
 	place a link to web site "http://www.fiction-interactive.fr/concours/concours-2018/" reading "(2018 French Interactive Fiction Competition)";
 	say ". Английский перевод игры участвовал в конкурсе ";
 	place a link to web site "https://ifcomp.org/" reading "IFcomp 2018";

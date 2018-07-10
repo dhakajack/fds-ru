@@ -370,7 +370,7 @@ First after printing the banner text (this is the display Vorple credits rule):
 	if Vorple is supported:
 		execute JavaScript command "vorple.version";
 		let version number be the text returned by the JavaScript command;
-		say "Vorple version [version number] preview[line break]" (A).
+		say "Vorple версия [version number] preview[line break]" (A).
 
 	
 Vorple ends here.

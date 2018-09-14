@@ -1,9 +1,9 @@
-Description: 
+Описание: 
 
-A man who has lost his memory.
+Человек, потерявший память.
 
-A mouse who has lost his realm.
+Мышь, потерявшая свои владения.
 
-A dog who has lost his family.
+Собака, потерявшая семью.
 
-And the scientist who will save the world.
+И ученый, которая спасет мир.

@@ -108,7 +108,7 @@ To say hiddenExitList:
 	let N be the number of entries in LL;
 	repeat with X running from 1 to N:
 		if (N is greater than 1 and X is N):
-			say " и";
+			say " и ";
 		say entry X of LL;
 		if (N is greater than 2 and X is less than N):
 			say ",".

@@ -838,7 +838,7 @@ Carry out simpleEating:
 		stop the action;
 	say "Здесь нет ничего съестного";
 	if the pile of dog food is in the location:
-		say " (по крайней мере такого, чтобы вызывало у тебя аппетит)";
+		say " (по крайней мере такого, что бы вызывало у тебя аппетит)";
 	say "."
 	
 Rule for implicitly taking something (called the target) while eating:

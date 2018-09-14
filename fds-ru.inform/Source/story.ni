@@ -634,7 +634,7 @@ After going south from Couloir 1 when the consciousness of the player is 4 for t
 	try looking.
 	
 The list of text called bathroomScientistText is always {
-"Ты внимательно изучаешь свое отражение в зеркале. Конечно, это Жюльен -- по-прежнему в своей голубой униформе охранника и в форменном кепи, несмотря ни на что.[line break]"
+"Ты внимательно изучаешь свое отражение в зеркале. Конечно, это Жюльен [unicode 8212] по-прежнему в своей голубой униформе охранника и в форменном кепи, несмотря ни на что.[line break]"
 }
 
 Section Salle de Décontamination

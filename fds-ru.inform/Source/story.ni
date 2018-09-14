@@ -123,7 +123,7 @@ Rule for printing the banner text:
 	say story headline;
 	say paragraph break;
 	say "Оригинальная история [unicode 8212] Джек Уэлч[line break]";
-	say "Русский перевод [unicode 8212] Валентин Коптелцев[line break]";
+	say "Русский перевод [unicode 8212] Валентин Коптельцев[line break]";
 	say "Релиз [release number] / Серийный Номер 180225 / Inform 7 build 6M62 (I6/v6.33 lib 6/12N)[line break]".
 	
 Rule for listing nondescript items:

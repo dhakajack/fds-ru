@@ -360,7 +360,7 @@ Instead of pushing the food dispenser:
 			say "Из прибора для тренировки условного рефлекса вываливается на пол несколько кусочков собачьего лакомства.";
 			move the pile of dog food to the Laboratoire Zoologique.
 			
-The pile of dog food is in the void. The printed name of the pile of dog food is "кучy кормов для собак".
+The pile of dog food is in the void. The printed name of the pile of dog food is "кучкy корма для собак".
 
 Every turn when the chien is in the cage and the player is in the Laboratoire Zoologique:
 	if a random chance of 1 in 8 succeeds:

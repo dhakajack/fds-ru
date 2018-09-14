@@ -1319,19 +1319,9 @@ To say VictoryText:
 	say "[paragraph break]        *** ТЫ ПОБЕДИЛ ***[roman type][paragraph break]Ты спас мир от вируса Зомби777.[paragraph break]".
 	
 To infos:
-	say "[bold type]>об игре[roman type][line break]Эта игра изначально была написана на Конкурс Интерактивной Литературы на Французском-2018 ";
-	place a link to web site "http://www.fiction-interactive.fr/concours/concours-2018/" reading "(2018 French Interactive Fiction Competition)";
-	say ". Английский перевод игры участвовал в конкурсе ";
-	place a link to web site "https://ifcomp.org/" reading "IFcomp 2018";
-	say " года. Русский перевод игры принял участие в КРИЛ-2018. Игра написана на ";
-	place a link to web site "http://inform7.com/" reading "Inform 7";
-	say ". Исходный код доступен на ";
+	say "[bold type]>об игре[roman type][line break]Эта игра изначально была написана на Конкурс Интерактивной Литературы на Французском-2018. Английский перевод игры участвовал в конкурсе IFcomp 2018 года. Русский перевод игры принял участие в КРИЛ-2018. Игра написана на Inform 7. Исходный код доступен на ";
 	place a link to web site "https://github.com/dhakajack/web-engarde" reading "Гитхабе";
-	say " и может использоваться в соответствии с условиями ";
-	place a link to web site "https://github.com/dhakajack/web-engarde/blob/master/LICENSE" reading "лицензии MIT";
-	say ". Об ошибках в игре сообщайте, пожалуйста, через ";
-	place a link to web site "https://github.com/dhakajack/web-engarde/issues" reading "баг-трекер";
-	say ".[paragraph break]";
+	say " и может использоваться в соответствии с условиями лицензии MIT. Об ошибках в игре сообщайте, пожалуйста, через баг-трекер на Гитхабе.[paragraph break]".
 	
 To credits:
 	say "[bold type]>благодарности[roman type]";
@@ -1340,40 +1330,21 @@ To credits:
 	say "Организаторам всех трех вышеупомянутых конкурсов.";
 	close HTML tag;
 	open HTML tag "li";
-	place a link to web site "http://www.ifwiki.org/index.php/Graham_Nelson" reading "Грэхему Нельсону (Graham Nelson)";
-	say " за создание платформы Inform.";
+	say "Грэхему Нельсону (Graham Nelson) за создание платформы Inform.";
 	close HTML tag;
 	open HTML tag "li";
-	say "создателям дополнительных библиотек, использовавшихся в этом произведении (в том числе в его предыдущих версиях): ";
-	place a link to web site "http://www.ifwiki.org/index.php/Eric_Forgeot" reading " Эрику Форжо (Éric Forgeot)";
-	say ", ";
-	place a link to web site "http://www.ifwiki.org/index.php/Emily_Short" reading "Эмили Шорт (Emily Short)";
-	say ", ";
-	place a link to web site "http://www.ifwiki.org/index.php/Erik_Temple" reading "Эрику Темплу (Erik Temple)";
-	say ", and ";
-	place a link to web site "http://www.ifwiki.org/index.php/Juhana_Leinonen" reading " Юхане Лейнонен (Juhana Leinonen)";
-	say ".";
+	say "создателям дополнительных библиотек, использовавшихся в этом произведении (в том числе в его предыдущих версиях): Эрику Форжо (Éric Forgeot), Эмили Шорт (Emily Short), Эрику Темплу (Erik Temple), Юхане Лейнонен (Juhana Leinonen).";
 	close HTML tag;
 	open HTML tag "li";
-	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Бену Коллинзу-Суссману (Ben Collins-Sussman)";
-	say ", нарисовавшему обложку к игре.";
+	say "Бену Коллинзу-Суссману (Ben Collins-Sussman), нарисовавшему обложку к игре.";
 	close HTML tag;
 	open HTML tag "li";
-	say "Всем, кто помогал вычитать текст и тестировать игру: ";
-	place a link to web site "http://www.ifwiki.org/index.php/Eric_Forgeot" reading "Éric Forgeot";
-	say ", ";
-	place a link to web site "http://www.ifwiki.org/index.php/St%C3%A9phane_Flauder" reading "Стефану Флодеру (Stéphane Flauder)";
-	say ", Денизе Жобан (Denise Jobin), ";
-	place a link to web site "http://www.ifwiki.org/index.php/Mathbrush" reading "Брайану Раштону (Brian Rushton)";
-	say ", and ";
-	place a link to web site "http://www.ifwiki.org/index.php/Hugo_Labrande" reading "Хьюго Лабранду (Hugo Labrande)";
-	say " (исходная французская версия); Ларе Уэлч, ";
-	place a link to web site "http://www.ifwiki.org/index.php/Ben_Collins-Sussman" reading "Бену Коллинзу-Суссману (Ben Collins-Sussman)";
-	say " (английская версия); ХХХ, ХХХ, и ХХХ (русская версия).";
+	say "Всем, кто помогал вычитать текст и тестировать игру: Éric Forgeot, Стефану Флодеру (Stéphane Flauder), Денизе Жобан (Denise Jobin), Брайану Раштону (Brian Rushton)";
+	say " и Хьюго Лабранду (Hugo Labrande (исходная французская версия); 	Ларе Уэлч, Бену Коллинзу-Суссману (Ben Collins-Sussman), Андреву Щулзу (Andrew Schultz),";
+	say " Валентину Коптельцеву и Давиду Уейту (David White) (английская версия); ХХХ, ХХХ и ХХХ (русская версия).";
 	close HTML tag;
 	open HTML tag "li";
-	place a link to web site "http://www.fiction-interactive.fr/author/corax/" reading "Кораксу (Corax)";
-	say " за предложения относительно того, как сделать игру более дружелюбной для слабовидящих.";
+	say "Кораксу (Corax) за предложения относительно того, как сделать игру более дружелюбной для слабовидящих.";
 	close HTML tag;
 	close HTML tag;
 	say "[bold type]КОНЕЦ."

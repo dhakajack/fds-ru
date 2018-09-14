@@ -344,7 +344,7 @@ The cage is an openable closed female container in the Laboratoire Zoologique. T
 
 The chien is an edible thing. It is in the cage. The printed name of the chien is "[if the consciousness of the player is 1]волк[otherwise]собака[end if]". The chien can be dead. The chien is not dead. 
 
-The animal body is a thing. It is in the void. The printed name of the animal body is "труп животного".
+The animal body is a thing. It is in the void. The printed name of the animal body is "лежит труп животного". [kludgy, but sounds better than Ты видишь здесь открытую клетку (в которой труп животного)]
 
 The food dispenser is in the Laboratoire Zoologique. It is buttoned. The printed name of the food dispenser is "автоматическую кормушку".
 

@@ -18,7 +18,7 @@ Use no scoring.
 Release along with the "Vorple" interpreter.
 Release along with style sheet "fds-ru.css".
 
-Release along with cover art, a file of "Blurb" called "blurb.txt" and a file of "Solution" called "walkthrough.txt".
+Release along with cover art ("A cadaverous man in a guard hat surrounded by pictures of a woman scientist, a mouse, a dog, and an electric motor"), a file of "Blurb" called "blurb.txt", a file of "Walkthrough" called "walkthrough.txt" and a file of "Credits" called "credits.txt".
 
 [********]
 debugMode is a truth state that varies. debugMode is FALSE.
@@ -143,10 +143,6 @@ Rule for listing nondescript items:
 		if the number of entries in L is greater than 2 and N is less than (the number of entries in L minus 1):
 			say ", ";
 	say "."
-	
-Rule for implicitly taking something (called the target):
-	try silently taking the target;
-	say "(сначала ты берешь [target])[command clarification break]".
 
 The can't go that way rule response (A) is "Этим путем не пройти."
 
@@ -175,9 +171,6 @@ Palette-EN	Palette-RU
 Chapter 8 - Start of Play
 
 When play begins:
-	execute JavaScript command "function forceScroll() {if((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR') || navigator.userAgent.indexOf('Chrome')) != -1 ) {return false;} else {return true;}} forceScroll()";
-	if the JavaScript command returned false:
-		now forceScroll is false;
 	if debugMode is false:
 		hide the prompt;
 	place a block level element called "arrows";
@@ -263,6 +256,12 @@ To say pnBlocOpératoire:
 			say "Операционная";
 		-- 4:
 			say "Операционный зал".
+			
+Instead of simplePushing when the player is in the Bloc Opératoire:
+	if the consciousness of the player is less than 4:
+		say "You aren't sure what does what in here and don't want to risk accidently dissecting yourself by poking randomly about[one of]. That would be embarassing[or][stopping].";
+	otherwise:
+		say "You aren't scrubbed in and all the equipment in here is sterile; you don't want to contaminate the equipment."
 
 Section Couloir 2
 

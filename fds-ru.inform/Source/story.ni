@@ -979,7 +979,7 @@ Chapter 12 - Known Commands
 
 The list of actions called possibleActions is always {going east, going west,simpleEating,simpleOpening,going north,going south,simplePushing,simpleUnlocking,simpleTalking,simpleRepairing}.
 
-The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "толкнуть", "отпереть ", "говорить","отремонтировать"}.
+The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "нажать", "отпереть ", "говорить","отремонтировать"}.
 
 The commandList is a list of numbers that varies. The commandList is {}.
 

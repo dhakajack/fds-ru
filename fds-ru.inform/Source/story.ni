@@ -18,7 +18,7 @@ Use no scoring.
 Release along with the "Vorple" interpreter.
 Release along with style sheet "fds-ru.css".
 
-Release along with cover art ("A cadaverous man in a guard hat surrounded by pictures of a woman scientist, a mouse, a dog, and an electric motor"), a file of "Blurb" called "blurb.txt", a file of "Walkthrough" called "walkthrough.txt" and a file of "Credits" called "credits.txt".
+Release along with cover art ("Трупный мужчина, женщина-ученый, мышь, собака и электродвигатель."), a file of "Reklama" called "reklama.txt", a file of "Prokhozhdenie" called "prokhozhdenie.txt" and a file of "Blagodarnosti" called "blagodarnosti.txt".
 
 [********]
 debugMode is a truth state that varies. debugMode is FALSE.

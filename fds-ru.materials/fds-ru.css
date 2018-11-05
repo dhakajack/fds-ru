@@ -8,10 +8,6 @@ a {
 	color:#00a;
 }
 
-.command {
-	color:green;
-}
-
 .boutons {
 	position: fixed;
 	left: 25px;
@@ -116,6 +112,21 @@ a.white {
 	background:white;
 }
 
+a.literate {
+	font-size: 18px;
+	text-decoration: none;
+}
+
+a.literate:link, a.literate:visited {
+	color: #000;
+	background: #ffeff8;
+}
+
+a.literate:hover, a.literate:active {
+	color: #ffeff8;
+	background: #555;
+}
+
 .arrows {
 	position: fixed;
 	top: 50px;
@@ -138,7 +149,7 @@ a.white {
 }
 
 .prompt-input {
-	color:#0A0;
+	color:#028202;
 }
 
 #output {

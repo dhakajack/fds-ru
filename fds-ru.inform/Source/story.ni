@@ -203,7 +203,7 @@ When play begins:
 	place an inline element called "hidden" reading "If you are using an adaptive technology like a screen reader or voice synthesizer and you find that the entire text of the game is being repeated each turn, at any time during the game, you can select the [quotation mark]toggle screen[quotation mark] hyperlink to switch the screen to display only one turn's worth of text at a time. Selecting it again will restore the usual appearance of the screen after that point, but it will not be possible to scroll upwards to earlier history.[paragraph break]At the beginning of the game, commands are named with colors, and it is up to you to figure out what they do. Over the course of the game, additional commands will appear. There is no typing in this game: to issue a command, select the corresponding hyperlink.";
 	place an element called "leftgutter" at the top level; 
 	set output focus to the element called "leftgutter";
-	place link to the command "toggle" called "hidden" reading "toggle screen";
+	place link to the command "0" called "hidden" reading "toggle экран";
 	place a block level element called "arrows";
 	set output focus to the main window;
 	sort the Table of Palette in random order.
@@ -1078,17 +1078,33 @@ Chapter 14 - Known Commands
 
 The list of actions called possibleActions is always {going east, going west,simpleEating,simpleOpening,going north,going south,simplePushing,simpleUnlocking,simpleTalking,simpleRepairing}.
 
-The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "нажать", "отпереть ", "говорить","отремонтировать"}.
+The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "нажать", "отпереть ", "говорить","ремонт"}.
 
 The commandList is a list of numbers that varies. The commandList is {}.
 
 To increment the knownCommands of the player:
 	increase the knownCommands of the player by 1;
 	add the knownCommands of the player to commandList;
+	if the knownCommands of the player is 8:
+		remove all elements called "boutons";
+		place an inline element called "hidden" reading "Commands have switched from colors to actual command words, which are:";
+		repeat with N running from 1 to 7:
+			set output focus to the element called "leftgutter";
+			place a link to the command "[N]" called "boutons box[N] literate" reading "[entry N of printedActions]", without showing the command;
+			set output focus to the main window;
+			place an inline element called "hidden" reading " [if N is 7]и [end if]";
+			place an inline element called "hidden" reading "[entry N of printedActions] ";
 	place an inline element called "hidden" reading "Появилась новая команда: ";
-	choose row knownCommands of the player in Table of Palette;
-	place a link to the command "[knownCommands of the player]" called "boutons box[knownCommands of the player] [Palette-EN entry]" reading "[knownCommands of the player]: [Palette-RU entry]", without showing the command;
-	place an inline element called "hidden" reading ". ".
+	if the knownCommands of the player is less than 8:
+		choose row knownCommands of the player in the Table of Palette;
+		place an inline element called "hidden" reading "[knownCommands of the player]: [Palette-RU entry].";
+		set output focus to the element called "leftgutter";
+		place a link to the command "[knownCommands of the player]" called "boutons box[knownCommands of the player] [Palette-EN entry]" reading "[knownCommands of the player]: [Palette-RU entry]", without showing the command;
+	otherwise:
+		place an inline element called "hidden" reading "[entry knownCommands of the player of printedActions].";
+		set output focus to the element called "leftgutter";
+		place a link to the command "[knownCommands of the player]" called "boutons box[knownCommands of the player] literate" reading "[entry knownCommands of the player of printedActions]", without showing the command;
+	set output focus to the main window.
 
 After reading a command:
 	[To prevent players bypassing the CSS to play beyond end of game]
@@ -1102,11 +1118,15 @@ After reading a command:
 	[process numerical input]	
 	let C be the number understood;
 	[accept known commands only]
-	if (C > knownCommands of the player) or (C < 1):
+	if (C > knownCommands of the player) or (C < 0):
 		say "Выберите одну из ссылок на команды, указанных выше.";
 		reject the player's command;
-	place an inline element called "command" reading "> [entry C of printedActions]";
-	try entry C of possibleActions.		
+	if C is 0:
+		place an inline element called "command" reading "> toggle screen";
+		try toggling;
+	otherwise:
+		place an inline element called "command" reading "> [entry C of printedActions]";
+		try entry C of possibleActions.
 				
 Chapter 15 - Milestones
 
@@ -1199,7 +1219,7 @@ After eating scientist:
 	increment the consciousness of the player.
 	
 The list of text called postScientistBrain is always {
-"[line break]Ты выедаешь исследовательнице мозг и немедленно начинаешь воспринимать мир под другим углом зрения, чувствуя себя более утонченным и эрудированным.[paragraph break][headchatter][italic type]«Ты сделал это?» [unicode 8212] с сомнением спрашивает голос Изабель.","[line break]«Да, ты была просто объедение», [unicode 8212] делает ей комплимент Мыш.[line break]«Самая вкусная из всех», [unicode 8212] добавляет Лаки.","[line break]«Прости моих соседей по мозгу, им так не хватает такта», [unicode 8212] прерывает их Мозголомтик.[line break]«Эй!» [unicode 8212] возмущенно вскрикивают пес с мышью.","[line break]«Будь как дома, Изабель, [unicode 8212] продолжает Мозголомтик. [unicode 8212] Давай я представлю тебе нашу маленькую компанию: вот пес Лаки, а это Его Светлость Мышиный ","Герцог (или просто Мыш, поскольку он у нас очень скромный), ну, и я [unicode 8212] друзья называют меня Мозголомтиком. Мы все к твоим услугам».","[line break]«Привет, мальчики», [unicode 8212] приветливо говорит Изабель.[line break]"
+"[line break]Ты выедаешь исследовательнице мозг и немедленно начинаешь воспринимать мир под другим углом зрения, чувствуя себя более утонченным и эрудированным.[paragraph break][headchatter][italic type]«Ты сделал это?» [unicode 8212] с сомнением спрашивает голос Изабель.","[line break]«Да, ты была просто объедение», [unicode 8212] делает ей комплимент Мыш.[line break]«Самая вкусная из всех», [unicode 8212] добавляет Лаки.","[line break]«Прости моих соседей по мозгу, им так не хватает такта», [unicode 8212] прерывает их Мозголомтик.[line break]«Эй!» [unicode 8212] возмущенно вскрикивают пес с мышью.","[line break]«Будь как дома, Изабель, [unicode 8212] продолжает Мозголомтик. [unicode 8212] Давай я представлю тебе нашу маленькую компанию: вот пес Лаки, а это Его Светлость Мышиный ","Герцог (или просто Мыш, поскольку он у нас очень скромный), ну, и я [unicode 8212] друзья называют меня Мозголомтиком. Мы все к твоим услугам».","[line break]«Привет, мальчики», [unicode 8212] приветливо говорит Изабель.[roman type][line break]"
 }
 		
 Chapter 16 - Dialogue
@@ -1250,13 +1270,6 @@ Every turn:
 	if the knownCommands of the player is greater than 0:
 		listHiddenExits.
 	
-
-[This is a little kludgey, but necessary because the javascript library at present behaves differently 
-across browers. For Chrome and Opera, it is not necessary. However, for Safari and Firefox (and 
-perhaps others), when a hyperlink is clicked, the window scrolls upwards. This rule forces the window
-to scroll back to the bottom. After that, the player can still manually scroll backwards to see previous bits 
-of the story.]
-
 This is the scroll update rule:
 	execute javascript command "$('html, body').animate({scrollTop:$(document).height()}, 1);".
 	

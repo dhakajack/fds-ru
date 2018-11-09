@@ -1,6 +1,6 @@
 /*
 
-Style sheet En Garde
+Style sheet На Страже
 
 */
 
@@ -148,7 +148,7 @@ a.literate:hover, a.literate:active {
 	font-size: 20px;
 }
 
-.prompt-input {
+.command {
 	color:#028202;
 }
 

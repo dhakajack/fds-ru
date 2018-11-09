@@ -205,6 +205,7 @@ When play begins:
 	set output focus to the element called "leftgutter";
 	place link to the command "toggle" called "hidden" reading "toggle screen";
 	place a block level element called "arrows";
+	set output focus to the main window;
 	sort the Table of Palette in random order.
 
 After printing the banner text:

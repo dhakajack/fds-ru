@@ -772,6 +772,16 @@ After going north from Escalier 1:
 After going south from Sas:
 	say "[downSouth].";
 	try looking.
+	
+After choosing notable locale objects when the player is in Escalier 1 and the panneau électrique is in Escalier 1:
+	set the locale priority of the panneau électrique to 9.
+	
+Rule for printing a locale paragraph about the panneau électrique:
+	say "Ты видишь здесь [if the panneau électrique is open]от[otherwise]за[end if]крытный электрощит";
+	if the panneau électrique is open:
+		say " [if the disjoncteurs are broken]со сброш[otherwise]с включ[end if]енными автоматическими предохранителями";
+	say ".";
+	now the panneau électrique is mentioned.
 
 Section Sas
 
@@ -1416,7 +1426,7 @@ To credits:
 	say "Грэхему Нельсону (Graham Nelson) за создание платформы Inform.";
 	close HTML tag;
 	open HTML tag "li";
-	say "создателям дополнительных библиотек, использовавшихся в этом произведении (в том числе в его предыдущих версиях): Эрику Форжо (Éric Forgeot), Эмили Шорт (Emily Short), Эрику Темплу (Erik Temple), Юхане Лейнонен (Juhana Leinonen).";
+	say "Создателям дополнительных библиотек, использовавшихся в этом произведении (в том числе в его предыдущих версиях): Эрику Форжо (Éric Forgeot), Эмили Шорт (Emily Short), Эрику Темплу (Erik Temple), Юхане Лейнонен (Juhana Leinonen).";
 	close HTML tag;
 	open HTML tag "li";
 	say "Бену Коллинзу-Суссману (Ben Collins-Sussman), нарисовавшему обложку к игре.";

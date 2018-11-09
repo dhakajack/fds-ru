@@ -39,7 +39,7 @@ BlockChatterFlag is a truth state that varies. BlockChatterFlag is false.
 
 Chapter 3 - Player
 
-The player has a number called consciousness. The consciousness of the player is 0. The curedFlag of the player is a truth state that varies. The curedFlag of the player is false. The player has a number called conversations. The conversations of the player is 0. The player has a number called timesLapped. The timesLapped of the player is 0.
+The player has a number called consciousness. The consciousness of the player is 0. The curedFlag of the player is a truth state that varies. The curedFlag of the player is false. The player has a number called conversations [number of times talked on the intercom]. The conversations of the player is 0. The player has a number called timesLapped [number of times drank from the toilet ]. The timesLapped of the player is 0.
 
 [Level					after eating….
 0					nothing
@@ -87,7 +87,7 @@ To say exitList:
 						say "\u2192 ".
 						
 To listHiddenExits:
-	place an inline element called "hidden" reading "Возможные выходы: [hiddenExitList]. "
+	place an inline element called "hidden" reading "Возможные выходы:[hiddenExitList]. "
 	
 To say hiddenExitList:
 	let L be {west, north, south, east};
@@ -98,17 +98,17 @@ To say hiddenExitList:
 			if D is nothing or D is open or (D is simpleOpenable and the consciousness of the player is greater than 0) or (D is buttoned and the consciousness of the player is greater than one) or (D is locked and the consciousness of the player is greater than two):
 				if the way is:
 					-- west:
-						add "на запад" to LL;
+						add " на запад" to LL;
 					-- north:
-						add "на север" to LL;
+						add " на север" to LL;
 					-- south:
-						add "на юг" to LL;
+						add " на юг" to LL;
 					-- east:
-						add "на восток" to LL;
+						add " на восток" to LL;
 	let N be the number of entries in LL;
 	repeat with X running from 1 to N:
 		if (N is greater than 1 and X is N):
-			say " и ";
+			say " и";
 		say entry X of LL;
 		if (N is greater than 2 and X is less than N - 1):
 			say ", ".
@@ -200,7 +200,7 @@ Chapter 10 - Start of Play
 When play begins:
 	if debugMode is false:
 		hide the prompt;
-	place an inline element called "hidden" reading "If you are using an adaptive technology like a screen reader or voice synthesizer and you find that the entire text of the game is being repeated each turn, at any time during the game, you can select the [quotation mark]toggle screen[quotation mark] hyperlink to switch the screen to display only one turn's worth of text at a time. Selecting it again will restore the usual appearance of the screen after that point, but it will not be possible to scroll upwards to earlier history.[paragraph break]At the beginning of the game, commands are named with colors, and it is up to you to figure out what they do. Over the course of the game, additional commands will appear. There is no typing in this game: to issue a command, select the corresponding hyperlink.";
+	place an inline element called "hidden" reading "If you are using an adaptive technology like a screen reader or voice synthesizer and you find that the entire text of the game is being read each turn, at any time during the game, you can select the [quotation mark]toggle screen[quotation mark] hyperlink to switch the screen to display only one turn's worth of text at a time. Selecting it again will restore the usual appearance of the screen after that point, but it will not be possible to scroll upwards to earlier history.[paragraph break]At the beginning of the game, commands are named with colors, and it is up to you to figure out what they do. Over the course of the game, additional commands will appear. There is no typing in this game: to issue a command, select the corresponding hyperlink.";
 	place an element called "leftgutter" at the top level; 
 	set output focus to the element called "leftgutter";
 	place link to the command "0" called "hidden" reading "toggle экран";
@@ -907,13 +907,6 @@ Carry out simpleOpening:
 			stop the action;
 	say "Непонятно, что здесь открывать." 
 	
-[this works here because things only contain a single item
-After opening something (called the item):
-	say "Ты открываешь [item]";
-	if the item contains exactly one thing:
-		say " и обнаруживаешь [random thing in item]";
-	say "."  ]
-	
 After opening the plastic container:
 	say "You grab the plastic container by a corner and shake it back and forth until it comes apart. A glistening slice of brain goes flying across the kitchen, strikes the wall with a rubbery smack, and slides to the floor."
 
@@ -954,13 +947,13 @@ Check simpleTalking:
 		say "Вы не видите никого, с кем можно поговорить.";
 		stop the action;
 	otherwise:
-		if the bloody corpse of Docteur Rambaud is in the sas:
+		if the bloody corpse of Docteur Rambaud is not in the void:
 			if the intercom is not live:
 				say "Чтобы выйти на связь с комнатой управления, сначала надо включить переговорное устройство.";
 				stop the action.
 				
 Carry out simpleTalking:
-	if the bloody corpse of Docteur Rambaud is in the sas:
+	if the bloody corpse of Docteur Rambaud is not in the void:
 		now the BlockChatterFlag is true;
 		if the curedFlag of the player is not true:
 			say "[one of]Speaking into the intercom, you explain your plan. The technician on the other end of the line hurriedly wishes you good luck. Yelling between bursts of gunfire, he instructs you report back when you have succeeded. Short of that, though, he requests that you not use the intercom. He hangs up on you and the intercom goes dark[or]They must have a lot going on up there. You wait impatiently, but no one answers[or]Until and unless you find a cure, there isn't much to discuss with the control room. You decide to save their time and yours and hold off on calling them for now[stopping].";
@@ -1390,7 +1383,7 @@ The panneau électrique is an openable closed container in the void. The printed
 
 The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенные[otherwise]включенные[end if] автоматические предохранители".  
 
-The microfluidic synthesis unit is an openable closed female container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза".
+The microfluidic synthesis unit is an openable closed female container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза". The microfluidic synthesis unit is broken.
 
 After opening the microfluidic synthesis unit:
 	say "Открыв сервисную панель, ты сразу видишь причину проблемы: кусок припоя замкнул выводы одного из сервоприводов."
@@ -1439,8 +1432,3 @@ To credits:
 	close HTML tag;
 	say "[bold type]КОНЕЦ."
 	
-Chapter 19 - Testing
-
-Test me with "east / west / eat /east / open / north / open / eat / push / south / push /east / push / west / south / open / eat / eat / eat / north / open / north / open / open / eat / south / west / unlock / open / west / unlock / open / north / north / unlock / open / north / talk / talk / talk / talk / talk / eat / south / south / south /east / push /east / push / west / unlock / open / south / open / repair / north / push /east / push / west / west / north / open / repair / south /east / push /east / push / west / south / north / push /east / push / west / west / north / north / north / push / talk / talk / talk /  talk ".
-
-Test full with "east /east / west / west / eat /east / west / open /east / open / north / south / west / south /east / north / z / z / z / z / z / z / z / z / z / z / z / eat / open / eat / push / eat / north / south / west / west /east /east / push /east / push / west / west / south / open / push / eat / eat / eat / eat / north / west / north / north / open / north / eat / push / open / open / eat / south / south / open / push / north / west / unlock / west / open / west / north / unlock / north / open / north / north / north / north / unlock / north / open / north / eat / eat / eat / eat / eat / eat / push / unlock / north / talk / talk / talk / talk / talk / talk / eat / talk / push / talk / push / push / talk / north / south / south / south / open / repair / open / repair / push / south /east / south / push / open / eat / north / north / repair / south / push /east / push / west / west /east / north / push / eat / repair / south / south / unlock / open / south / repair / open / repair / north / push /east / push / west / west / north / open / repair / south /east /east / push /east / push / west / south / repair / north / push /east / push / west / south / north / west / north / north / north / eat /talk / push / talk / talk / south / north / talk / talk ".

@@ -219,7 +219,7 @@ After printing the banner text:
 	increment the knownCommands of the player.
 	
 The list of text called postBannerText is always {
-"[line break][headchatter][italic type]Где я? И вообще, кто я?[roman type][paragraph break]Ты просыпаешься в одиночестве в пустой синеватой комнате.[paragraph break]","[italic type]Почему я не могу ничего вспомнить?[paragraph break]Мне надо сконцентрироваться! Что случилось? Давай, думай! Думай же![paragraph break]Как бы то ни было, здесь я ответов не найду [unicode 8212] мне придется осмотреть окрестности.[roman type][line break]"
+"[line break][headchatter][italic type]Где я? И вообще, кто я?[roman type][paragraph break]Ты просыпаешься в одиночестве в пустой голубоватой комнате.[paragraph break]","[italic type]Почему я не могу ничего вспомнить?[paragraph break]Мне надо сконцентрироваться! Что случилось? Давай, думай! Думай же![paragraph break]Как бы то ни было, здесь я ответов не найду [unicode 8212] мне придется осмотреть окрестности.[roman type][line break]"
 }
 
 Chapter 11 - Geography
@@ -1409,6 +1409,9 @@ The panneau électrique is an openable closed container in the void. The printed
 
 The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенные[otherwise]включенные[end if] автоматические предохранители".  
 
+After opening the panneau électrique:
+	say "Открыв электрощит, ты видишь несколько сброшенные автоматические предохранители."
+
 The microfluidic synthesis unit is an openable closed female container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза". The microfluidic synthesis unit is broken.
 
 After opening the microfluidic synthesis unit:
@@ -1448,8 +1451,8 @@ To credits:
 	say "Бену Коллинзу-Суссману (Ben Collins-Sussman), нарисовавшему обложку к игре.";
 	close HTML tag;
 	open HTML tag "li";
-	say "Всем, кто помогал вычитать текст и тестировать игру: Éric Forgeot, Стефану Флодеру (Stéphane Flauder), Денизе Жобан (Denise Jobin), Брайану Раштону (Brian Rushton)";
-	say " и Хьюго Лабранду (Hugo Labrande (исходная французская версия);  Ларе Уэлч, Бену Коллинзу-Суссману (Ben Collins-Sussman), Андреву Щулзу (Andrew Schultz),";
+	say "Всем, кто помогал вычитать текст и тестировать игру: Эрику Форжо (Éric Forgeot), Стефану Флодеру (Stéphane Flauder), Денизе Жобан (Denise Jobin), Брайану Раштону (Brian Rushton)";
+	say " и Хьюго Лабранду (Hugo Labrande) (исходная французская версия);  Ларе Уэлч, Бену Коллинзу-Суссману (Ben Collins-Sussman), Андреву Щулзу (Andrew Schultz),";
 	say " Валентину Коптельцеву и Давиду Уейту (David White) (английская версия); и Антону Ласточкину (русская версия).";
 	close HTML tag;
 	open HTML tag "li";

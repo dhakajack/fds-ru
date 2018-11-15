@@ -2,7 +2,7 @@
 
 The story headline is "Рыцарь без мозга и упрека".
 The story genre is "ужастик".
-The release number is 8.
+The release number is 9.
 The story creation year is 2018.
 The story description is "По чему ты не скучаешь, так это по своей памяти."
 

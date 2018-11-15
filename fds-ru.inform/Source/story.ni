@@ -155,10 +155,10 @@ To tell ( blahblah - a list of text):
 Chapter 6 - Additional Accessibility Tweaks
 
 To say headchatter:
-	place an inline element called "hidden" reading "В голове ты слышишь некоторые мысли: ".
+	place an inline element called "hidden" reading "В твоей голове проносятся мысли: ".
 	
 To say realworldchatter:
-	place an inline element called "hidden" reading "Разговор начинается снова: ".
+	place an inline element called "hidden" reading "Разговор возобновляется: ".
 	
 Rule for printing the name of a room:
 	place an inline element called "hidden" reading "Текущее местоположение [unicode 8212] ";
@@ -200,10 +200,14 @@ Chapter 10 - Start of Play
 When play begins:
 	if debugMode is false:
 		hide the prompt;
-	place an inline element called "hidden" reading "If you are using an adaptive technology like a screen reader or voice synthesizer and you find that the entire text of the game is being read each turn, at any time during the game, you can select the [quotation mark]toggle screen[quotation mark] hyperlink to switch the screen to display only one turn's worth of text at a time. Selecting it again will restore the usual appearance of the screen after that point, but it will not be possible to scroll upwards to earlier history.[paragraph break]At the beginning of the game, commands are named with colors, and it is up to you to figure out what they do. Over the course of the game, additional commands will appear. There is no typing in this game: to issue a command, select the corresponding hyperlink.";
+	place an inline element called "hidden" reading "Если вы используете вспомогательные технологии – например, скринридер или экранный диктор – и обнаружили, что после каждого хода весь текст игры зачитывается целиком";
+	place an inline element called "hidden" reading ", вы можете в любой момент выбрать ссылку [quotation mark]переключить экран[quotation mark], чтобы на экране отображался только текст последнего хода.";
+	 place an inline element called "hidden" reading " Повторный выбор этой ссылки восстановит обычный вид экрана начиная с момента выбора, однако просмотреть более ранний текст будет невозможно."; 
+	place an inline element called "hidden" reading "[paragraph break]В начале игры команды обозначаются цветами, и вам предстоит самостоятельно выяснить, что они означают. По ходу истории будут появляться дополнительные команды.";
+	place an inline element called "hidden" reading "Набирать текст в этой игре не требуется: чтобы отдать команду, просто выберите соответствующую ссылку.";
 	place an element called "leftgutter" at the top level; 
 	set output focus to the element called "leftgutter";
-	place link to the command "0" called "hidden" reading "toggle экран";
+	place link to the command "0" called "hidden" reading "переключить экран";
 	place a block level element called "arrows";
 	set output focus to the main window;
 	sort the Table of Palette in random order.
@@ -285,9 +289,9 @@ To say pnBlocOpératoire:
 			
 Instead of simplePushing when the player is in the Bloc Opératoire:
 	if the consciousness of the player is less than 4:
-		say "You aren't sure what does what in here and don't want to risk accidently dissecting yourself by poking randomly about[one of]. That would be embarassing[or][stopping].";
+		say "Ты не знаешь, как именно работает то или иное оборудование здесь, и боишься, что метод проб и ошибок может довести тебя до саморасчленения[one of]. Вот это был бы эпик фейл[or][stopping]!";
 	otherwise:
-		say "You aren't scrubbed in and all the equipment in here is sterile; you don't want to contaminate the equipment."
+		say "Ты не провела дезинфекцию рук и не надела хирургический костюм, а всё оборудование здесь стерильное. Как-то не хочется его контаминировать."
 
 Section Couloir 2
 
@@ -373,7 +377,7 @@ After choosing notable locale objects when the player is in the Laboratoire Zool
 	set the locale priority of the food dispenser to 9.
 	
 Rule for printing a locale paragraph about the food dispenser:
-	say "Автоматическая кормушка стоит рядом с [if cage is open]от[otherwise]за[end if]крытой клеткой[if chien is dead], содержащей туманный труп животного[end if].";
+	say "Рядом с [if cage is open]от[otherwise]за[end if]крытой клеткой[if chien is dead], в которой валяется растерзанный труп животного,[end if] стоит автоматическая кормушка.";
 	now the chien is mentioned; 
 	now the food dispenser is mentioned;
 	now the cage is mentioned.
@@ -496,28 +500,28 @@ After choosing notable locale objects when the player is in the Laboratoire Bioc
 	if the microfluidic synthesis unit is in the location, set the locale priority of the microfluidic synthesis unit to 9.
 	
 Rule for printing a locale paragraph about the microfluidic synthesis unit:
-	say "A next-generation microfluidic synthesis unit takes up one side of the room, its panel indicators ";
+	say "Половину комнаты занимает микроструйная установка молекулярного синтеза последнего поколения; ";
 	if disjoncteurs are broken:
-		say "uniformly dark";
+		say "ни один из индикаторов на ее лицевой части не горит";
 	otherwise:
-		say "blinking ";
+		say "индикаторы на ее лицевой части помигивают";
 		if the microfluidic synthesis unit is broken:
-			say "to indicate an error condition";
+			say "– видимо, что-то с ней не так";
 		otherwise:
-			say "normally";
-	say ". The unit's service panel is ";
+			say ", как от них в общем-то и ожидается";
+	say ". ";
 	if the microfluidic synthesis unit is closed:
-		say "closed";
+		say "Сервисная панель установки закрыта";
 	otherwise:
-		say "open, revealing ";
+		say "Через открытую сервисную панель ";
 		if the disjoncteurs are broken:
-			say "its inner workings";
+			say "видны внутренности установки виден ";
 		otherwise:
 			if the microfluidic synthesis unit is broken:
-				say "a non-";
+				say "дефектный";
 			otherwise:
-				say "a repaired, ";
-			say "functional servo motor";
+				say "исправный";
+			say " сервопривод";
 	say ".";
 	now the microfluidic synthesis unit is mentioned.
 	
@@ -682,7 +686,7 @@ After going south from Couloir 1 when the consciousness of the player is 4 for t
 	try looking.
 	
 The list of text called bathroomScientistText is always {
-"As you enter the bathroom, you catch some movement out of the corner of your eye.[paragraph break][headchatter][italic type]Who's here? A man... Oh, Julian, look: it's you.[roman type][paragraph break]You facepalm, and in the mirror, still dressed in his blue guard uniform and cap, so does Julian. This is going to take some getting used to.[line break]"
+"Войдя в санузел, ты замечаешь краем глаза какое-то движение.[paragraph break][headchatter][italic type]«Кто здесь? Какой-то мужчина… Ой, Жюльен, смотри —  это же ты!»[roman type]","[paragraph break]Ты закрываешь лицо ладонью, и Жюльен в зеркале, все так же одетый в свою униформу охранника и кепи, делает то же самое. Непросто будет к этому привыкнуть.[line break]"
 }
 				
 After going south from Couloir 1 when the consciousness of the player is 3 for the first time:
@@ -777,7 +781,7 @@ After choosing notable locale objects when the player is in Escalier 1 and the p
 	set the locale priority of the panneau électrique to 9.
 	
 Rule for printing a locale paragraph about the panneau électrique:
-	say "Ты видишь здесь [if the panneau électrique is open]от[otherwise]за[end if]крытный электрощит";
+	say "Ты видишь здесь [if the panneau électrique is open]от[otherwise]за[end if]крытый электрощит";
 	if the panneau électrique is open:
 		say " [if the disjoncteurs are broken]со сброш[otherwise]с включ[end if]енными автоматическими предохранителями";
 	say ".";
@@ -834,7 +838,7 @@ After choosing notable locale objects when player is in sas:
 	If the bloody corpse of Docteur Rambaud is in sas, set the locale priority of the bloody corpse of Docteur Rambaud to 9. [this assures Inform looks for the corpse first]
 	
 Rule for printing a locale paragraph about the bloody corpse of Docteur Rambaud when the bloody corpse of Docteur Rambaud is in the sas:
-	say "The corpse of Doctor Rambaud lies crumpled on the floor not far from the intercom.";
+	say "Скорченный труп доктора Рамбо лежит на полу неподалеку от переговорного устройства.";
 	now the bloody corpse of Docteur Rambaud is mentioned;
 	now the intercom is mentioned.
 
@@ -854,7 +858,7 @@ Carry out Toggling:
 		now the toggle flag is false.
 		
 Report Toggling:
-	say "The game is [if toggle flag is true]now[otherwise]no longer[end if] clearing the screen after each turn."
+	say "Теперь экран [if toggle flag is false]больше не [end if]будет очищаться после каждого хода."
 
 Section 2 - simpleUnlocking
 
@@ -882,9 +886,9 @@ Carry out simpleUnlocking:
 			stop the action;
 	say "Здесь нет запертых дверей";
 	if the location is the sas:
-		say ", except the reinforced vault door leading northward into the complex. You are aware, however, that door can only be opened from the other side. Your passcode will not work on it";
+		say ", кроме бронированной двери к северу, ведущей внутрь комплекса. Но ты понимаешь, что эту дверь могут открыть только с другой стороны. Твой пароль уже не сработает";
 		if the consciousness of the player is 4:
-			say " now that failsafe protocol has been engaged";
+			say " в связи с активацией протокола безопасности";
 	say "."
 	
 To say firstUnlocked:
@@ -918,7 +922,7 @@ Carry out simpleOpening:
 	say "Непонятно, что здесь открывать." 
 	
 After opening the plastic container:
-	say "You grab the plastic container by a corner and shake it back and forth until it comes apart. A glistening slice of brain goes flying across the kitchen, strikes the wall with a rubbery smack, and slides to the floor."
+	say "Ты хватаешь пластиковый контейнер за уголок и трясешь его до тех пор, пока он не разваливается. Из него вылетает влажно поблескивающий кусок мозга и, пролетев через всю кухню, с резиновым звуком шмякается об стену и соскальзывает на пол."
 
 Section 4 - simpleEating
 
@@ -930,7 +934,7 @@ Carry out simpleEating:
 		stop the action;
 	say "Здесь нет ничего съестного";
 	if the consciousness of the player is 1 and the chien is in the cage:
-		say " (at least, nothing you can get to for the moment)";
+		say " (по крайней мере в пределах твоей досягаемости).";
 	if the pile of dog food is in the location:
 		say " (по крайней мере такого, что бы вызывало у тебя аппетит)";
 	say "."
@@ -954,7 +958,7 @@ simpleTalking is an action applying to nothing. Understand "talk" as simpleTalki
 
 Check simpleTalking:
 	if the player is not in the sas:
-		say "Вы не видите никого, с кем можно поговорить.";
+		say "Здесь нет никого, с кем можно было бы поговорить.";
 		stop the action;
 	otherwise:
 		if the bloody corpse of Docteur Rambaud is not in the void:
@@ -966,7 +970,7 @@ Carry out simpleTalking:
 	if the bloody corpse of Docteur Rambaud is not in the void:
 		now the BlockChatterFlag is true;
 		if the curedFlag of the player is not true:
-			say "[one of]Speaking into the intercom, you explain your plan. The technician on the other end of the line hurriedly wishes you good luck. Yelling between bursts of gunfire, he instructs you report back when you have succeeded. Short of that, though, he requests that you not use the intercom. He hangs up on you and the intercom goes dark[or]They must have a lot going on up there. You wait impatiently, but no one answers[or]Until and unless you find a cure, there isn't much to discuss with the control room. You decide to save their time and yours and hold off on calling them for now[stopping].";
+			say "[one of][plan1][or]Судя по всему, там что-то происходит. Ты ждешь, сгорая от нетерпения, но никто не отвечает[or]До тех пор, пока ты не синтезируешь лекарство, общаться с комнатой управления не имеет смысла. Ты решаешь не тратить попусту их время (да и свое тоже) и пока не звонить им[stopping].";
 			now the intercom is not live;
 		otherwise:
 			increase the conversations of the player by 1;
@@ -996,6 +1000,10 @@ Carry out simpleTalking:
 				tell parleyText5;
 			-- otherwise:
 				say "Говорить больше не о чем."
+				
+To say plan1:
+	say "Склонившись к переговорному устройству, ты рассказываешь свой план. Техник на другом конце поспешно желает тебе удачи. Пытаясь перекричать звуки выстрелов, он дает тебе указание сообщить, когда ты всё успешно закончишь.";
+	say " Однако до этого момента он просит тебя не пользоваться связью. На той стороне вешают трубку, и светодиод переговорного устройства гаснет".
 				
 The list of text called intercomText1 is always {
 "«Комната управления, профессор Драммонд у аппарата».[line break]","«Это я, твой пес Лаки! Я в шлюзе! Я так счастлив слышать твой голос!»[line break]","«Эээ… Что, простите? Что за шутки? Переговорное устройство предназначено только для служебных переговоров. ","Кто это?»[paragraph break][headchatter][italic type]«Это он! Отец моего семейства», [unicode 8212] задыхается от нетерпения пес.[line break]","«Успокойся, Лаки, [unicode 8212] настаивает Изабель. [unicode 8212] Пусть говорит Жюльен».[roman type][paragraph break]«Извините, [unicode 8212] говоришь ты. [unicode 8212] Я всё могу объяснить. Я Жюльен Трюффо».","[line break]«Охранник?»[line break]«Да».[line break]","«Не может быть. Доктор Рамбо сказала, что он превратился в зомби, а зомби не могут говорить. У меня нет времени на ерунду, освободите линию».[paragraph break]"
@@ -1042,26 +1050,35 @@ Carry out simpleRepairing:
 		if the item is:
 			-- the microfluidic synthesis unit:
 				if the microfluidic synthesis unit is broken and the microfluidic synthesis unit is open:
-					say "You brush aside the bit of solder. The machine should work normally now, when powered up.";
+					say "Ты смахиваешь кусок припоя с контактов. Можно надеяться, что теперь установка будет работать нормально (если подать на нее питание).";
 					now the microfluidic synthesis unit is not broken;
 				otherwise:
 					if the curedFlag of the player is true:
-						say "All of the equipment in here has performed flawlessly, there is nothing more to fix. In theory, with some resupply, the unit is now capable of cranking out more doses of the cure.";
+						say "Всё оборудование работало безупречно, так что чинить здесь больше нечего.";
 					otherwise: [broken mfsu means flipped circuit breakers, so this would be true]	
-						say "The machinery itself looks functional [unicode 8212] the problem appears to be lack of electrical current to the room itself.";	
+						say "Само оборудование выглядит исправным [unicode 8212] похоже, дело в отсутствии электричества в помещении.";	
 				stop the action;
 			-- the disjoncteurs:
 				if the the microfluidic synthesis unit is broken:
-					say "As soon as you flip the circuit breakers, there is a sharp clicking sound from the electrical panel and you notice the breakers have again tripped[one of][or][or]. As long as an electrical fault condition persists, they will automatically cut in to avert damage to the sensitive equipment in the lab[or]. They will not remain in the [quotation mark]on[quotation mark] position until you address whatever condition is causing a massive electrical current draw in the lab[or]. Chances are, something in the lab has shorted out. You need to fix that first[or][stopping].";
+					say "Едва ты отпускаешь предохранители, внутри щита раздается громкий щелчок, и ты видишь, что они вновь оказались сброшены[one of][or][or]. [circuitHint2][or]. [circuitHint3][or]. [circuitHint4][or][stopping].";
 				otherwise:
 					if the disjoncteurs are broken:
-						say "You reset the circuit breakers. Power should now be restored to the molecular synthesis lab.";
+						say "Ты включаешь предохранители. Подача электричества в лабораторию молекулярного синтеза, по идее, должна быть восстановлена.";
 						now the disjoncteurs are not broken;
 					otherwise:
-						say "The circuit breaks are already locked in the [quotation mark]on[quotation mark] position, so power should be flowing to all stations on level two of the complex.";
+						say "Предохранители уже включены, так что электричество, скорее всего, поступает ко всем потребителям на втором уровне комплекса.";
 				stop the action;
 	[if it falls through to this point, give the default blocking message]
 	say "Ты не видишь здесь ничего, что нуждалось бы в ремонте."
+	
+To say circuitHint2:
+	say "До тех пор, пока не будет устранена проблема в цепи питания, предохранители будут автоматически сбрасываться, чтобы нежное оборудование в лаборатории не было повреждено".
+	
+To say circuitHint3:
+	say "Предохранители так и будут сбрасываться, пока ты не разберешься с проблемой, вызывающей мощную утечку тока в лаборатории".
+	
+To say circuitHint4:
+		say "Очень вероятно, что там что-то перемкнуло. Вот этим тебе бы и заняться в первую очередь".
 
 	
 Section 8 - Numbering
@@ -1081,7 +1098,7 @@ Chapter 14 - Known Commands
 
 The list of actions called possibleActions is always {going east, going west,simpleEating,simpleOpening,going north,going south,simplePushing,simpleUnlocking,simpleTalking,simpleRepairing}.
 
-The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "нажать", "отпереть ", "говорить","ремонт"}.
+The list of text called printedActions is always {"восток", "запад", "есть", "открыть", "север", "юг", "нажать", "отпереть ", "говорить","починить"}.
 
 The commandList is a list of numbers that varies. The commandList is {}.
 
@@ -1125,7 +1142,7 @@ After reading a command:
 		say "Выберите одну из ссылок на команды, указанных выше.";
 		reject the player's command;
 	if C is 0:
-		place an inline element called "command" reading "> toggle screen";
+		place an inline element called "command" reading "> переключить экран";
 		try toggling;
 	otherwise:
 		place an inline element called "command" reading "> [entry C of printedActions]";
@@ -1310,13 +1327,12 @@ mouseDogDialogue is {
 {"Лаки, как ты думаешь, ты найдешь свою семью?»[line break]«Очень на это надеюсь».[line break]","«Я тоже. Мы бы с тобой показали этим белкам!»[line break]«Ага, это было бы круто"}
 }
 
-
 Section MouseDogGuard Dialogue
 
 mouseDogGuardDialogue is a list of lists of text that varies. 
 
 mouseDogGuardDialogue is { 
-{"«Разреши задать вопрос, [unicode 8212] начинает Мыш,  [unicode 8212] кто ты, собственно, такой?»[line break]","«Меня зовут... эээ... как же его... секундочку... мда, хороший вопрос. Похоже, я не могу сейчас вспомнить свое имя. Почему бы вам не придумать его самим?»[line break]","«Давай назовем его [unicode 8222]маленький кусочек мозга, который мы нашли в холодильнике и у которого был странноватый вкус[unicode 8220]», [unicode 8212] предлагает Лаки.[line break]","«Нет, это слишком длинно. Давай просто назовем его Мозголомтиком. Как тебе такое имя?»","[line break]«Подойдет, [unicode 8212] соглашается Мозголомтик. [unicode 8212] С учетом всех обстоятельств я предпочитаю короткие имена»."},
+{"«Разреши задать вопрос, [unicode 8212] начинает Мыш,  [unicode 8212] кто ты, собственно, такой?»[line break]","«Меня зовут... эээ... как же его... секундочку... мда, хороший вопрос. Похоже, я не могу сейчас вспомнить свое имя. Почему бы вам не придумать его самим?»[line break]","«Давай назовем его [unicode 8222]маленький кусочек мозга, который мы нашли в холодильнике и у которого был странноватый вкус[unicode 8220]», [unicode 8212] предлагает Лаки.[line break]","«Нет, это слишком длинно. Давай просто назовем его Мозголомтиком. Как тебе такое имя?»","[line break]«Подойдет, [unicode 8212] соглашается Мозголомтик. [unicode 8212] С учетом всех обстоятельств я предпочитаю попроще имена»."},
 {"«Ребят, а у вас есть имена?» [unicode 8212] спрашивает Мозголомтик.[line break]","«Да, [unicode 8212] отвечает пес. [unicode 8212] Извини, что пренебрегли этикетом. Меня зовут Лаки, а моего друга мышь можно просто звать Мышом».[line break]","«Именно», [unicode 8212] подтверждает мышь.[line break]«Друзья, очень приятно с вами познакомиться»."}, 
 {"«Ну, Мозголомтик, расскажи, каким животным ты был до того, как попал сюда. Я был собакой, а Мыш всегда был мышью».[line break]","«Я был кем-то другим, чем кусочек мозга?»[line break]","«Мне кажется, ты был холодильником, [unicode 8212] высказывает предположение Мыш. [unicode 8212] Я съел мозг собаки, и появился Лаки. После этого мы открыли холодильник и съели его содержимое, и появился ты».[line break]","«Сомневаюсь, что это работает именно так», [unicode 8212] вполголоса замечает Лаки."}, 
 {"«Когда ты появился, ты сказал, что нам надо [unicode 8222]обеспечить безопасность здания[unicode 8220]. Что ты имел в виду?» [unicode 8212] спрашивает Лаки.[line break]","«Я имел в виду, что мы должны осмотреть всё здание, чтобы обеспечить защиту от любых угроз».[line break]","«Хорошo, [unicode 8212] говорит Мыш, стараясь не терять нить беседы, [unicode 8212] но что ты имеешь в виду под зданием?»","[line break]«Здание? Ну, это комплекс... точнее, это место, где все работают... Хм... В общем, это то, где мы есть», [unicode 8212] заключает Мозголомтик."}, 
@@ -1433,8 +1449,8 @@ To credits:
 	close HTML tag;
 	open HTML tag "li";
 	say "Всем, кто помогал вычитать текст и тестировать игру: Éric Forgeot, Стефану Флодеру (Stéphane Flauder), Денизе Жобан (Denise Jobin), Брайану Раштону (Brian Rushton)";
-	say " и Хьюго Лабранду (Hugo Labrande (исходная французская версия); 	Ларе Уэлч, Бену Коллинзу-Суссману (Ben Collins-Sussman), Андреву Щулзу (Andrew Schultz),";
-	say " Валентину Коптельцеву и Давиду Уейту (David White) (английская версия); ХХХ, ХХХ и ХХХ (русская версия).";
+	say " и Хьюго Лабранду (Hugo Labrande (исходная французская версия);  Ларе Уэлч, Бену Коллинзу-Суссману (Ben Collins-Sussman), Андреву Щулзу (Andrew Schultz),";
+	say " Валентину Коптельцеву и Давиду Уейту (David White) (английская версия); и Антону Ласточкину (русская версия).";
 	close HTML tag;
 	open HTML tag "li";
 	say "Кораксу (Corax) и Михайлу Гервату (Michael Gerwat) за предложения относительно того, как сделать игру более дружелюбной для слабовидящих.";

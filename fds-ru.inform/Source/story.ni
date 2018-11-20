@@ -1407,10 +1407,10 @@ Instead of pushing the intercom:[only present at consciousness 4]
 
 The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "электрощит".
 
-The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенные[otherwise]включенные[end if] автоматические предохранители".  
+The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенные[otherwise]включенные[end if] автоматических предохранителей".  
 
 After opening the panneau électrique:
-	say "Открыв электрощит, ты видишь несколько сброшенные автоматические предохранители."
+	say "Открыв электрощит, ты видишь несколько сброшенных автоматические предохранители."
 
 The microfluidic synthesis unit is an openable closed female container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза". The microfluidic synthesis unit is broken.
 
@@ -1453,7 +1453,7 @@ To credits:
 	open HTML tag "li";
 	say "Всем, кто помогал вычитать текст и тестировать игру: Эрику Форжо (Éric Forgeot), Стефану Флодеру (Stéphane Flauder), Денизе Жобан (Denise Jobin), Брайану Раштону (Brian Rushton)";
 	say " и Хьюго Лабранду (Hugo Labrande) (исходная французская версия);  Ларе Уэлч, Бену Коллинзу-Суссману (Ben Collins-Sussman), Андреву Щулзу (Andrew Schultz),";
-	say " Валентину Коптельцеву и Давиду Уейту (David White) (английская версия); и Антону Ласточкину (русская версия).";
+	say " Валентину Коптельцеву и Дэвиду Уайту (David White) (английская версия); и Антону Ласточкину (русская версия).";
 	close HTML tag;
 	open HTML tag "li";
 	say "Кораксу (Corax) и Михайлу Гервату (Michael Gerwat) за предложения относительно того, как сделать игру более дружелюбной для слабовидящих.";

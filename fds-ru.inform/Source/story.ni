@@ -2,7 +2,7 @@
 
 The story headline is "Рыцарь без мозга и упрека".
 The story genre is "ужастик".
-The release number is 11.
+The release number is 12.
 The story creation year is 2018.
 The story description is "По чему ты не скучаешь, так это по своей памяти."
 
@@ -1408,10 +1408,10 @@ Instead of pushing the intercom:[only present at consciousness 4]
 
 The panneau électrique is an openable closed container in the void. The printed name of the panneau électrique is "электрощит".
 
-The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенные[otherwise]включенные[end if] автоматических предохранителей".  
+The disjoncteurs are in the panneau électrique. The indefinite article of the disjoncteurs is "несколько". The disjoncteurs are broken. The printed name of the disjoncteurs is "[if the disjoncteurs are broken]сброшенных[otherwise]включенных[end if] автоматических предохранителей".  
 
 After opening the panneau électrique:
-	say "Открыв электрощит, ты видишь несколько сброшенных автоматические предохранители."
+	say "Открыв электрощит, ты видишь несколько сброшенных автоматических предохранителей."
 
 The microfluidic synthesis unit is an openable closed female container in the void. The printed name of the microfluidic synthesis unit is "микроструйную установку синтеза". The microfluidic synthesis unit is broken.
 
